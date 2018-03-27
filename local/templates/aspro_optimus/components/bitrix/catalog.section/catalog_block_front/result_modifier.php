@@ -172,6 +172,28 @@ if (!empty($arResult['ITEMS'])){
 				$arPriceTypeID = array();
 				foreach($arItem['OFFERS'] as $keyOffer => $arOffer)
 				{
+                    //картинка предложения из штрихкода
+                    //debug($arOffer);die();// $arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'];
+                    if($arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+                    {
+                        $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        if(is_file($destinationFile))
+                        {
+                            $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        }
+                        elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                        {
+                            $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $arSize = array('width'=>240, 'height'=>229);
+                            CFile::ResizeImageFile(
+                                $sourceFile,
+                                $destinationFile,
+                                $arSize,
+                                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                            );
+                            $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        }
+                    }
 					//format prices when USE_PRICE_COUNT
 					if(function_exists('CatalogGetPriceTableEx') && (isset($arOffer['PRICE_MATRIX'])) && !$arOffer['PRICE_MATRIX'])
 					{
@@ -201,7 +223,28 @@ if (!empty($arResult['ITEMS'])){
 				$boolConvert ? $arResult['CONVERT_CURRENCY']['CURRENCY_ID'] : $strBaseCurrency
 			);
 		}
-
+        
+        if($arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+            {
+                //debug($arItem['PROPERTIES']['CML2_BAR_CODE']);die();
+                $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                if(is_file($destinationFile))
+                {
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                }
+                elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                {
+                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $arSize = array('width'=>240, 'height'=>229);
+                    CFile::ResizeImageFile(
+                        $sourceFile,
+                        $destinationFile,
+                        $arSize,
+                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                    );
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                }
+            }
 		//set min price when USE_PRICE_COUNT
 		if($arParams['USE_PRICE_COUNT'] == 'Y' && !$arItem['OFFERS'])
 		{

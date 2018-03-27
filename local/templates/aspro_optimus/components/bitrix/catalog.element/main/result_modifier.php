@@ -210,7 +210,7 @@ $productSlider = COptimus::getSliderForItemExt($arResult, $arParams['ADD_PICT_PR
     if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
         if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
             $productSlider = array(
-                0 => $_SERVER["DOCUMENT_ROOT"].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg',
+                0 => '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg',
             );   
         } else if($arResult['PREVIEW_PICTURE'] && 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']){
 		    $productSlider = array(

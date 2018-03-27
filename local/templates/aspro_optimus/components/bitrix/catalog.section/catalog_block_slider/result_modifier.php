@@ -204,6 +204,28 @@ if (!empty($arResult['ITEMS'])){
 					if (isset($arDouble[$arOffer['ID']]))
 						continue;
 					$arRow = array();
+                    //картинка предложения из штрихкода
+                    //debug($arOffer);die();// $arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'];
+                    if($arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+                    {
+                        $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        if(is_file($destinationFile))
+                        {
+                            $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        }
+                        elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                        {
+                            $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $arSize = array('width'=>240, 'height'=>229);
+                            CFile::ResizeImageFile(
+                                $sourceFile,
+                                $destinationFile,
+                                $arSize,
+                                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                            );
+                            $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        }
+                    }
 					foreach ($arSKUPropIDs as $propkey => $strOneCode)
 					{
 						$arCell = array(
@@ -250,7 +272,12 @@ if (!empty($arResult['ITEMS'])){
 						$arOffer['PREVIEW_PICTURE'] = $offerPictures['PICT'];
 						$arOffer['PREVIEW_PICTURE_SECOND'] = $offerPictures['SECOND_PICT'];
 					}
-
+                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        if(is_file($destinationFile))
+                        {
+                            $arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        }
 					if ('' != $arParams['OFFER_ADD_PICT_PROP'] && isset($arOffer['DISPLAY_PROPERTIES'][$arParams['OFFER_ADD_PICT_PROP']]))
 						unset($arOffer['DISPLAY_PROPERTIES'][$arParams['OFFER_ADD_PICT_PROP']]);
 
@@ -434,7 +461,27 @@ if (!empty($arResult['ITEMS'])){
 					);
 				}
 		}
-
+        if($arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+            {
+                //debug($arItem['PROPERTIES']['CML2_BAR_CODE']);die();
+                $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                if(is_file($destinationFile))
+                {
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                }
+                elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                {
+                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $arSize = array('width'=>240, 'height'=>229);
+                    CFile::ResizeImageFile(
+                        $sourceFile,
+                        $destinationFile,
+                        $arSize,
+                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                    );
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                }
+            }
 		if (
 			$arResult['MODULES']['catalog']
 			&& $arItem['CATALOG']

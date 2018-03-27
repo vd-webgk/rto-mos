@@ -48,11 +48,11 @@
 							<?if( !empty($arItem["DETAIL_PICTURE"]) || !empty($arItem["PREVIEW_PICTURE"]) ){?>
 								<?
 								$picture=($arItem["PREVIEW_PICTURE"] ? $arItem["PREVIEW_PICTURE"] : $arItem["DETAIL_PICTURE"]);
-								$img_preview = CFile::ResizeImageGet( $picture, array( "width" => 50, "height" => 50 ), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true);?>
+								//$img_preview = CFile::ResizeImageGet( $picture, array( "width" => 50, "height" => 50 ), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true);?>
 								<?if ($arParams["LIST_DISPLAY_POPUP_IMAGE"]=="Y"){?>
 									<a class="popup_image fancy" href="<?=$arItem["DETAIL_PICTURE"]["SRC"]?>" title="<?=$a_title;?>">
 								<?}?>
-									<img src="<?=$img_preview["src"]?>" alt="<?=$a_alt;?>" title="<?=$a_title;?>" />
+									<img src="<?=$picture["SRC"]?>" alt="<?=$a_alt;?>" title="<?=$a_title;?>" />
 								<?if ($arParams["LIST_DISPLAY_POPUP_IMAGE"]=="Y"){?>
 									</a>
 								<?}?>

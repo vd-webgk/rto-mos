@@ -131,7 +131,27 @@ if (!empty($arResult['ITEMS']))
 				$arItem['CHECK_QUANTITY'] = ('Y' == $arItem['CATALOG_QUANTITY_TRACE'] && 'N' == $arItem['CATALOG_CAN_BUY_ZERO']);
 				break;
 		}
-
+        if($arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+            {
+                //debug($arItem['PROPERTIES']['CML2_BAR_CODE']);die();
+                $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                if(is_file($destinationFile))
+                {
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                }
+                elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                {
+                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $arSize = array('width'=>240, 'height'=>229);
+                    CFile::ResizeImageFile(
+                        $sourceFile,
+                        $destinationFile,
+                        $arSize,
+                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                    );
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                }
+            }
 		// Offers
 		if ($arItem['CATALOG'] && isset($arItem['OFFERS']) && !empty($arItem['OFFERS']))
 		{

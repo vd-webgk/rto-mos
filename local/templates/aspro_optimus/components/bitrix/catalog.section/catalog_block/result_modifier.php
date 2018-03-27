@@ -287,7 +287,13 @@ if (!empty($arResult['ITEMS'])){
 						$arOffer['PREVIEW_PICTURE'] = $offerPictures['PICT'];
 						$arOffer['PREVIEW_PICTURE_SECOND'] = $offerPictures['SECOND_PICT'];
 					}
-
+                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        if(is_file($destinationFile))
+                        {
+                            $arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        }
+                        
 					if ('' != $arParams['OFFER_ADD_PICT_PROP'] && isset($arOffer['DISPLAY_PROPERTIES'][$arParams['OFFER_ADD_PICT_PROP']]))
 						unset($arOffer['DISPLAY_PROPERTIES'][$arParams['OFFER_ADD_PICT_PROP']]);
 
