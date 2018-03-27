@@ -429,7 +429,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 							if($arDiscounts)
 								$arDiscount=current($arDiscounts);
 							if($arDiscount["ACTIVE_TO"]){?>
-								<div class="view_sale_block <?=($arQuantityData["HTML"] ? '' : 'wq');?>"">
+								<div class="view_sale_block <?=($arQuantityData["HTML"] ? '' : 'wq');?>">
 									<div class="count_d_block">
 										<span class="active_to hidden"><?=$arDiscount["ACTIVE_TO"];?></span>
 										<div class="title"><?=GetMessage("UNTIL_AKC");?></div>
@@ -669,8 +669,8 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 										<?$img = CFile::ResizeImageGet($arSetItem["PREVIEW_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
 										<img  src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 									<?elseif($arSetItem["DETAIL_PICTURE"]):?>
-										<?$img = CFile::ResizeImageGet($arSetItem["DETAIL_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-										<img  src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+										<?//$img = CFile::ResizeImageGet($arSetItem["DETAIL_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
+										<img  src="<?=$arSetItem["DETAIL_PICTURE"]["SRC"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 									<?else:?>
 										<img  src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_small.png" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 									<?endif;?>

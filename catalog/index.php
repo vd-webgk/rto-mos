@@ -485,7 +485,7 @@ $APPLICATION->IncludeComponent(
 		"ELEMENT_SORT_ORDER_BOX" => "asc",
 		"ELEMENT_SORT_FIELD_BOX2" => "id",
 		"ELEMENT_SORT_ORDER_BOX2" => "desc",
-		"ADD_PICT_PROP" => "-",
+		"ADD_PICT_PROP" => "MORE_PHOTO",
 		"OFFER_ADD_PICT_PROP" => "MORE_PHOTO",
 		"DETAIL_ADD_DETAIL_TO_SLIDER" => "Y",
 		"SKU_DETAIL_ID" => "oid",

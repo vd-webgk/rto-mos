@@ -3,6 +3,8 @@ use Bitrix\Main\Type\Collection;
 use Bitrix\Currency\CurrencyTable;
 use Bitrix\Iblock;
 
+CModule::IncludeModule("iblock");
+
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 /** @var CBitrixComponentTemplate $this */
 /** @var array $arParams */
@@ -203,33 +205,36 @@ if('Y' !== $arParams['ADD_DETAIL_TO_SLIDER'] && $arResult['DETAIL_PICTURE']){
 }
 $productSlider = COptimus::getSliderForItemExt($arResult, $arParams['ADD_PICT_PROP'], 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']);
 
-if (empty($productSlider))
-{
-	if($arResult['PREVIEW_PICTURE'] && 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']){
-		$productSlider = array(
-			0 => $arResult['PREVIEW_PICTURE'],
-		);
+
+//if (empty($productSlider)){
+    if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
+            $productSlider = array(
+                0 => $_SERVER["DOCUMENT_ROOT"].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg',
+            );   
+        } else if($arResult['PREVIEW_PICTURE'] && 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']){
+		    $productSlider = array(
+			    0 => $arResult['PREVIEW_PICTURE'],
+		    );
 	}
 	else{
 		$productSlider = array(
 			0 => $arEmptyPreview
 		);
 	}
-}
-
+//}
+ 
 $arResult['SHOW_SLIDER'] = true;
+
 if($productSlider){
 	foreach($productSlider as $i => $arImage){
-		$productSlider[$i] = array_merge(
-			$arImage, array(
-				"BIG" => array('src' => CFile::GetPath($arImage["ID"])),
-				"SMALL" => CFile::ResizeImageGet($arImage["ID"], array("width" => 340, "height" => 340), BX_RESIZE_IMAGE_PROPORTIONAL, true, array()),
-				"THUMB" => CFile::ResizeImageGet($arImage["ID"], array("width" => 50, "height" => 50), BX_RESIZE_IMAGE_PROPORTIONAL, true, array()),
-			)
-		);
+		$productSlider[$i] = array(
+				"BIG" => array('src' => $arImage),
+				"SMALL" => array('src' => $arImage, "width" => 340, "height" => 340),
+				"THUMB" =>  array('src' => $arImage, "width" => 50, "height" => 50),
+			);
 	}
 }
-
 $productSliderCount = count($productSlider);
 $arResult['MORE_PHOTO'] = $productSlider;
 $arResult['MORE_PHOTO_COUNT'] = count($productSlider);
@@ -276,6 +281,11 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	if('TYPE_1' == $arParams['TYPE_SKU'] && $arResult['OFFERS'] ){
 		foreach ($arResult['OFFERS'] as &$arOffer)
 		{
+            //картинка предложения из штрихкода
+            //debug($arOneSKU);die();// $arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'];
+            if($arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
+                if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                    $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
 			foreach ($arSKUPropIDs as &$strOneCode)
 			{
 				if (isset($arOffer['DISPLAY_PROPERTIES'][$strOneCode]))
@@ -1002,6 +1012,9 @@ if(strlen($arResult["DISPLAY_PROPERTIES"]["BRAND"]["VALUE"]) && $arResult["PROPE
 		}
 	}
 }
+ 
+if(file_exists($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+    $arResult['DETAIL_PICTURE']['SRC'] =  '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
 
 $arResult["BRAND_ITEM"]=$arBrand;
 
