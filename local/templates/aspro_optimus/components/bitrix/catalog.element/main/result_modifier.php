@@ -157,7 +157,7 @@ if ($arResult['MODULES']['catalog'])
 
 	}
 }
-
+   
 $arConvertParams = array();
 if ('Y' == $arParams['CONVERT_CURRENCY'])
 {
@@ -361,12 +361,15 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 				{
 					$arCell['VALUE'] = (int)$arOffer['DISPLAY_PROPERTIES'][$strOneCode]['VALUE'];
 				}
-				$arCell['SORT'] = $arSKUPropList[$strOneCode]['VALUES'][$arCell['VALUE']]['SORT'];
+				$arCell['SORT'] = $arSKUPropList[$strOneCode]['VALUES'][$arCell['VALUE']]['SORT'];  
 			}
+            
+            $arSKUPropList[$strOneCode]['VALUES'][$arCell['VALUE']]["PRODUCT_ID"] = $arOffer["ID"];
+            $arSKUPropList[$strOneCode]['VALUES'][$arCell['VALUE']]["IBLOCK_ID"] = $arOffer["IBLOCK_ID"];
 			$arRow[$strOneCode] = $arCell;
 		}
 		$arMatrix[$keyOffer] = $arRow;
-
+        
 		CIBlockPriceTools::setRatioMinPrice($arOffer, false);
 
 		$arOffer['MORE_PHOTO'] = array();
@@ -935,17 +938,31 @@ if (!empty($arResult['DISPLAY_PROPERTIES'])){
 	}
 }
 if($arSKUPropList)
-{
+{   
 	foreach($arSKUPropList as $keySKU => $arPropSKU)
 	{
 		if(!$arPropSKU['HINT'])
-		{
+		{    
 			$arTmp = CIBlockProperty::GetByID($arPropSKU["ID"], $arResult["SKU_IBLOCK_ID"])->Fetch();
 			$arSKUPropList[$keySKU]['HINT'] = $arTmp['HINT'];
+            
 		}
+        foreach($arPropSKU["VALUES"] as $key => $prop){
+            $arSelec = Array("ID", "NAME", "PROPERTY_CML2_BAR_CODE", "PROPERTY_SOSTAV", "PROPERTY_DLINA");
+            $arFilter = Array("IBLOCK_ID"=>$prop["IBLOCK_ID"], "ID"=>$prop["PRODUCT_ID"], "ACTIVE"=>"Y");
+            $ar_offer = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelec);
+            if($offer = $ar_offer->GetNextElement()) {
+                $arFields = $offer->GetFields();
+                $prop["PICTURIE"] = '/upload/product_images/'.$arFields['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                $prop["SOSTAV"] = $arFields["PROPERTY_SOSTAV_VALUE"];
+                $prop["DLINA"] = $arFields["PROPERTY_DLINA_VALUE"];
+            }
+            $arSKUPropList[$keySKU]["VALUES"][$key] = $prop; 
+        }
 		$arSKUPropList[$keySKU]['SHOW_HINTS'] = $arParams['SHOW_HINTS'];
 	}
 }
+
 $arResult['SKU_PROPS'] = $arSKUPropList;
 
 $arResult['DEFAULT_PICTURE'] = $arEmptyPreview;

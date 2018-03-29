@@ -1,0 +1,9 @@
+body .item_slider .slides{
+    height: auto;
+}
+body .sku_props .bx_item_detail_size ul li{
+    display: table-cell;
+}
+.buy_block{
+    margin-bottom: 20px;
+}
