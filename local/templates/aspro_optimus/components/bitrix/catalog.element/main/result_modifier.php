@@ -284,8 +284,10 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
             //картинка предложения из штрихкода
             //debug($arOneSKU);die();// $arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'];
             if($arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
-                if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
+                if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
                     $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $arOffer['PREVIEW_PICTURE']["BIG"]['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                }
 			foreach ($arSKUPropIDs as &$strOneCode)
 			{
 				if (isset($arOffer['DISPLAY_PROPERTIES'][$strOneCode]))

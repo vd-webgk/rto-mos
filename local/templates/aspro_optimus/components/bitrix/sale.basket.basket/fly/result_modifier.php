@@ -22,6 +22,7 @@
 					$arResult["GRID"]["ROWS"][$key]["PREVIEW_PICTURE"]  = $picture;
 				}
 			}
+
 			if (isset($arItem["DETAIL_PICTURE"]) && intval($arItem["DETAIL_PICTURE"]) > 0)
 			{
 				$arImage = CFile::GetFileArray($arItem["DETAIL_PICTURE"]);
@@ -39,7 +40,10 @@
 				$arResult["GRID"]["ROWS"][$key]["IBLOCK_ID"]=$arItem1["IBLOCK_ID"];
 				$arResult["ITEMS_IBLOCK_ID"]=$arItem1["IBLOCK_ID"];
 			}
+        
+                      
 		}
+        
 		foreach($arResult["GRID"]["ROWS"] as $key=>$arItem)
 		{
 			if ($arImages[$key]["PREVIEW_PICTURE"]) {$arResult["GRID"]["ROWS"][$key]["PREVIEW_PICTURE"] = $arImages[$key]["PREVIEW_PICTURE"];}
@@ -121,8 +125,33 @@
 			{
 				$arNa[$arItem["ID"]] = $arItem;
 			}
+            
+            if($arItem['PROPERTIES'][0]['CODE'] == "CML2_BAR_CODE" && $arItem['PROPERTIES'][0]['VALUE'] > 0) {
+                    //debug($arItem['PROPERTIES']['CML2_BAR_CODE']);die();
+                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
+                    if(is_file($destinationFile))
+                    {
+                        $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';;
+                    }
+                    elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg'))
+                    {
+                        $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
+                        $arSize = array('width'=>240, 'height'=>229);
+                        CFile::ResizeImageFile(
+                            $sourceFile,
+                            $destinationFile,
+                            $arSize,
+                            $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                        );
+                        $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
+                        $arItem['DETAIL_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
+                    }
+                    $arResult["GRID"]["ROWS"][$k] = $arItem;
+
+            }
 		}
 		
+        
 		foreach ($arResult["GRID"]["HEADERS"] as $id => $arHeader)	{	if ($arHeader["id"] == "WEIGHT"){ $bWeightColumn = true;}	}
 		 
 		if ($bWeightColumn) { $arTotal["WEIGHT"]["NAME"] = GetMessage("SALE_TOTAL_WEIGHT"); $arTotal["WEIGHT"]["VALUE"] = $arResult["allWeight_FORMATED"];}

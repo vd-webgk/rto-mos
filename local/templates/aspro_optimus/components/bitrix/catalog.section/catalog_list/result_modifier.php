@@ -590,6 +590,11 @@ if (!empty($arResult['ITEMS'])){
                     );
                     $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
                 }
+            }  else {
+                $db_props = CIBlockElement::GetProperty($arItem['OFFERS'][0]["IBLOCK_ID"], $arItem['OFFERS'][0]["ID"], array("sort" => "asc"), Array("CODE"=>"CML2_BAR_CODE"));
+                if($ar_props = $db_props->Fetch()){
+                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$ar_props['VALUE'].'.jpg';; 
+                }
             }
 		if (
 			$arResult['MODULES']['catalog']

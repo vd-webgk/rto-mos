@@ -195,16 +195,17 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 				<?if($showCustomOffer && !empty($arResult['OFFERS_PROP'])){?>
 					<div class="offers_img wof">
 						<?$alt=$arFirstPhoto["ALT"];
-						$title=$arFirstPhoto["TITLE"];?>
-						<?if($arFirstPhoto["BIG"]["src"]){?>
-							<a href="<?=($viewImgType=="POPUP" ? $arFirstPhoto["BIG"]["src"] : "javascript:void(0)");?>" class="<?=($viewImgType=="POPUP" ? "popup_link" : "line_link");?>" title="<?=$title;?>">
-								<img id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PICT']; ?>" src="<?=$arFirstPhoto['SMALL']['src']; ?>" <?=($viewImgType=="MAGNIFIER" ? 'data-large="" xpreview="" xoriginal=""': "");?> alt="<?=$alt;?>" title="<?=$title;?>" itemprop="image">
+						$title=$arFirstPhoto["TITLE"];
+                        arshow($arFirstPhoto)?>
+						<?//if($arFirstPhoto["BIG"]["src"]){?>
+							<a href="<?=($viewImgType=="POPUP" ? $arFirstPhoto["SRC"] : "javascript:void(0)");?>" class="<?=($viewImgType=="POPUP" ? "popup_link" : "line_link");?>" title="<?=$title;?>">
+								<img id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PICT']; ?>" src="<?=$arFirstPhoto['SRC']; ?>" <?=($viewImgType=="MAGNIFIER" ? 'data-large="" xpreview="" xoriginal=""': "");?> alt="<?=$alt;?>" title="<?=$title;?>" itemprop="image">
 							</a>
-						<?}else{?>
+						<?/*}else{?>
 							<a href="javascript:void(0)" class="" title="<?=$title;?>">
 								<img id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PICT']; ?>" src="<?=$arFirstPhoto['SRC']; ?>" alt="<?=$alt;?>" title="<?=$title;?>" itemprop="image">
 							</a>
-						<?}?>
+						<?}*/?>
 					</div>
 				<?}else{
 					if($arResult["MORE_PHOTO"]){
@@ -220,13 +221,13 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 								$title=$arImage["TITLE"];
 								?>
 								<li id="photo-<?=$i?>" <?=(!$i ? 'class="current"' : 'style="display: none;"')?>>
-									<?if(!$isEmpty){?>
-										<a href="<?=($viewImgType=="POPUP" ? $arImage["BIG"]["src"] : "javascript:void(0)");?>" <?=($bIsOneImage ? '' : 'data-fancybox-group="item_slider"')?> class="<?=($viewImgType=="POPUP" ? "popup_link fancy" : "line_link");?>" title="<?=$title;?>">
-											<img  src="<?=$arImage["SMALL"]["src"]?>" <?=($viewImgType=="MAGNIFIER" ? "class='zoom_picture'" : "");?> <?=($viewImgType=="MAGNIFIER" ? 'xoriginal="'.$arImage["BIG"]["src"].'" xpreview="'.$arImage["THUMB"]["src"].'"' : "");?> alt="<?=$alt;?>" title="<?=$title;?>"<?=(!$i ? ' itemprop="image"' : '')?>/>
+									<?//if(!$isEmpty){?>
+										<a href="<?=($viewImgType=="POPUP" ? $arImage["SRC"] : "javascript:void(0)");?>" <?=($bIsOneImage ? '' : 'data-fancybox-group="item_slider"')?> class="<?=($viewImgType=="POPUP" ? "popup_link fancy" : "line_link");?>" title="<?=$title;?>">
+											<img  src="<?=$arImage["SRC"]?>" <?=($viewImgType=="MAGNIFIER" ? "class='zoom_picture'" : "");?> <?=($viewImgType=="MAGNIFIER" ? 'xoriginal="'.$arImage["SRC"].'" xpreview="'.$arImage["THUMB"]["src"].'"' : "");?> alt="<?=$alt;?>" title="<?=$title;?>"<?=(!$i ? ' itemprop="image"' : '')?>/>
 										</a>
-									<?}else{?>
+									<?/*}else{?>
 										<img  src="<?=$arImage["SRC"]?>" alt="<?=$alt;?>" title="<?=$title;?>" />
-									<?}?>
+									<?}*/?>
 								</li>
 							<?}?>
 						</ul>
@@ -291,13 +292,13 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 								$alt=$arImage["ALT"];
 								$title=$arImage["TITLE"];
 								?>
-								<?if(!$isEmpty){?>
-									<a href="<?=$arImage["BIG"]["src"]?>" data-fancybox-group="item_slider_flex" class="fancy" title="<?=$title;?>" >
-										<img src="<?=$arImage["SMALL"]["src"]?>" alt="<?=$alt;?>" title="<?=$title;?>" />
+								<?//if(!$isEmpty){?>
+									<a href="<?=$arImage["SRC"]?>" data-fancybox-group="item_slider_flex" class="fancy" title="<?=$title;?>" >
+										<img src="<?=$arImage["SRC"]?>" alt="<?=$alt;?>" title="<?=$title;?>" />
 									</a>
-								<?}else{?>
+								<?/*}else{?>
 									<img  src="<?=$arImage["SRC"];?>" alt="<?=$alt;?>" title="<?=$title;?>" />
-								<?}?>
+								<?}*/?>
 							</li>
 						<?}
 					}?>

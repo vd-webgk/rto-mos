@@ -1,9 +1,29 @@
 body .item_slider .slides{
-    height: auto;
+     
+    height: 400px;
 }
 body .sku_props .bx_item_detail_size ul li{
-    display: table-cell;
+    display: inline-table;
+    min-height: 100px;
+    width: 108px;
+}
+body .sku_props .bx_item_detail_size ul li:nth-child(7n){
+      
 }
 .buy_block{
     margin-bottom: 20px;
+}
+body #content .item_slider .slides ul li{
+    height: auto;
+    overflow: unset;
+}
+body .item_slider .slides li img, .item_slider .thumbs li img{
+    position: relative;
+    max-height: 400px;
+}
+body .item_slider .slides .offers_img img{
+    max-height: 400px;
+}
+body .item_slider .slides{
+    
 }
