@@ -27,3 +27,16 @@ body .item_slider .slides .offers_img img{
 body .item_slider .slides{
     
 }
+body .sku_props .bx_item_detail_size ul li span{
+    font-size: 11px;
+}
+.bx_size .counter_block,
+.catalog_detail .buy_block .bx_size .offer_buy_block > .wrapp_one_click{
+    display: none!important;
+}
+.bx_size .counter_wrapp{
+    margin-bottom: 10px;
+}
+.catalog_detail .w_icons.button.to-cart{
+    padding-right: 10px;
+}

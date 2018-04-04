@@ -20,7 +20,7 @@
     }
     
 class COptimusNew{
-    function GetSKUPropsArray(&$arSkuProps, $iblock_id=0, $type_view="list", $hide_title_props="N", $group_iblock_id="N"){
+    function GetSKUPropsArray(&$arSkuProps, $iblock_id=0, $type_view="list", $hide_title_props="N", $group_iblock_id="N", $Result){
         $arSkuTemplate = array();
         $class_title=($hide_title_props=="Y" ? "hide_class" : "show_class");
         $class_title.=' bx_item_section_name';
@@ -144,14 +144,32 @@ class COptimusNew{
                         //if($arOneValue['ID']>0){
                             $arOneValue['NAME'] = htmlspecialcharsbx($arOneValue['NAME']);
                             $templateRow .= '<li data-treevalue="'.$arProp['ID'].'_'.$arOneValue['ID'].'" data-showtype="li" data-onevalue="'.$arOneValue['ID'].'" title="'.$arProp['NAME'].': '.$arOneValue['NAME'].'"><i></i>
-                            <span class="cnt"><img src="'.$arOneValue['PICTURIE'].'" height="50"></span>';
+                            <span class="cnt">
+                                <a href="'.$arOneValue['PICTURIE'].'" data-fancybox-group="item_slider" class="imageFancy" title="">
+                                    <img src="'.$arOneValue['PICTURIE'].'" height="50">
+                                </a>
+                            </span>';
                             $templateRow .= '<span class="cnt">'.$arOneValue['NAME'].'</span>';
                             if($arOneValue['SOSTAV']){
                                 $templateRow .= '<span class="cnt_1">Состав: '.$arOneValue['SOSTAV'].'</span>';
                             }  
-                            if($arOneValue['SOSTAV']){
+                            if($arOneValue['DLINA']){
                                 $templateRow .= '<span class="cnt_1">Длина: '.$arOneValue['DLINA'].'</span>';
                             }    
+                            if($arOneValue['QUANTITY'] > 0){
+                                $templateRow .= '<span class="cnt_1">в наличии</span>';
+                            } else{    
+                               $templateRow .= '<span class="cnt_1">нет в наличии</span>'; 
+                            }
+                            $templateRow .= '<span class="cnt_1">Количество: '.$arOneValue['QUANTITY'].'</span>';
+                            if($arOneValue['PRICE']){
+                                $templateRow .= '<span class="cnt_1">Цена: '.$arOneValue['PRICE'].'</span>';
+                            }
+                            if($arOneValue['QUANTITY'] > 0){
+                                $templateRow .= '<div class="offer_buy_block buys_wrapp" style="display:none;">
+                                    <div class="counter_wrapp"></div>
+                                </div>';  
+                            }                     
                             $templateRow .= '</li>';                       
                         //}
                     }

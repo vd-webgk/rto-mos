@@ -281,7 +281,7 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	if('TYPE_1' == $arParams['TYPE_SKU'] && $arResult['OFFERS'] ){
 		foreach ($arResult['OFFERS'] as &$arOffer)
 		{
-            //êàðòèíêà ïðåäëîæåíèÿ èç øòðèõêîäà
+            //ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ° Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ Ð¸Ð· ÑˆÑ‚Ñ€Ð¸Ñ…ÐºÐ¾Ð´Ð°
             //debug($arOneSKU);die();// $arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'];
             if($arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
                 if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
@@ -954,8 +954,24 @@ if($arSKUPropList)
             $arFilter = Array("IBLOCK_ID"=>$prop["IBLOCK_ID"], "ID"=>$prop["PRODUCT_ID"], "ACTIVE"=>"Y");
             $ar_offer = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelec);
             if($offer = $ar_offer->GetNextElement()) {
+                $ar_res = CPrice::GetBasePrice($arFields["ID"], 1, 10);
+                
                 $arFields = $offer->GetFields();
+                $product_quantity = CCatalogProduct::GetByID($arFields["ID"]);
+                // Ð’Ñ‹Ð²ÐµÐ´ÐµÐ¼ Ñ†ÐµÐ½Ñƒ Ñ ÐºÐ¾Ð´Ð¾Ð¼ $PRODUCT_ID
+
+                $db_res = CPrice::GetList(
+                        array(),
+                        array(
+                                "PRODUCT_ID" => $arFields["ID"],
+                            )
+                    );
+                if ($ar_res = $db_res->Fetch()) {
+                    $prop["PRICE"] = CurrencyFormat($ar_res["PRICE"], $ar_res["CURRENCY"]).'/ÑˆÑ‚';
+                } 
+                
                 $prop["PICTURIE"] = '/upload/product_images/'.$arFields['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                $prop["QUANTITY"] = $product_quantity["QUANTITY"];
                 $prop["SOSTAV"] = $arFields["PROPERTY_SOSTAV_VALUE"];
                 $prop["DLINA"] = $arFields["PROPERTY_DLINA_VALUE"];
             }
@@ -1033,7 +1049,7 @@ if(strlen($arResult["DISPLAY_PROPERTIES"]["BRAND"]["VALUE"]) && $arResult["PROPE
 }
  
 if(file_exists($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
-    $arResult['DETAIL_PICTURE']['SRC'] =  '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+    $arResult['DETAIL_PICTURE']['SRC'] =  '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'; 
 
 $arResult["BRAND_ITEM"]=$arBrand;
 

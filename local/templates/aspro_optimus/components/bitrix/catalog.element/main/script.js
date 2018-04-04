@@ -5,6 +5,13 @@ $(document).on('click', ".item-stock .store_view", function(){
 });
 
 $(document).ready(function (){
+    $(".imageFancy").fancybox({
+        'maxWidth':300, 
+        'autoDimensions': false,
+        'autoSize':false
+
+    });
+    
 	$(".opener").click(function(){
 		$(this).find(".opener_icon").toggleClass("opened");
 		var showBlock = $(this).parents("tr").toggleClass("nb").next(".offer_stores").find(".stores_block_wrap");
@@ -1203,18 +1210,18 @@ window.JCCatalogElement.prototype.setCurrentImg = function(img, showImage)
 {
 	showImage = !!showImage;
 	if('SMALL' in img){
-		this.currentImg.src = img.SMALL.src;
+		//this.currentImg.src = img.SMALL.src;
 	}else if ('SRC' in img) {
-		this.currentImg.src = img.SRC
+		//this.currentImg.src = img.SRC
 	};
 	if('BIG' in img){
-		this.currentBigImg.src = img.BIG.src;
+		//this.currentBigImg.src = img.BIG.src;
 	}
 	if('WIDTH' in img){
-		this.currentImg.width = img.WIDTH;
+		//this.currentImg.width = img.WIDTH;
 	}
 	if('HEIGHT' in img){
-		this.currentImg.height = img.HEIGHT;
+		//this.currentImg.height = img.HEIGHT;
 	}
 	if (showImage && !!this.obPict)
 	{
