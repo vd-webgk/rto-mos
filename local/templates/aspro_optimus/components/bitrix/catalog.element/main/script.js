@@ -10,6 +10,12 @@ $(document).ready(function (){
         'autoDimensions': false,
         'autoSize':false
 
+    });    
+    $(".imageFancyGig").fancybox({
+        'maxWidth':700, 
+        'autoDimensions': false,
+        'autoSize':false
+
     });
     
 	$(".opener").click(function(){

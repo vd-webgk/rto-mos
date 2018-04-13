@@ -156,12 +156,13 @@ class COptimusNew{
                             if($arOneValue['DLINA']){
                                 $templateRow .= '<span class="cnt_1">Длина: '.$arOneValue['DLINA'].'</span>';
                             }    
-                            if($arOneValue['QUANTITY'] > 0){
-                                $templateRow .= '<span class="cnt_1">в наличии</span>';
+                            if($arOneValue['QUANTITY'] > 5){
+                                $templateRow .= '<div class="item-stock" ><span class="icon stock"></span><span class="value"><span class="store_view">Много</span></span></div>';
+                            } else if ($arOneValue['QUANTITY'] < 5 && $arOneValue['QUANTITY'] > 0){    
+                                $templateRow .= '<div class="item-stock" ><span class="icon stock"></span><span class="value"><span class="store_view">Мало</span></span></div>';
                             } else{    
-                               $templateRow .= '<span class="cnt_1">нет в наличии</span>'; 
+                                $templateRow .= '<div class="item-stock" ><span class="icon order"></span><span class="value"><span class="store_view">Нет в наличии</span></span></div>';
                             }
-                            $templateRow .= '<span class="cnt_1">Количество: '.$arOneValue['QUANTITY'].'</span>';
                             if($arOneValue['PRICE']){
                                 $templateRow .= '<span class="cnt_1">Цена: '.$arOneValue['PRICE'].'</span>';
                             }

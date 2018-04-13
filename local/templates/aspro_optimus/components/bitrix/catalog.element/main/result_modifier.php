@@ -209,8 +209,18 @@ $productSlider = COptimus::getSliderForItemExt($arResult, $arParams['ADD_PICT_PR
 //if (empty($productSlider)){
     if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
         if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
+            
+            $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+            $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+            $arSize = array('width'=>300, 'height'=>300);
+            $size_new = CFile::ResizeImageFile(
+                $sourceFile,
+                $destinationFile,
+                $arSize,
+                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+            );
             $productSlider = array(
-                0 => '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg',
+                0 => $destinationFile,
             );   
         } else if($arResult['PREVIEW_PICTURE'] && 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']){
 		    $productSlider = array(
@@ -285,8 +295,19 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
             //debug($arOneSKU);die();// $arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'];
             if($arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
                 if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
-                    $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-                    $arOffer['PREVIEW_PICTURE']["BIG"]['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    
+                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $arSize = array('width'=>300, 'height'=>300);
+                    $size_new = CFile::ResizeImageFile(
+                        $sourceFile,
+                        $destinationFile,
+                        $arSize,
+                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                    );
+                   
+                    $arOffer['PREVIEW_PICTURE']['SRC'] = $destinationFile;
+                    $arOffer['PREVIEW_PICTURE']["BIG"]['SRC'] = $destinationFile;
                 }
 			foreach ($arSKUPropIDs as &$strOneCode)
 			{
@@ -970,7 +991,17 @@ if($arSKUPropList)
                     $prop["PRICE"] = CurrencyFormat($ar_res["PRICE"], $ar_res["CURRENCY"]).'/шт';
                 } 
                 
-                $prop["PICTURIE"] = '/upload/product_images/'.$arFields['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arFields['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arFields['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                $arSize = array('width'=>350, 'height'=>350);
+                $size_new = CFile::ResizeImageFile(
+                    $sourceFile,
+                    $destinationFile,
+                    $arSize,
+                    $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                );
+                
+                $prop["PICTURIE"] = '/upload/product_images/small/'.$arFields['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
                 $prop["QUANTITY"] = $product_quantity["QUANTITY"];
                 $prop["SOSTAV"] = $arFields["PROPERTY_SOSTAV_VALUE"];
                 $prop["DLINA"] = $arFields["PROPERTY_DLINA_VALUE"];

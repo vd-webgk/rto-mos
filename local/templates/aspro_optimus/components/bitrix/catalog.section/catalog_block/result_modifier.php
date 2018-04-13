@@ -602,7 +602,9 @@ if (!empty($arResult['ITEMS'])){
             } else {
                 $db_props = CIBlockElement::GetProperty($arItem['OFFERS'][0]["IBLOCK_ID"], $arItem['OFFERS'][0]["ID"], array("sort" => "asc"), Array("CODE"=>"CML2_BAR_CODE"));
                 if($ar_props = $db_props->Fetch()){
-                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$ar_props['VALUE'].'.jpg';; 
+                    if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$ar_props['VALUE'].'.jpg')){
+                        $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$ar_props['VALUE'].'.jpg';
+                    }
                 }
             }
 

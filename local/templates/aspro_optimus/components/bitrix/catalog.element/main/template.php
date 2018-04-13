@@ -39,6 +39,7 @@
 </div>
 <?
 $this->setFrameMode(true);
+global $USER;
 $currencyList = '';
 if (!empty($arResult['CURRENCIES'])){
 	$templateLibrary[] = 'currency';
@@ -208,7 +209,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 						$title=$arFirstPhoto["TITLE"];
                         ?>
 						<?//if($arFirstPhoto["BIG"]["src"]){?>
-							<a href="<?=($viewImgType=="POPUP" ? $arFirstPhoto["SRC"] : "javascript:void(0)");?>" class="<?=($viewImgType=="POPUP" ? "popup_link" : "line_link");?>" title="<?=$title;?>">
+							<a href="<?=($viewImgType=="POPUP" ? $arFirstPhoto["SRC"] : "javascript:void(0)");?>" class="<?=($viewImgType=="POPUP" ? "imageFancyGig" : "line_link");?>" title="<?=$title;?>">
 								<img id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PICT']; ?>" src="<?=$arFirstPhoto['SRC']; ?>" <?=($viewImgType=="MAGNIFIER" ? 'data-large="" xpreview="" xoriginal=""': "");?> alt="<?=$alt;?>" title="<?=$title;?>" itemprop="image">
 							</a>
 						<?/*}else{?>
@@ -232,7 +233,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 								?>
 								<li id="photo-<?=$i?>" <?=(!$i ? 'class="current"' : 'style="display: none;"')?>>
 									<?//if(!$isEmpty){?>
-										<a href="<?=($viewImgType=="POPUP" ? $arImage["BIG"]["src"] : "javascript:void(0)");?>" <?=($bIsOneImage ? '' : 'data-fancybox-group="item_slider"')?> class="<?=($viewImgType=="POPUP" ? "popup_link fancy" : "line_link");?>" title="<?=$title;?>">
+										<a href="<?=($viewImgType=="POPUP" ? $arImage["BIG"]["src"] : "javascript:void(0)");?>" <?=($bIsOneImage ? '' : 'data-fancybox-group="item_slider"')?> class="<?=($viewImgType=="POPUP" ? "imageFancyGig fancy" : "line_link");?>" title="<?=$title;?>">
 											<img  src="<?=$arImage["SMALL"]["src"]?>" <?=($viewImgType=="MAGNIFIER" ? "class='zoom_picture'" : "");?> <?=($viewImgType=="MAGNIFIER" ? 'xoriginal="'.$arImage["SRC"].'" xpreview="'.$arImage["THUMB"]["src"].'"' : "");?> alt="<?=$alt;?>" title="<?=$title;?>"<?=(!$i ? ' itemprop="image"' : '')?>/>
 										</a>
 									<?/*}else{?>
@@ -503,7 +504,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 							</div>
 						<?endif;?>
 					<?}?>
-                    <?if($arResult["OFFERS"]){?>
+                    <?//if($arResult["OFFERS"]){?>
 					    <?if($useStores){?>
 						    <div class="p_block">
 					    <?}?>
@@ -511,7 +512,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 					    <?if($useStores){?>
 						    </div>
 					    <?}?>
-                    <?}?>
+                    <?//}?>
 				</div>
                 <?if(!$arResult["OFFERS"]){?>
                     <div class="buy_block">

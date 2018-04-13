@@ -40,3 +40,20 @@ body .sku_props .bx_item_detail_size ul li span{
 .catalog_detail .w_icons.button.to-cart{
     padding-right: 10px;
 }
+#content .sku_props .bx_size ul li.active{
+    background: transparent;
+    color: #000; 
+    box-shadow: 0px 1px 14px -1px #006ac5;
+}
+#content .bx_item_detail_size ul li:not(.active):hover .offer_buy_block span{
+    color: #fff;
+}
+.sku_props .bx_size ul li .icon{
+    float: left;
+    margin-right: 4px;
+    padding-bottom: 0;
+    top: 10px;
+}
+.sku_props .bx_size ul li .store_view{
+    text-align: left;
+}
