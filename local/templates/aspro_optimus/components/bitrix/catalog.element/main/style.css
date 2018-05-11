@@ -52,8 +52,18 @@ body .sku_props .bx_item_detail_size ul li span{
     float: left;
     margin-right: 4px;
     padding-bottom: 0;
-    top: 10px;
+    top: 6px;
+}
+.sku_props .bx_size ul li .icon.stock{
+    left: 20%;
+}
+.sku_props .bx_size ul li .item-stock{
+    margin: 0;
+}
+.sku_props .bx_size ul li .item-stock .value{
+    padding: 0;
+    height: 25px;
 }
 .sku_props .bx_size ul li .store_view{
-    text-align: left;
+    text-align: center;
 }
