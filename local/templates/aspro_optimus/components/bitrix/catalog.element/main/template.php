@@ -242,8 +242,18 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 								</li>
 							<?}?>
 						</ul>
-					<?}
-				}?>
+					<?} else {?>
+                        <li id="mphoto-0" class="current">
+                            <?    
+                            $alt=$arImage["ALT"];
+                            $title=$arImage["TITLE"];
+                            ?>
+                            <a href="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>" data-fancybox-group="item_slider_flex" class="fancy" title="<?=$title;?>" >
+                                <img src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>" alt="<?=$alt;?>" title="<?=$title;?>" />
+                            </a>
+                        </li>
+                    <?}?>
+				<?}?>
 			</div>
 			<?/*thumbs*/?>
 			<?if(!$showCustomOffer || empty($arResult['OFFERS_PROP'])){
@@ -296,10 +306,11 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 			<div class="item_slider flex flexslider" data-plugin-options='{"animation": "slide", "directionNav": false, "animationLoop": false, "slideshow": true, "slideshowSpeed": 10000, "animationSpeed": 600}'>
 				<ul class="slides">
 					<?if($arResult["MORE_PHOTO"]){
+                        
 						foreach($arResult["MORE_PHOTO"] as $i => $arImage){?>
 							<?$isEmpty=($arImage["SMALL"]["src"] ? false : true );?>
-							<li id="mphoto-<?=$i?>" <?=(!$i ? 'class="current"' : 'style="display: none;"')?>>
-								<?
+							<li id="mphoto-<?=$i ?>" <?=(!$i ? 'class="current"' : 'style="display: none;"')?>>
+								<?    
 								$alt=$arImage["ALT"];
 								$title=$arImage["TITLE"];
 								?>
@@ -312,7 +323,17 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 								<?}*/?>
 							</li>
 						<?}
-					}?>
+					} else {?>
+                        <li id="mphoto-0">
+                            <?    
+                            $alt=$arImage["ALT"];
+                            $title=$arImage["TITLE"];
+                            ?>
+                            <a href="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>" data-fancybox-group="item_slider_flex" class="fancy" title="<?=$title;?>" >
+                                <img src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>" alt="<?=$alt;?>" title="<?=$title;?>" />
+                            </a>
+                        </li>
+                    <?}?>
 				</ul>
 			</div>
 		<?}else{?>

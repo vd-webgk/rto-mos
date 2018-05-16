@@ -117,11 +117,12 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview))
 	$arSizes = getimagesize($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview);
 	if (!empty($arSizes))
 	{
-		$arEmptyPreview = array(
+		/*$arEmptyPreview = array(
 			'SRC' => $strEmptyPreview,
 			'WIDTH' => (int)$arSizes[0],
 			'HEIGHT' => (int)$arSizes[1]
-		);
+		);   */
+        $arEmptyPreview = $strEmptyPreview;
 	}
 	unset($arSizes);
 }
@@ -207,8 +208,8 @@ $productSlider = COptimus::getSliderForItemExt($arResult, $arParams['ADD_PICT_PR
 
 
 //if (empty($productSlider)){
-    if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0)
-        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
+    if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0 && $arResult['OFFERS'])
+        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
             
             $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
             $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
@@ -288,6 +289,7 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	$arResultSKUPropIDs = array();
 	$arFilterProp = array();
 	$arNeedValues = array();
+    arshow($arResult['OFFERS'] );
 	if('TYPE_1' == $arParams['TYPE_SKU'] && $arResult['OFFERS'] ){
 		foreach ($arResult['OFFERS'] as &$arOffer)
 		{
@@ -333,7 +335,23 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 
 		CIBlockPriceTools::getTreePropertyValues($arSKUPropList, $arNeedValues);
 		$arResult["TMP_OFFERS_PROP"]=$arSKUPropList;
-	}
+	} else {
+        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
+            
+            $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+            $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+            $arSize = array('width'=>300, 'height'=>300);
+            $size_new = CFile::ResizeImageFile(
+                $sourceFile,
+                $destinationFile,
+                $arSize,
+                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+            );
+           
+            $arResult['PREVIEW_PICTURE']['SRC'] = $destinationFile;
+            $arResult['PREVIEW_PICTURE']["BIG"]['SRC'] = $destinationFile;
+        }
+    }
 
 	$arSKUPropIDs = array_keys($arSKUPropList);
 	$arSKUPropKeys = array_fill_keys($arSKUPropIDs, false);
@@ -1081,7 +1099,7 @@ if(strlen($arResult["DISPLAY_PROPERTIES"]["BRAND"]["VALUE"]) && $arResult["PROPE
  
 if(file_exists($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
     $arResult['DETAIL_PICTURE']['SRC'] =  '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'; 
-
+      
 $arResult["BRAND_ITEM"]=$arBrand;
 
 /*stores product*/
