@@ -230,12 +230,12 @@ if (!empty($arResult['ITEMS'])){
                         elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
                         {
                             $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-                            $arSize = array('width'=>240, 'height'=>229);
+                            $arSize = array('width'=>200, 'height'=>290);
                             CFile::ResizeImageFile(
                                 $sourceFile,
                                 $destinationFile,
                                 $arSize,
-                                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                                $resizeType = BX_RESIZE_IMAGE_EXACT
                             );
                             $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                         }
@@ -584,18 +584,27 @@ if (!empty($arResult['ITEMS'])){
                 //debug($arItem['PROPERTIES']['CML2_BAR_CODE']);die();
                 $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                 if(is_file($destinationFile))
-                {
-                    $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';;
+                {                     
+                    $src = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $filePath = '/upload/product_images/quality_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                    $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
+                    CFile::ResizeImageFile(
+                        $src,
+                        $newImg,
+                        array('width'=>230, 'height'=>290),
+                        BX_RESIZE_IMAGE_EXACT 
+                    );
+                    $arItem['PREVIEW_PICTURE']['SRC'] = $filePath;    
                 }
                 elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'))
                 {
                     $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-                    $arSize = array('width'=>240, 'height'=>229);
+                    $arSize = array('width'=>239, 'height'=>290);
                     CFile::ResizeImageFile(
                         $sourceFile,
                         $destinationFile,
                         $arSize,
-                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL_ALT 
                     );
                     $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                 }
@@ -603,7 +612,7 @@ if (!empty($arResult['ITEMS'])){
                 $db_props = CIBlockElement::GetProperty($arItem['OFFERS'][0]["IBLOCK_ID"], $arItem['OFFERS'][0]["ID"], array("sort" => "asc"), Array("CODE"=>"CML2_BAR_CODE"));
                 if($ar_props = $db_props->Fetch()){
                     if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$ar_props['VALUE'].'.jpg')){
-                        $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$ar_props['VALUE'].'.jpg';
+                       //$arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$ar_props['VALUE'].'.jpg';
                     }
                 }
             }

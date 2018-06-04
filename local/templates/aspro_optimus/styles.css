@@ -157,7 +157,7 @@ body .image_wrapper_block{
     height: 290px;
 }
 .catalog_block .catalog_item img{
-    height: 290px;
+    /*/ht: 290px;*/
     width: initial;
     max-width: unset;
     max-height: unset;   

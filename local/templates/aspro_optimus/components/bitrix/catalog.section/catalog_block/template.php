@@ -148,7 +148,7 @@
 									<?if( !empty($arItem["PREVIEW_PICTURE"]) ):?>
 										<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="<?=$a_alt;?>" title="<?=$a_title;?>" />
 									<?elseif( !empty($arItem["DETAIL_PICTURE"])):?>
-										<?$img = CFile::ResizeImageGet($arItem["DETAIL_PICTURE"], array( "width" => 170, "height" => 170 ), BX_RESIZE_IMAGE_PROPORTIONAL,true );?>
+										<?$img = CFile::ResizeImageGet($arItem["DETAIL_PICTURE"], array( "width" => 220, "height" => 220 ), BX_RESIZE_IMAGE_PROPORTIONAL,true );?>
 										<img src="<?=$img["src"]?>" alt="<?=$a_alt;?>" title="<?=$a_title;?>" />
 									<?else:?>
 										<img src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$a_alt;?>" title="<?=$a_title;?>" />

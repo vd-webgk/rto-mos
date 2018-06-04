@@ -298,9 +298,11 @@ $APPLICATION->IncludeComponent(
 		"LIST_BROWSER_TITLE" => "-",
 		"LIST_OFFERS_FIELD_CODE" => array(
 			0 => "NAME",
-			1 => "CML2_LINK",
-			2 => "DETAIL_PAGE_URL",
-			3 => "",
+			1 => "PREVIEW_PICTURE",
+			2 => "DETAIL_PICTURE",
+			3 => "CML2_LINK",
+			4 => "DETAIL_PAGE_URL",
+			5 => "",
 		),
 		"LIST_OFFERS_PROPERTY_CODE" => array(
 			0 => "",
