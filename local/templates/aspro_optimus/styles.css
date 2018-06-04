@@ -172,3 +172,12 @@ body .wrapper_inner{
 body .right_block{
     padding-left: 232px; 
 }
+.image_wrapper_block>#fancy_a{
+    /*position: absolute;
+    display: block;
+    width: 36px !important; */
+    height: 34px;
+    background: url('/local/templates/aspro_optimus/images/zoom_ico.png') left top no-repeat;
+    /*bottom: 150px;
+    right: 10px;   */
+}
