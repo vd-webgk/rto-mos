@@ -142,7 +142,7 @@
 									</div>
                                     
 								<?endif;?>
-								<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="thumb" id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PICT']; ?>">
+								<a href="<?=$arItem["DETAIL_PAGE_URL"]?>"  class="thumb" id="<? echo $arItemIDs["ALL_ITEM_IDS"]['PICT']; ?>">
 									<?
 									$a_alt=($arItem["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_ALT"] ? $arItem["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_ALT"] : $arItem["NAME"] );
 									$a_title=($arItem["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"] ? $arItem["IPROPERTY_VALUES"]["ELEMENT_PREVIEW_PICTURE_FILE_TITLE"] : $arItem["NAME"] );
@@ -156,7 +156,10 @@
 										<img src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$a_alt;?>" title="<?=$a_title;?>" />
 									<?endif;?>
 								</a>
-                                <a id="fancy_a" href="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"></a>                               
+                                <?$big_pict = $arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE']?>
+                                <?if($big_pict != 0){?>
+                                    <?echo '<a data-fancybox-group="gallery" data-type="image" class="fancy_a" href="/upload/product_images/'. $big_pict . '.jpg"></a>';?>
+                                <?}?>                                                        
 							</div>
 							<div class="item_info main_item_wrapper <?=$arParams["TYPE_SKU"]?>">
 								<div class="item-title">
@@ -397,35 +400,21 @@
 		<?}?>
 	</div>
 <?}?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
 <script>
-    $(document).ready(function() {
-
-    /* This is basic - uses default settings */
-    
-    $("a#fancy_a").fancybox({
-        'height': 500,
-    });
-    
-    /* Using custom settings */
-
-    /* Apply fancybox to multiple items */
-    
-    $("a.group").fancybox({
-        'transitionIn'    :    'elastic',
-        'transitionOut'    :    'elastic',
-        'speedIn'        :    600, 
-        'speedOut'        :    200, 
-        'overlayShow'    :    false
-    });
-    
-});
+   
 	$(document).ready(function(){
 		$('.catalog_block .catalog_item_wrapp .catalog_item .item-title').sliceHeight();
 		$('.catalog_block .catalog_item_wrapp .catalog_item .cost').sliceHeight();
 		$('.catalog_block .catalog_item_wrapp .item_info').sliceHeight({classNull: '.footer_button'});
 		$('.catalog_block .catalog_item_wrapp').sliceHeight({classNull: '.footer_button'});
+        $('[data-fancybox-group="gallery"]').fancybox({
+    // Options will go here
+    autoDimensions: false,
+        height: 300,
+        width: 400
+});
 	});
 
 	BX.message({
