@@ -6,7 +6,7 @@
             FILE_APPEND
         );
     }
-    function arshow($array, $adminCheck = false){
+    function arshow($array, $adminCheck = true){
         global $USER;
         $USER = new Cuser;
         if ($adminCheck) {

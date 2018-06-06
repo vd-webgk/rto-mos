@@ -289,7 +289,6 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	$arResultSKUPropIDs = array();
 	$arFilterProp = array();
 	$arNeedValues = array();
-    arshow($arResult['OFFERS'] );
 	if('TYPE_1' == $arParams['TYPE_SKU'] && $arResult['OFFERS'] ){
 		foreach ($arResult['OFFERS'] as &$arOffer)
 		{

@@ -157,7 +157,7 @@
 									<?endif;?>
 								</a>
                                 <?$big_pict = $arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE']?>
-                                <?if($big_pict != 0){?>
+                                <?if($arItem["PREVIEW_PICTURE"]['SRC'] != '/local/templates/aspro_optimus/images/no_photo_medium.png'){?>
                                     <?echo '<a data-fancybox-group="gallery" data-type="image" class="fancy_a" href="/upload/product_images/'. $big_pict . '.jpg"></a>';?>
                                 <?}?>                                                        
 							</div>

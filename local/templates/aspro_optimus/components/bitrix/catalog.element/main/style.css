@@ -67,3 +67,13 @@ body .sku_props .bx_item_detail_size ul li span{
 .sku_props .bx_size ul li .store_view{
     text-align: center;
 }
+body .image_wrapper_block img{
+    margin: 0;
+}
+body .tabs_slider>li{
+    width: 199px!important;
+}
+body .bottom_slider .like_icons {
+    top: -6px;
+    right: 10px;
+}
