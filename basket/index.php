@@ -18,11 +18,11 @@ $APPLICATION->SetTitle("Корзина");
 			8 => "SUM",
 		),
 		"OFFERS_PROPS" => array(
-			0 => "SIZES",
-			1 => "COLOR_REF",
+			0 => "COLOR_REF",
+			1 => "SIZES",
 		),
 		"PATH_TO_ORDER" => SITE_DIR."order/",
-		"HIDE_COUPON" => "N",
+		"HIDE_COUPON" => "Y",
 		"PRICE_VAT_SHOW_VALUE" => "Y",
 		"COUNT_DISCOUNT_4_ALL_QUANTITY" => "N",
 		"USE_PREPAYMENT" => "N",
@@ -45,7 +45,7 @@ $APPLICATION->SetTitle("Корзина");
 		"GIFTS_BLOCK_TITLE" => "Выберите один из подарков",
 		"GIFTS_HIDE_BLOCK_TITLE" => "N",
 		"GIFTS_TEXT_LABEL_GIFT" => "Подарок",
-		"GIFTS_PRODUCT_QUANTITY_VARIABLE" => "undefined",
+		"GIFTS_PRODUCT_QUANTITY_VARIABLE" => "quantity",
 		"GIFTS_PRODUCT_PROPS_VARIABLE" => "prop",
 		"GIFTS_SHOW_OLD_PRICE" => "Y",
 		"GIFTS_SHOW_DISCOUNT_PERCENT" => "Y",
@@ -55,7 +55,9 @@ $APPLICATION->SetTitle("Корзина");
 		"GIFTS_MESS_BTN_DETAIL" => "Подробнее",
 		"GIFTS_PAGE_ELEMENT_COUNT" => "10",
 		"GIFTS_CONVERT_CURRENCY" => "N",
-		"GIFTS_HIDE_NOT_AVAILABLE" => "N"
+		"GIFTS_HIDE_NOT_AVAILABLE" => "N",
+		"CORRECT_RATIO" => "N",
+		"USE_ENHANCED_ECOMMERCE" => "N"
 	),
 	false
 );?>

@@ -51,5 +51,9 @@
 	$MESS ["CURRENT_ORDERS"] = "Текущие";
 	$MESS ["FINISH_ORDERS"] = "Завершенные";
 	$MESS ["CANCELED_ORDERS"] = "Отмененные";
-	$MESS ["UNIT"] = "шт.";
+    $MESS ["UNIT"] = "шт.";
+    $MESS ["UNIT"] = "шт.";
+	$MESS ["INVOICE"] = "Скачать счет";
+    $MESS["UPD"] = "Скачать УПД";
+    $MESS["TRACK_NUMBER"] = "Код отслеживания заказа";
 ?>

@@ -8,11 +8,11 @@
 	$MESS["USER_DONT_KNOW"] = "(неизвестно)";
 	$MESS["USER_MALE"] = "Мужской";
 	$MESS["USER_FEMALE"] = "Женский";
-	$MESS["REGISTER_FIELD_LOGIN"] = "Логин (мин. 3 символа)";
+	$MESS["REGISTER_FIELD_LOGIN"] = "Логин";
 	$MESS["REGISTER_FIELD_EMAIL"] = "E-mail";
-	$MESS["REGISTER_FIELD_PASSWORD"] = "Пароль";
-	$MESS["REGISTER_FIELD_CONFIRM_PASSWORD"] = "Подтверждение пароля";
-	$MESS["REGISTER_FIELD_NAME"] = "Фамилия Имя Отчество";
+	//$MESS["REGISTER_FIELD_PASSWORD"] = "Пароль";
+	//$MESS["REGISTER_FIELD_CONFIRM_PASSWORD"] = "Подтверждение пароля";
+	$MESS["REGISTER_FIELD_NAME"] = "Имя";
 	$MESS["REGISTER_FIELD_SECOND_NAME"] = "Отчество";
 	$MESS["REGISTER_FIELD_LAST_NAME"] = "Фамилия";
 	$MESS["REGISTER_FIELD_AUTO_TIME_ZONE"] = "Часовой пояс";

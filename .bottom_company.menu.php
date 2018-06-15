@@ -15,20 +15,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Сотрудники", 
-		"/company/staff/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Вакансии", 
-		"/company/jobs/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Магазины", 
 		"/contacts/stores/", 
 		Array(), 

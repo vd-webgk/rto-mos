@@ -216,4 +216,21 @@ class COptimusNew{
         return $arSkuTemplate;
     }    
 }
+
+AddEventHandler("main", "OnBeforeUserRegister", "newNonActiveUser");
+
+    function newNonActiveUser(&$arFields)
+    {
+    
+        $hash = rand(100, 1000);
+        $hashPassword = md5($hash);
+        $arFields["ACTIVE"] = "N";
+        $arFields["PASSWORD "] = $hashPassword ;
+        $arFields["CONFIRM_PASSWORD "] = $hashPassword ;
+        
+        
+        
+       
+    }
+
 ?>

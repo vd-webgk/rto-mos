@@ -589,7 +589,7 @@ if (!empty($arResult['ITEMS'])){
                     $filePath = '/upload/product_images/quality_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                     $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg');
                    // arshow($imgSize);
-                    if($imgSize[0] > 200 || $imgSize[1] > 260){
+                    if($imgSize[0] > 180 || $imgSize[1] > 240){
                         $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
                         CFile::ResizeImageFile(
                             $src,
