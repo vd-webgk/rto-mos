@@ -594,7 +594,7 @@ if (!empty($arResult['ITEMS'])){
                         CFile::ResizeImageFile(
                             $src,
                             $newImg,
-                            array('width'=>230, 'height'=>290),
+                            array('width'=>230, 'height'=>250),
                             BX_RESIZE_IMAGE_EXACT 
                         );
                         $arItem['PREVIEW_PICTURE']['SRC'] = $filePath;
