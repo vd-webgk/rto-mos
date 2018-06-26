@@ -208,41 +208,46 @@ $productSlider = COptimus::getSliderForItemExt($arResult, $arParams['ADD_PICT_PR
 
 
 //if (empty($productSlider)){
-    if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0 && $arResult['OFFERS'])
-        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg')){
-            
-            $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-            $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-            $arSize = array('width'=>300, 'height'=>300);
-            $size_new = CFile::ResizeImageFile(
-                $sourceFile,
-                $destinationFile,
-                $arSize,
-                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
-            );
-            $productSlider = array(
-                0 => $destinationFile,
-            );   
-        } else if($arResult['PREVIEW_PICTURE'] && 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']){
+    if($arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'] > 0) {
+        
+            $imgPath = '/upload/product_images/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+            $imgPathSmall = '/upload/product_images/small/'.$arResult['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+        
+            if(is_file($_SERVER['DOCUMENT_ROOT'] . $imgPath)){
+                
+                $destinationFile = $_SERVER['DOCUMENT_ROOT'] . $imgPathSmall;
+                $sourceFile = $_SERVER['DOCUMENT_ROOT'] . $imgPath;
+                $arSize = array('width'=>300, 'height'=>300);
+                $size_new = CFile::ResizeImageFile(
+                    $sourceFile,
+                    $destinationFile,
+                    $arSize,
+                    $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                );
+               
+                $productSlider[] = array("SRC" => $imgPath); 
+             
+	    } else{
 		    $productSlider = array(
-			    0 => $arResult['PREVIEW_PICTURE'],
+			    0 => $arEmptyPreview
 		    );
-	}
-	else{
-		$productSlider = array(
-			0 => $arEmptyPreview
-		);
-	}
+	    }
+    
+    }      
+    
+    if($arResult['DETAIL_PICTURE'] && 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']){
+            $productSlider[] = $arResult['PREVIEW_PICTURE'];
+    }
 //}
  
-$arResult['SHOW_SLIDER'] = true;
+$arResult['SHOW_SLIDER'] = true;          
 
 if($productSlider){
 	foreach($productSlider as $i => $arImage){
 		$productSlider[$i] = array(
-				"BIG" => array('src' => $arImage),
-				"SMALL" => array('src' => $arImage, "width" => 340, "height" => 340),
-				"THUMB" =>  array('src' => $arImage, "width" => 50, "height" => 50),
+				"BIG" => array('src' => $arImage["SRC"]),
+				"SMALL" => array('src' => $arImage["SRC"], "width" => 340, "height" => 340),
+				"THUMB" =>  array('src' => $arImage["SRC"], "width" => 50, "height" => 50),
 			);
 	}
 }
