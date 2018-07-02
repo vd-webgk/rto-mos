@@ -117,7 +117,8 @@
                             $arFields["PASSWORD"]="PASSWORD";
                             $arFields["CONFIRM_PASSWORD"]="CONFIRM_PASSWORD";
 
-                        ?>
+                        //print_r($arFields);?>
+                        
                         <?foreach ($arFields as $FIELD):?>
 
                             <?//if( $FIELD != "LOGIN" ){?>
@@ -203,8 +204,13 @@
                                                 <?//if( $FIELD != "LOGIN" ){?>
 
                                             </div>
-                                            <div class="iblock text_block">
-                                                <?=GetMessage("REGISTER_FIELD_TEXT_".$FIELD);?>
+                                            <div class="iblock text_block <?if($FIELD == "EMAIL" && $APPLICATION->GetCurDir() == "/auth/registration/"){echo "top_description";}?>">
+                                                <?
+                                                if($FIELD == "EMAIL" && $APPLICATION->GetCurDir() == "/auth/registration/"){
+                                                    echo GetMessage("REGISTER_FIELD_TEXT_LOGIN");
+                                                } else {
+                                                    echo GetMessage("REGISTER_FIELD_TEXT_".$FIELD);
+                                                }?>
                                             </div>
                                         </div>
                                     </div>

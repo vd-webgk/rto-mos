@@ -23,3 +23,6 @@ top:4px;
 	background-repeat: no-repeat;
 	background-image: url(images/error.png);
 }
+.top_description{
+margin-top: -80px;
+}

@@ -23,7 +23,7 @@ if(!empty( $_REQUEST["change_password"])){
 							<input type="hidden" name="AUTH_FORM" value="Y" />
 							<input type="hidden" name="TYPE" value="AUTH" />
 							<div class="r form-control">
-								<label><?=GetMessage("EMAIL")?> <span class="star">*</span></label>
+								<label><?=GetMessage("INN")?> <span class="star">*</span></label>
 								<input type="text"  name="USER_LOGIN" required maxlength="50" value="<?=$arResult["USER_LOGIN"]?>" size="17" tabindex="7" />
 								<?if($_POST["USER_LOGIN"]=='' && isset($_POST["USER_LOGIN"])){?><label class="error"><?=GetMessage("FIELD_REQUIRED")?></label><?}?>
 							</div>
@@ -114,7 +114,7 @@ if(!empty( $_REQUEST["change_password"])){
 		$("#avtorization-form-page").validate({
 			rules: {
 				USER_LOGIN: {
-					email: true,
+					//email: true,
 					required:true
 				}
 			},
