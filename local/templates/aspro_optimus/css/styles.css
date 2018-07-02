@@ -84,6 +84,7 @@ table.title-search-result td.title-search-separator, table.title-search-result t
 #header .middle-h-row, #header .catalog_menu{ margin: 0 auto; position: relative; zoom: 1;z-index:3; }
 #header .middle-h-row{ z-index: 202; }
 #header .middle-h-row .logo_wrapp .logo{min-height:51px;line-height:51px;overflow: hidden;display: table-cell;max-width: 220px;}
+#header .middle-h-row .logo_wrapp .logo a img{width: 200px;}
 
 #header .basket_fly{-webkit-transform: translateZ(0);}
 #header .basket_fly td { box-sizing: content-box; -moz-box-sizing: content-box; -o-box-sizing: content-box; -webkit-box-sizing: content-box;text-align: left; }

@@ -291,6 +291,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 							});
 						})
 					</script>
+
 				<?endif;?>
 			<?}else{?>
 				<div class="wrapp_thumbs">
