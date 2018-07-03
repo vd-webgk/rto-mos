@@ -1543,3 +1543,17 @@ label[data-bx-user-consent] a{
 label[data-bx-user-consent] input{
     margin-top: 2px;
 }
+.form-control{
+    display: inline-table;
+    width: 98%;
+}
+.form_basket_button{
+    width: 200px !important;
+    height: 50px !important;
+    border-radius: 5px !important;
+    float: right !important;
+}
+textarea{
+    resize: vertical !important;
+    max-height: 250px;
+}

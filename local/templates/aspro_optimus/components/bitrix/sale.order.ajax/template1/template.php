@@ -424,18 +424,6 @@ else
 						<div class="bx-soa-section-content container-fluid"></div>
 					</div>
 				<? endif ?>
-                   <?if (\Bitrix\Main\Config\Option::get("aspro.optimus", "SHOW_ONECLICKBUY_ON_BASKET_PAGE", "Y") == "Y"):?>
-                    <div class="basket_fast_order clearfix">
-                        <a style="float: right; text-shadow: none; color: #FFF;padding: 11px 40px 13px;font-size: 17px;line-height: 20px;font-weight: 700;margin-top: 0!important;" onclick="oneClickBuyBasket()" class="button short sbold fast_order"><span><?=GetMessage("ORDER_DEFAULT")?></span></a>
-                        <div class="description"><?=GetMessage("SALE_FAST_ORDER_DESCRIPTION");?></div>
-                    </div>
-                <?else:?>
-                    <div class="wrap_button">
-                        <a href="<?=$arParams["PATH_TO_BASKET"]?>" class="button transparent sbold"><span><?=GetMessage("GO_TO_BASKET")?></span></a>
-                    </div>
-                    <div class="description"><?=GetMessage("SALE_TO_BASKET_DESCRIPTION");?></div>
-                <?endif;?>
-
 				<? if ($arParams['BASKET_POSITION'] === 'after'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
 					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
