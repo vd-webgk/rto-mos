@@ -351,46 +351,46 @@ else
 				<? endif ?>
 
 				<!--	REGION BLOCK	-->
-				<div id="bx-soa-region" data-visited="false" class="bx-soa-section bx-active">
-					<div class="bx-soa-section-title-container">
-						<h2 class="bx-soa-section-title col-sm-9">
-							<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_REGION_BLOCK_NAME']?>
+				<div style="display: none;" id="bx-soa-region" data-visited="false" class="">
+					<div style="display: none;" class="bx-soa-section-title-container">
+						<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+							<span style="display: none;" class="bx-soa-section-title-count"></span><?=$arParams['MESS_REGION_BLOCK_NAME']?>
 						</h2>
-						<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+						<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 					</div>
-					<div class="bx-soa-section-content container-fluid"></div>
+					<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 				</div>
 
 				<? if ($arParams['DELIVERY_TO_PAYSYSTEM'] === 'p2d'): ?>
 					<!--	PAY SYSTEMS BLOCK	-->
-					<div id="bx-soa-paysystem" data-visited="false" class="bx-soa-section bx-active">
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
-								<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_PAYMENT_BLOCK_NAME']?>
+					<div style="display: none;" id="bx-soa-paysystem" data-visited="false" class="">
+						<div style="display: none;" class="bx-soa-section-title-container">
+							<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+								<span style="display: none;" class="bx-soa-section-title-count"></span><?=$arParams['MESS_PAYMENT_BLOCK_NAME']?>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 					</div>
 					<!--	DELIVERY BLOCK	-->
-					<div id="bx-soa-delivery" data-visited="false" class="bx-soa-section bx-active" <?=($hideDelivery ? 'style="display:none"' : '')?>>
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
-								<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_DELIVERY_BLOCK_NAME']?>
+					<div style="display: none;" id="bx-soa-delivery" data-visited="false" class="" <?=($hideDelivery ? 'style="display:none"' : '')?>>
+						<div style="display: none;" class="bx-soa-section-title-container">
+							<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+								<span style="display: none;" class="bx-soa-section-title-count"></span><?=$arParams['MESS_DELIVERY_BLOCK_NAME']?>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 					</div>
 					<!--	PICKUP BLOCK	-->
-					<div id="bx-soa-pickup" data-visited="false" class="bx-soa-section" style="display:none">
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
-								<span class="bx-soa-section-title-count"></span>
+					<div id="bx-soa-pickup" data-visited="false" class="" style="display:none">
+						<div style="display: none;" class="bx-soa-section-title-container">
+							<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+								<span style="display: none;" class="bx-soa-section-title-count"></span>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 					</div>
 				<? else: ?>
 					<!--	DELIVERY BLOCK	-->
@@ -424,16 +424,17 @@ else
 						<div class="bx-soa-section-content container-fluid"></div>
 					</div>
 				<? endif ?>
-				<!--	BUYER PROPS BLOCK	-->
-				<div id="bx-soa-properties" data-visited="false" class="bx-soa-section bx-active">
-					<div class="bx-soa-section-title-container">
-						<h2 class="bx-soa-section-title col-sm-9">
-							<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_BUYER_BLOCK_NAME']?>
-						</h2>
-						<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
-					</div>
-					<div class="bx-soa-section-content container-fluid"></div>
-				</div>
+                   <?if (\Bitrix\Main\Config\Option::get("aspro.optimus", "SHOW_ONECLICKBUY_ON_BASKET_PAGE", "Y") == "Y"):?>
+                    <div class="basket_fast_order clearfix">
+                        <a style="float: right; text-shadow: none; color: #FFF;padding: 11px 40px 13px;font-size: 17px;line-height: 20px;font-weight: 700;margin-top: 0!important;" onclick="oneClickBuyBasket()" class="button short sbold fast_order"><span><?=GetMessage("ORDER_DEFAULT")?></span></a>
+                        <div class="description"><?=GetMessage("SALE_FAST_ORDER_DESCRIPTION");?></div>
+                    </div>
+                <?else:?>
+                    <div class="wrap_button">
+                        <a href="<?=$arParams["PATH_TO_BASKET"]?>" class="button transparent sbold"><span><?=GetMessage("GO_TO_BASKET")?></span></a>
+                    </div>
+                    <div class="description"><?=GetMessage("SALE_TO_BASKET_DESCRIPTION");?></div>
+                <?endif;?>
 
 				<? if ($arParams['BASKET_POSITION'] === 'after'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
@@ -472,7 +473,7 @@ else
 						}
 						?>
 					</div>
-					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
+					<a style="display: none;" href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
 						<?=$arParams['MESS_ORDER']?>
 					</a>
 				</div>

@@ -2168,7 +2168,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				);
 			}
 
-			node.appendChild(
+			/*node.appendChild(
 				BX.create('DIV', {
 					props: {className: 'row bx-soa-more'},
 					children: [
@@ -2178,7 +2178,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						})
 					]
 				})
-			);
+			);*/
 		},
 
 		getNewContainer: function(notFluid)
