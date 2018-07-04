@@ -16,4 +16,4 @@ foreach($arResult['JS_DATA']['GRID']['ROWS'] as $elementInbasket){
        /* }  */    
       }
       $_POST['ELEMENT_ID'] = $getIDbasketItems;
-     ARSHOW($_POST);
+     //ARSHOW($component);

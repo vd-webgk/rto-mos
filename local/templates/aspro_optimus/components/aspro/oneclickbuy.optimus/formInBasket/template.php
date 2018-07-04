@@ -1,6 +1,10 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 	<a class="jqmClose close"><i></i></a>
 	<div class="form-wr">
+    <?//arshow($_POST);?>
+    <?arshow($arParams['ELEMENT_ID']);
+    // $arParams['ELEMENT_ID'] = $arParams['~ELEMENT_ID'];
+    ?>
 		<form method="post" id="one_click_buy_form" action="<?=$arResult['SCRIPT_PATH']?>/script.php">
 			<?foreach($arParams['PROPERTIES'] as $field):
 				$class.="inputtext";
@@ -63,11 +67,13 @@
 			<input type="hidden" name="CURRENCY" value="<?=$arParams['DEFAULT_CURRENCY']?>" />
 			<input type="hidden" name="SITE_ID" value="<?=SITE_ID;?>" />
 			<input type="hidden" name="PROPERTIES" value='<?=serialize($arParams['PROPERTIES'])?>' />
-			<input type="hidden" name="PAY_SYSTEM_ID" value="<?=$arParams['DEFAULT_PAYMENT']?>" />
+			<input type="hidden" name="PAY_SYSTEM_ID" value="<?=$arParams['DEFAULT_PAYMENT'];?>" />
 			<input type="hidden" name="DELIVERY_ID" value="<?=$arParams['DEFAULT_DELIVERY']?>" />
-			<input type="hidden" name="PERSON_TYPE_ID" value="<?=$arParams['DEFAULT_PERSON_TYPE']?>" />
+            <input type="hidden" name="PERSON_TYPE_ID" value="<?=$arParams['DEFAULT_PERSON_TYPE']?>" />
+            <input type="hidden" name="ELEMENT_ID" value="<?=serialize($arParams['~ELEMENT_ID'])?>" />
 			<?=bitrix_sessid_post()?>
 		</form>
+        
 		<div class="one_click_buy_result" id="one_click_buy_result">
 			<div class="one_click_buy_result_success"><?=GetMessage('ORDER_SUCCESS')?></div>
 			<div class="one_click_buy_result_fail"><?=GetMessage('ORDER_ERROR')?></div>
