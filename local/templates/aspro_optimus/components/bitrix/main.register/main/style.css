@@ -24,5 +24,16 @@ top:4px;
 	background-image: url(images/error.png);
 }
 .top_description{
-margin-top: -80px;
+    margin-top: -80px;
+}
+.module-form-block-wr .form-block label{
+    /*width: 90%; */   
+}
+.form-block input[type="checkbox"]{
+    width: 5% !important;
+}
+.title_label {
+    font-size: 13px;
+    font-family: Ubuntu, Arial, Helvetica, sans-serif;
+    color: black;
 }

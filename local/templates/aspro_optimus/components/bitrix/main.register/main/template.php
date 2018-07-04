@@ -220,14 +220,17 @@
 
                             <?endforeach?>
                         <?if($arUFields){?>
+                        <pre style="display: none;"><?print_r($arUFields)?></pre>
                             <?foreach($arUFields as $arUField){?>
-                                <div class="r">
-                                    <label><?=$arUField["EDIT_FORM_LABEL"];?>:<?if ($arUField["MANDATORY"] == "Y"):?><span class="star">*</span><?endif;?></label>
-                                    <?$APPLICATION->IncludeComponent(
-                                        "bitrix:system.field.edit",
-                                        $arUField["USER_TYPE"]["USER_TYPE_ID"],
-                                        array("bVarsFromForm" => $arResult["bVarsFromForm"], "arUserField" => $arUField, "form_name" => "regform"), null, array("HIDE_ICONS"=>"Y"));?>
-                                </div>
+                                <?if($arUField['FIELD_NAME'] != "UF_IM_SEARCH"){?>    
+                                    <div class="r">
+                                        <label class="title_label"><?=$arUField["EDIT_FORM_LABEL"];?>:<?if ($arUField["MANDATORY"] == "Y"):?><span class="star">*</span><?endif;?></label><br/>
+                                        <?$APPLICATION->IncludeComponent(
+                                            "bitrix:system.field.edit",
+                                            $arUField["USER_TYPE"]["USER_TYPE_ID"],
+                                            array("bVarsFromForm" => $arResult["bVarsFromForm"], "arUserField" => $arUField, "form_name" => "regform"), null, array("HIDE_ICONS"=>"Y"));?>
+                                    </div>
+                                    <?}?>
                                 <?}?>
                             <?}?>
                         <?if ($arResult["USE_CAPTCHA"] == "Y"){?>
