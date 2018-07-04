@@ -1,6 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+    
 	<a class="jqmClose close"><i></i></a>
-	<div class="form-wr">
+	<div style="display: none;" class="form-wr">
     <?//arshow($_POST);?>
     <?arshow($arParams['ELEMENT_ID']);
     // $arParams['ELEMENT_ID'] = $arParams['~ELEMENT_ID'];
@@ -80,6 +81,26 @@
 			<div class="one_click_buy_result_text"><?=GetMessage('ORDER_SUCCESS_TEXT')?></div>
 		</div>
 	</div>
+    <script>
+    var oneClickBuyBasket = function () {
+        name = 'one_click_buy_basket'
+        
+        $('.appendThis').append('<div class="'+name+'_frame popup"></div>');
+        $('.appendThis').append('<div class="'+name+'_trigger"></div>');
+        var ssd = $('.'+name+'_frame').jqm({trigger: '.'+name+'_trigger', onHide: function(hash) { onHidejqm(name,hash) }, onLoad: function( hash ){ onLoadjqm( name, hash ); }, ajax: arOptimusOptions["SITE_DIR"]+'ajax/one_click_buy_basket.php'});
+        $('.'+name+'_trigger').click();
+        console.log(ssd);
+        $('.jqmOverlay').css('height','0%');
+        $('.jqmOverlay').css('width','0%');
+    }
+    </script>
+    
+    <div style="display:none" class="basket_fast_order clearfix">
+        <script>
+        oneClickBuyBasket();
+        </script>
+        <a onclick="oneClickBuyBasket()" class="button short sbold fast_order"><span>Оформить заказ</span></a>
+    </div>
 <script type="text/javascript">
 $('#one_click_buy_form').validate({
 	rules: {
