@@ -89,34 +89,5 @@ $APPLICATION->SetTitle("Оформление заказа");
 		"USE_PREPAYMENT" => "N",
 		"USE_YM_GOALS" => "N"
 	)
-);?>&nbsp;<br>
- <?$APPLICATION->IncludeComponent("aspro:oneclickbuy.optimus", "formInBasket", Array(
-	"CACHE_TIME" => "3600",	// Время кеширования (сек.)
-		"CACHE_TYPE" => "A",	// Тип кеширования
-		"COMPOSITE_FRAME_MODE" => "A",	// Голосование шаблона компонента по умолчанию
-		"COMPOSITE_FRAME_TYPE" => "AUTO",	// Содержимое компонента
-		"DEFAULT_CURRENCY" => "RUB",	// Валюта по умолчанию
-		"DEFAULT_DELIVERY" => "0",	// Cпособ доставки
-		"DEFAULT_PAYMENT" => "0",	// Cпособ оплаты
-		"DEFAULT_PERSON_TYPE" => "2",	// Тип плательщика для вновь зарегистрированного пользователя
-        "ELEMENT_ID" => $_REQUEST['ELEMENT_ID_BASKET'],    // ID товара
-		"IBLOCK_ID" => "20",	// ID информационного блока
-		"IBLOCK_TYPE" => "1c_catalog",	// Тип информационного блока
-		"PRICE_ID" => "1",	// ID цены
-		"PROPERTIES" => array(	// Поля формы
-			0 => "FIO",
-			1 => "PHONE",
-			2 => "EMAIL",
-			3 => "COMMENT",
-		),
-		"REQUIRED" => array(	// Обязательные поля
-			0 => "FIO",
-			1 => "PHONE",
-		),
-		"SHOW_DELIVERY_NOTE" => "N",	// Отображать текст о стоимости доставки
-		"USE_QUANTITY" => "N",	// Показывать только для товара в наличии
-		"USE_SKU" => "N",	// Использовать товарные предложения (SKU)
-		"COMPONENT_TEMPLATE" => "formInBasket"
-	),
-	false
-);?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?>
+<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

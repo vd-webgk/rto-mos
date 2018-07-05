@@ -1,11 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-    
-	<a class="jqmClose close"><i></i></a>
-	<div style="display: none;" class="form-wr">
-    <?//arshow($_POST);?>
-    <?arshow($arParams['ELEMENT_ID']);
-    // $arParams['ELEMENT_ID'] = $arParams['~ELEMENT_ID'];
-    ?>
+	<div class="form-wr" style="padding: 0;">
 		<form method="post" id="one_click_buy_form" action="<?=$arResult['SCRIPT_PATH']?>/script.php">
 			<?foreach($arParams['PROPERTIES'] as $field):
 				$class.="inputtext";
@@ -75,32 +69,64 @@
 			<?=bitrix_sessid_post()?>
 		</form>
         
-		<div class="one_click_buy_result" id="one_click_buy_result">
+		<div class="one_click_buy_result" id="">
 			<div class="one_click_buy_result_success"><?=GetMessage('ORDER_SUCCESS')?></div>
 			<div class="one_click_buy_result_fail"><?=GetMessage('ORDER_ERROR')?></div>
-			<div class="one_click_buy_result_text"><?=GetMessage('ORDER_SUCCESS_TEXT')?></div>
+            <div class="one_click_buy_result_text"><?=GetMessage('ORDER_SUCCESS_TEXT')?></div>
+			<div class="one_click_buy_result_text"><?=GetMessage('ORDER_SUCCESS_TEXT2')?><a href="<?=$_SERVER['SERVER_NAME']?>/personal/"><?=GetMessage('CLICK_HERE')?></a></div>
 		</div>
 	</div>
-    <script>
-    var oneClickBuyBasket = function () {
-        name = 'one_click_buy_basket'
-        
-        $('.appendThis').append('<div class="'+name+'_frame popup"></div>');
-        $('.appendThis').append('<div class="'+name+'_trigger"></div>');
-        var ssd = $('.'+name+'_frame').jqm({trigger: '.'+name+'_trigger', onHide: function(hash) { onHidejqm(name,hash) }, onLoad: function( hash ){ onLoadjqm( name, hash ); }, ajax: arOptimusOptions["SITE_DIR"]+'ajax/one_click_buy_basket.php'});
-        $('.'+name+'_trigger').click();
-        console.log(ssd);
-        $('.jqmOverlay').css('height','0%');
-        $('.jqmOverlay').css('width','0%');
-    }
-    </script>
+
     
-    <div style="display:none" class="basket_fast_order clearfix">
-        <script>
-        oneClickBuyBasket();
-        </script>
-        <a onclick="oneClickBuyBasket()" class="button short sbold fast_order"><span>Оформить заказ</span></a>
-    </div>
+<script>
+$('#one_click_buy_form').on("submit", function(){
+                if($('#one_click_buy_form').valid()){
+                    if($('.'+name+'_frame form input.error').length || $('.'+name+'_frame form textarea.error').length) {
+                        return false
+                    }
+                    else if(!$(this).find('#one_click_buy_form_button').hasClass('clicked')){
+                        if(!$(this).find('#one_click_buy_form_button').hasClass("clicked"))
+                            $(this).find('#one_click_buy_form_button').addClass("clicked");
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                            type: 'POST',
+                            dataType: 'json',
+                            error: function(data) {
+                                window.console&&console.log(data);
+                            },
+                            success: function(data) {
+                                if(data.result == 'Y') {
+                                    if(arOptimusOptions['COUNTERS']['USE_FASTORDER_GOALS'] !== 'N'){
+                                        var eventdata = {goal: 'goal_fastorder_success'};
+                                        BX.onCustomEvent('onCounterGoals', [eventdata])
+                                    }
+                                    $('#bx-soa-order-form').hide();
+                                    $('.one_click_buy_result').show();
+                                    $('.one_click_buy_result_success').show();
+                                    setTimeout(function(){
+                                        document.location.replace('http://dev-vorobyev-rtomos.webgk.ru/personal/');
+                                    } , 5000);
+                                    
+                                    purchaseCounter(data.message, arOptimusOptions["COUNTERS"]["TYPE"]["QUICK_ORDER"]);
+                                }
+                                else{
+                                    $('.one_click_buy_result').show();
+                                    $('.one_click_buy_result_fail').show();
+                                    if(('err' in data) && data.err)
+                                        data.message=data.message+' \n'+data.err;
+                                    $('.one_click_buy_result_text').text(data.message);
+                                }
+                                $('.one_click_buy_modules_button', self).removeClass('disabled');
+                                $('#one_click_buy_form').hide();
+                                $('#one_click_buy_form_result').show();
+                            }
+                        });
+                    }
+                }
+                return false;
+            });
+</script>    
 <script type="text/javascript">
 $('#one_click_buy_form').validate({
 	rules: {

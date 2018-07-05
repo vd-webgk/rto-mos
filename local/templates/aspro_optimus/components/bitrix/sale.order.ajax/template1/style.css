@@ -1557,3 +1557,15 @@ textarea{
     resize: vertical !important;
     max-height: 250px;
 }
+.popup{
+position: relative !important;
+z-index: 10 !important;
+    display: block;
+    margin-left: 0px !important;
+    top: 0px !important;
+    opacity: 1;
+    left: 5% !important;
+}
+.appendThis{
+    left: 50%;
+}

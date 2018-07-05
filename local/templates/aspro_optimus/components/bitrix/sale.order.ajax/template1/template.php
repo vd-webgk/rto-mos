@@ -486,7 +486,9 @@ else
 			</div>
 		</div>
 	</form>
+    
     <div class="appendThis"></div>
+     
 	<div id="bx-soa-saved-files" style="display:none"></div>
 	<div id="bx-soa-soc-auth-services" style="display:none">
 		<?
@@ -663,3 +665,18 @@ else
 	}
 }
 ?>
+<script>       
+    var oneClickBuyBasket = function () {
+        name = 'one_click_buy_basket'      
+        $('.appendThis').append('<div class="'+name+'_frame popup"></div>');
+        $('.appendThis').append('<div class="'+name+'_trigger"></div>');
+        var ssd = $('.'+name+'_frame').jqm({trigger: '.'+name+'_trigger', onHide: function(hash) { onHidejqm(name,hash) }, onLoad: function( hash ){ onLoadjqm( name, hash ); }, ajax: arOptimusOptions["SITE_DIR"]+'ajax/one_click_buy_basket_custom.php'});
+        $('.'+name+'_trigger').click();
+        console.log(ssd);
+        $('.jqmOverlay').css('height','0%');
+        $('.jqmOverlay').css('width','0%');
+    }
+</script>
+<script>
+oneClickBuyBasket();
+</script>
