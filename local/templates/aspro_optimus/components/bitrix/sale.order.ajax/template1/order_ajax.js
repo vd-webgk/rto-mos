@@ -2577,6 +2577,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								BX('do_authorize').value = 'Y';
 								this.sendRequest('showAuthForm');
 								return BX.PreventDefault(e);
+                                console.log(555);
 							}, this)
 						}
 					})

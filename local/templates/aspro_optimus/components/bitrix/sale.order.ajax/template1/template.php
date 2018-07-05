@@ -339,15 +339,17 @@ else
 
 				<? if (!isset($arParams['BASKET_POSITION']) || $arParams['BASKET_POSITION'] === 'before'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
-					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
+                    <?if($USER->isAuthorized()){?>
+					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active" style="">
+						<div class="bx-soa-section-title-container" >
+							<h2 class="bx-soa-section-title col-sm-9" >
 								<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_BASKET_BLOCK_NAME']?>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="" class="col-xs-12 col-sm-3 text-right"><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="" class="bx-soa-section-content container-fluid"></div>
 					</div>
+                    <?}?>
 				<? endif ?>
 
 				<!--	REGION BLOCK	-->
@@ -486,9 +488,9 @@ else
 			</div>
 		</div>
 	</form>
-    
-    <div class="appendThis"></div>
-     
+    <?if($USER->isAuthorized()){?>
+        <div class="appendThis"></div>
+    <?}?>
 	<div id="bx-soa-saved-files" style="display:none"></div>
 	<div id="bx-soa-soc-auth-services" style="display:none">
 		<?
@@ -680,3 +682,11 @@ else
 <script>
 oneClickBuyBasket();
 </script>
+ <script>
+    $('.bx-soa-auth').on('change', function(){
+        console.log(123);
+        <?if($USER->isAuthorized()){?>
+        $('.appendThis').css('display','block');
+        <?}?>
+    })
+    </script>
