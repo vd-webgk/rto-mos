@@ -1,9 +1,9 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Оформление заказа");
 ?><?$APPLICATION->IncludeComponent(
-	"bitrix:sale.order.ajax",
-	"template1",
-	Array(
+	"bitrix:sale.order.ajax", 
+	"template1", 
+	array(
 		"ACTION_VARIABLE" => "soa-action",
 		"ADDITIONAL_PICT_PROP_13" => "-",
 		"ADDITIONAL_PICT_PROP_14" => "-",
@@ -43,10 +43,35 @@ $APPLICATION->SetTitle("Оформление заказа");
 		"PICKUPS_PER_PAGE" => "",
 		"PICKUP_MAP_TYPE" => "yandex",
 		"PRODUCT_COLUMNS" => "",
-		"PRODUCT_COLUMNS_HIDDEN" => array(0=>"PREVIEW_PICTURE",1=>"DETAIL_PICTURE",2=>"PREVIEW_TEXT",3=>"PROPS",4=>"NOTES",5=>"DISCOUNT_PRICE_PERCENT_FORMATED",6=>"PRICE_FORMATED",7=>"WEIGHT_FORMATED",8=>"PROPERTY_MINIMUM_PRICE",9=>"PROPERTY_MAXIMUM_PRICE",10=>"PROPERTY_HIT",11=>"PROPERTY_BRAND",12=>"PROPERTY_IN_STOCK",13=>"PROPERTY_PROP_2033",),
-		"PRODUCT_COLUMNS_VISIBLE" => array(0=>"PREVIEW_PICTURE",1=>"PROPS",2=>"NOTES",3=>"DISCOUNT_PRICE_PERCENT_FORMATED",4=>"PRICE_FORMATED",5=>"WEIGHT_FORMATED",),
-		"PROPS_FADE_LIST_1" => array(0=>"7",),
-		"PROPS_FADE_LIST_2" => array(),
+		"PRODUCT_COLUMNS_HIDDEN" => array(
+			0 => "PREVIEW_PICTURE",
+			1 => "DETAIL_PICTURE",
+			2 => "PREVIEW_TEXT",
+			3 => "PROPS",
+			4 => "NOTES",
+			5 => "DISCOUNT_PRICE_PERCENT_FORMATED",
+			6 => "PRICE_FORMATED",
+			7 => "WEIGHT_FORMATED",
+			8 => "PROPERTY_MINIMUM_PRICE",
+			9 => "PROPERTY_MAXIMUM_PRICE",
+			10 => "PROPERTY_HIT",
+			11 => "PROPERTY_BRAND",
+			12 => "PROPERTY_IN_STOCK",
+			13 => "PROPERTY_PROP_2033",
+		),
+		"PRODUCT_COLUMNS_VISIBLE" => array(
+			0 => "PREVIEW_PICTURE",
+			1 => "PROPS",
+			2 => "NOTES",
+			3 => "DISCOUNT_PRICE_PERCENT_FORMATED",
+			4 => "PRICE_FORMATED",
+			5 => "WEIGHT_FORMATED",
+		),
+		"PROPS_FADE_LIST_1" => array(
+			0 => "7",
+		),
+		"PROPS_FADE_LIST_2" => array(
+		),
 		"PROP_1" => "",
 		"PROP_2" => "",
 		"PROP_3" => "",
@@ -61,7 +86,10 @@ $APPLICATION->SetTitle("Оформление заказа");
 		"SHOW_DELIVERY_INFO_NAME" => "N",
 		"SHOW_DELIVERY_LIST_NAMES" => "N",
 		"SHOW_DELIVERY_PARENT_NAMES" => "N",
-		"SHOW_MAP_FOR_DELIVERIES" => array(0=>"1",1=>"2",),
+		"SHOW_MAP_FOR_DELIVERIES" => array(
+			0 => "1",
+			1 => "2",
+		),
 		"SHOW_MAP_IN_PROPS" => "N",
 		"SHOW_NEAREST_PICKUP" => "N",
 		"SHOW_NOT_CALCULATED_DELIVERIES" => "N",
@@ -88,6 +116,7 @@ $APPLICATION->SetTitle("Оформление заказа");
 		"USE_PRELOAD" => "N",
 		"USE_PREPAYMENT" => "N",
 		"USE_YM_GOALS" => "N"
-	)
+	),
+	false
 );?>
 <br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

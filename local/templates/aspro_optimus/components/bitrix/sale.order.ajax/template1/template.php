@@ -339,7 +339,7 @@ else
 
 				<? if (!isset($arParams['BASKET_POSITION']) || $arParams['BASKET_POSITION'] === 'before'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
-                    <?if($USER->isAuthorized()){?>
+                   
 					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active" style="">
 						<div class="bx-soa-section-title-container" >
 							<h2 class="bx-soa-section-title col-sm-9" >
@@ -349,7 +349,7 @@ else
 						</div>
 						<div style="" class="bx-soa-section-content container-fluid"></div>
 					</div>
-                    <?}?>
+                  
 				<? endif ?>
 
 				<!--	REGION BLOCK	-->
@@ -488,9 +488,9 @@ else
 			</div>
 		</div>
 	</form>
-    <?if($USER->isAuthorized()){?>
+    
         <div class="appendThis"></div>
-    <?}?>
+    
 	<div id="bx-soa-saved-files" style="display:none"></div>
 	<div id="bx-soa-soc-auth-services" style="display:none">
 		<?
