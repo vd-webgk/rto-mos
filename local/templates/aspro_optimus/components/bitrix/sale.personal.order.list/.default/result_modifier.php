@@ -21,4 +21,3 @@ foreach ($arResult["ORDERS"] as $key => $arItems){
     }
     }      
 }
-arshow( $arResult["ORDERS"]);

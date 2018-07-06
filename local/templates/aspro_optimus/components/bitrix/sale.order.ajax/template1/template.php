@@ -339,58 +339,60 @@ else
 
 				<? if (!isset($arParams['BASKET_POSITION']) || $arParams['BASKET_POSITION'] === 'before'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
-					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
+                   
+					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active" style="">
+						<div class="bx-soa-section-title-container" >
+							<h2 class="bx-soa-section-title col-sm-9" >
 								<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_BASKET_BLOCK_NAME']?>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="" class="col-xs-12 col-sm-3 text-right"><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="" class="bx-soa-section-content container-fluid"></div>
 					</div>
+                  
 				<? endif ?>
 
 				<!--	REGION BLOCK	-->
-				<div id="bx-soa-region" data-visited="false" class="bx-soa-section bx-active">
-					<div class="bx-soa-section-title-container">
-						<h2 class="bx-soa-section-title col-sm-9">
-							<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_REGION_BLOCK_NAME']?>
+				<div style="display: none;" id="bx-soa-region" data-visited="false" class="">
+					<div style="display: none;" class="bx-soa-section-title-container">
+						<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+							<span style="display: none;" class="bx-soa-section-title-count"></span><?=$arParams['MESS_REGION_BLOCK_NAME']?>
 						</h2>
-						<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+						<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 					</div>
-					<div class="bx-soa-section-content container-fluid"></div>
+					<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 				</div>
 
 				<? if ($arParams['DELIVERY_TO_PAYSYSTEM'] === 'p2d'): ?>
 					<!--	PAY SYSTEMS BLOCK	-->
-					<div id="bx-soa-paysystem" data-visited="false" class="bx-soa-section bx-active">
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
-								<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_PAYMENT_BLOCK_NAME']?>
+					<div style="display: none;" id="bx-soa-paysystem" data-visited="false" class="">
+						<div style="display: none;" class="bx-soa-section-title-container">
+							<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+								<span style="display: none;" class="bx-soa-section-title-count"></span><?=$arParams['MESS_PAYMENT_BLOCK_NAME']?>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 					</div>
 					<!--	DELIVERY BLOCK	-->
-					<div id="bx-soa-delivery" data-visited="false" class="bx-soa-section bx-active" <?=($hideDelivery ? 'style="display:none"' : '')?>>
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
-								<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_DELIVERY_BLOCK_NAME']?>
+					<div style="display: none;" id="bx-soa-delivery" data-visited="false" class="" <?=($hideDelivery ? 'style="display:none"' : '')?>>
+						<div style="display: none;" class="bx-soa-section-title-container">
+							<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+								<span style="display: none;" class="bx-soa-section-title-count"></span><?=$arParams['MESS_DELIVERY_BLOCK_NAME']?>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 					</div>
 					<!--	PICKUP BLOCK	-->
-					<div id="bx-soa-pickup" data-visited="false" class="bx-soa-section" style="display:none">
-						<div class="bx-soa-section-title-container">
-							<h2 class="bx-soa-section-title col-sm-9">
-								<span class="bx-soa-section-title-count"></span>
+					<div id="bx-soa-pickup" data-visited="false" class="" style="display:none">
+						<div style="display: none;" class="bx-soa-section-title-container">
+							<h2 style="display: none;" class="bx-soa-section-title col-sm-9">
+								<span style="display: none;" class="bx-soa-section-title-count"></span>
 							</h2>
-							<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+							<div style="display: none;" class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 						</div>
-						<div class="bx-soa-section-content container-fluid"></div>
+						<div style="display: none;" class="bx-soa-section-content container-fluid"></div>
 					</div>
 				<? else: ?>
 					<!--	DELIVERY BLOCK	-->
@@ -424,17 +426,6 @@ else
 						<div class="bx-soa-section-content container-fluid"></div>
 					</div>
 				<? endif ?>
-				<!--	BUYER PROPS BLOCK	-->
-				<div id="bx-soa-properties" data-visited="false" class="bx-soa-section bx-active">
-					<div class="bx-soa-section-title-container">
-						<h2 class="bx-soa-section-title col-sm-9">
-							<span class="bx-soa-section-title-count"></span><?=$arParams['MESS_BUYER_BLOCK_NAME']?>
-						</h2>
-						<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
-					</div>
-					<div class="bx-soa-section-content container-fluid"></div>
-				</div>
-
 				<? if ($arParams['BASKET_POSITION'] === 'after'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
 					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
@@ -472,7 +463,7 @@ else
 						}
 						?>
 					</div>
-					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
+					<a style="display: none;" href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
 						<?=$arParams['MESS_ORDER']?>
 					</a>
 				</div>
@@ -497,7 +488,9 @@ else
 			</div>
 		</div>
 	</form>
-
+    
+        <div class="appendThis"></div>
+    
 	<div id="bx-soa-saved-files" style="display:none"></div>
 	<div id="bx-soa-soc-auth-services" style="display:none">
 		<?
@@ -674,3 +667,24 @@ else
 	}
 }
 ?>
+<script>       
+    var oneClickBuyBasket = function () {
+        name = 'one_click_buy_basket'      
+        $('.appendThis').append('<div class="'+name+'_frame popup"></div>');
+        $('.appendThis').append('<div class="'+name+'_trigger"></div>');
+        var ssd = $('.'+name+'_frame').jqm({trigger: '.'+name+'_trigger', onHide: function(hash) { onHidejqm(name,hash) }, onLoad: function( hash ){ onLoadjqm( name, hash ); }, ajax: arOptimusOptions["SITE_DIR"]+'ajax/one_click_buy_basket_custom.php'});
+        $('.'+name+'_trigger').click();
+        $('.jqmOverlay').css('height','0%');
+        $('.jqmOverlay').css('width','0%');
+    }
+</script>
+<script>
+oneClickBuyBasket();
+</script>
+ <script>
+    $('.bx-soa-auth').on('change', function(){
+        <?if($USER->isAuthorized()){?>
+        $('.appendThis').css('display','block');
+        <?}?>
+    })
+    </script>
