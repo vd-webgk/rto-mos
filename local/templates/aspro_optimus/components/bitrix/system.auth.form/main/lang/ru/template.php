@@ -22,7 +22,8 @@
 	$MESS["AUTH_TO_CONTINUE"] = "Для продолжения оформления заказа Вам необходимо авторизоваться:";
 	$MESS["ALLREADY_REGISTERED"] = "Я зарегистрированный пользователь";
 	$MESS["GLAD_TO_SEE_YOU"] = "Мы рады снова видеть Вас нашем сайте!";
-	$MESS["EMAIL"] = "Email";
+    $MESS["EMAIL"] = "Email";
+	$MESS["INN"] = "ИНН";
 	$MESS["FIELD_REQUIRED"] = "Заполните это поле";
 	$MESS["FORGOT_PASSWORD"] = "Забыли пароль?";
 	$MESS["NEW_USER"] = "Я новый пользователь";

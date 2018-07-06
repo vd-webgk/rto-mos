@@ -8,7 +8,7 @@
 	$MESS["USER_DONT_KNOW"] = "(неизвестно)";
 	$MESS["USER_MALE"] = "Мужской";
 	$MESS["USER_FEMALE"] = "Женский";
-	$MESS["REGISTER_FIELD_LOGIN"] = "Логин";
+	$MESS["REGISTER_FIELD_LOGIN"] = "ИНН";
 	$MESS["REGISTER_FIELD_EMAIL"] = "E-mail";
 	//$MESS["REGISTER_FIELD_PASSWORD"] = "Пароль";
 	//$MESS["REGISTER_FIELD_CONFIRM_PASSWORD"] = "Подтверждение пароля";
@@ -67,6 +67,7 @@
 	
 	$MESS["REGISTER_FIELD_TEXT_NAME"] = "Ваше имя необходимо для того, чтобы мы знали с кем имеем дело))";
 	$MESS["REGISTER_FIELD_TEXT_PERSONAL_PHONE"] = "Контактный телефон нужен для уточнения деталей заказа";
-	$MESS["REGISTER_FIELD_TEXT_EMAIL"] = "Является логином для входа на сайт. <br/>Также на него будут приходить уведомления о статусах заказа";
+    $MESS["REGISTER_FIELD_TEXT_EMAIL"] = "Является логином для входа на сайт. <br/>Также на него будут приходить уведомления о статусах заказа";
+	$MESS["REGISTER_FIELD_TEXT_LOGIN"] = "Является логином для входа на сайт.";
 	$MESS["REGISTER_FIELD_TEXT_PASSWORD"] = "Длина пароля не менее 6 символов";
 ?>

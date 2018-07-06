@@ -117,7 +117,8 @@
                             $arFields["PASSWORD"]="PASSWORD";
                             $arFields["CONFIRM_PASSWORD"]="CONFIRM_PASSWORD";
 
-                        ?>
+                        //print_r($arFields);?>
+                        
                         <?foreach ($arFields as $FIELD):?>
 
                             <?//if( $FIELD != "LOGIN" ){?>
@@ -203,8 +204,13 @@
                                                 <?//if( $FIELD != "LOGIN" ){?>
 
                                             </div>
-                                            <div class="iblock text_block">
-                                                <?=GetMessage("REGISTER_FIELD_TEXT_".$FIELD);?>
+                                            <div class="iblock text_block <?if($FIELD == "EMAIL" && $APPLICATION->GetCurDir() == "/auth/registration/"){echo "top_description";}?>">
+                                                <?
+                                                if($FIELD == "EMAIL" && $APPLICATION->GetCurDir() == "/auth/registration/"){
+                                                    echo GetMessage("REGISTER_FIELD_TEXT_LOGIN");
+                                                } else {
+                                                    echo GetMessage("REGISTER_FIELD_TEXT_".$FIELD);
+                                                }?>
                                             </div>
                                         </div>
                                     </div>
@@ -214,14 +220,17 @@
 
                             <?endforeach?>
                         <?if($arUFields){?>
+                        <pre style="display: none;"><?print_r($arUFields)?></pre>
                             <?foreach($arUFields as $arUField){?>
-                                <div class="r">
-                                    <label><?=$arUField["EDIT_FORM_LABEL"];?>:<?if ($arUField["MANDATORY"] == "Y"):?><span class="star">*</span><?endif;?></label>
-                                    <?$APPLICATION->IncludeComponent(
-                                        "bitrix:system.field.edit",
-                                        $arUField["USER_TYPE"]["USER_TYPE_ID"],
-                                        array("bVarsFromForm" => $arResult["bVarsFromForm"], "arUserField" => $arUField, "form_name" => "regform"), null, array("HIDE_ICONS"=>"Y"));?>
-                                </div>
+                                <?if($arUField['FIELD_NAME'] != "UF_IM_SEARCH"){?>    
+                                    <div class="r">
+                                        <label class="title_label"><?=$arUField["EDIT_FORM_LABEL"];?>:<?if ($arUField["MANDATORY"] == "Y"):?><span class="star">*</span><?endif;?></label><br/>
+                                        <?$APPLICATION->IncludeComponent(
+                                            "bitrix:system.field.edit",
+                                            $arUField["USER_TYPE"]["USER_TYPE_ID"],
+                                            array("bVarsFromForm" => $arResult["bVarsFromForm"], "arUserField" => $arUField, "form_name" => "regform"), null, array("HIDE_ICONS"=>"Y"));?>
+                                    </div>
+                                    <?}?>
                                 <?}?>
                             <?}?>
                         <?if ($arResult["USE_CAPTCHA"] == "Y"){?>
