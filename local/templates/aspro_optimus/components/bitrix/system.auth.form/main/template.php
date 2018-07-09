@@ -132,4 +132,7 @@ if(!empty( $_REQUEST["change_password"])){
 		$("form[name=bx_auth_servicesform]").validate(); 
 	});
 	</script>
+    <?else:?>
+        <?LocalRedirect(SITE_DIR.'personal/');?>
+
 <?endif;?>
