@@ -1,7 +1,6 @@
 $(document).on('ready', function(){    
     //добавление кнопки для сброса пароля пользователя на странице редактирования пользователя
     var url = document.location.href;
-    console.log(url);
     if (url.indexOf("bitrix/admin/user_edit.php")) {
         $('input[name="user_info_event"]').hide();
         $('.adm-designed-checkbox-label').hide();
