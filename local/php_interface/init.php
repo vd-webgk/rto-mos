@@ -232,5 +232,65 @@ AddEventHandler("main", "OnBeforeUserRegister", "newNonActiveUser");
         
        
     }
-
+    //Добавление выпалающего списка с вариантами отправки почтового шаблона на страницу в админ. панели.
+AddEventHandler("main", "OnProlog", array("rtoHandlers", "OnPrologHandler"));
+AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUser"));
+class rtoHandlers
+    {   
+        function OnPrologHandler()
+        {
+            global $APPLICATION;
+            if ($APPLICATION->GetCurPage() == "/bitrix/admin/user_edit.php") {
+                $APPLICATION->AddHeadScript("//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js");
+                $APPLICATION->AddHeadScript("/local/templates/aspro_optimus/js/admin_scripts.js");
+                $APPLICATION->SetAdditionalCSS("/local/templates/aspro_optimus/css/admin_styles.css");
+            }
+        } // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
+        function sendMailToUser($arFields){   
+            if($_REQUEST['ID']){
+                if($_REQUEST['sendMailTemplate'] == 'temp'){
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $_REQUEST['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $_REQUEST['EMAIL'],
+                            "NAME" => $_REQUEST['NAME'],
+                            "LOGIN" => $_REQUEST['LOGIN'],
+                            "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
+                            
+                        ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 94, 
+                    ));
+                }
+                if($_REQUEST['sendMailTemplate'] == 'reg'){
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $_REQUEST['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $_REQUEST['EMAIL'],
+                            "NAME" => $_REQUEST['NAME'],
+                            "LOGIN" => $_REQUEST['LOGIN'],
+                            "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
+                                
+                            ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 95, 
+                    ));
+                }
+                if($_REQUEST['sendMailTemplate'] == 'denied'){
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $_REQUEST['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $_REQUEST['EMAIL'],
+                            "NAME" => $_REQUEST['NAME'],                                
+                        ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 96, 
+                    ));
+                }
+            }           
+        }
+    }           
 ?>
