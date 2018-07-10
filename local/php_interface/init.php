@@ -248,58 +248,46 @@ class rtoHandlers
         function sendMailToUser($arFields){   
             if($_REQUEST['ID']){
                 if($_REQUEST['sendMailTemplate'] == 'temp'){
-                    if(Bitrix\Main\Mail\Event::send(array(
-                            "EVENT_NAME" => "USER_INFO",
-                            "LID" => $_REQUEST['LID'],
-                            "C_FIELDS" => array(
-                                "EMAIL" => $_REQUEST['EMAIL'],
-                                "NAME" => $_REQUEST['NAME'],
-                                "LOGIN" => $_REQUEST['LOGIN'],
-                                "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
-                                
-                            ),
-                            "DUPLICATE" => 'N',
-                            "MESSAGE_ID" => 94, 
-                    ))){
-                        $result = "success";
-                    } else {
-                        $result = "nope";   
-                    }
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $_REQUEST['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $_REQUEST['EMAIL'],
+                            "NAME" => $_REQUEST['NAME'],
+                            "LOGIN" => $_REQUEST['LOGIN'],
+                            "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
+                            
+                        ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 94, 
+                    ));
                 }
                 if($_REQUEST['sendMailTemplate'] == 'reg'){
-                    if(Bitrix\Main\Mail\Event::send(array(
-                            "EVENT_NAME" => "USER_INFO",
-                            "LID" => $_REQUEST['LID'],
-                            "C_FIELDS" => array(
-                                "EMAIL" => $_REQUEST['EMAIL'],
-                                "NAME" => $_REQUEST['NAME'],
-                                "LOGIN" => $_REQUEST['LOGIN'],
-                                "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $_REQUEST['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $_REQUEST['EMAIL'],
+                            "NAME" => $_REQUEST['NAME'],
+                            "LOGIN" => $_REQUEST['LOGIN'],
+                            "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
                                 
                             ),
-                            "DUPLICATE" => 'N',
-                            "MESSAGE_ID" => 95, 
-                    ))){
-                        $result = "success";
-                    } else {
-                        $result = "nope";   
-                    }
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 95, 
+                    ));
                 }
                 if($_REQUEST['sendMailTemplate'] == 'denied'){
-                    if(Bitrix\Main\Mail\Event::send(array(
-                            "EVENT_NAME" => "USER_INFO",
-                            "LID" => $_REQUEST['LID'],
-                            "C_FIELDS" => array(
-                                "EMAIL" => $_REQUEST['EMAIL'],
-                                "NAME" => $_REQUEST['NAME'],                                
-                            ),
-                            "DUPLICATE" => 'N',
-                            "MESSAGE_ID" => 96, 
-                    ))){
-                        $result = "success";
-                    } else {
-                        $result = "nope";   
-                    }
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $_REQUEST['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $_REQUEST['EMAIL'],
+                            "NAME" => $_REQUEST['NAME'],                                
+                        ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 96, 
+                    ));
                 }
             }           
         }

@@ -8,8 +8,7 @@ $(document).on('ready', function(){
         var addMailSelect = '<tr><td><select name="sendMailTemplate" class="selectMail"><option value="empty"></option><option value="temp">Временный доступ</option><option value="reg">Постоянный доступ</option><option value="denied">Регистрация невозможна</option></select></tr></td>';
         $("#tr_user_info_event").after(addMailSelect);
         $('select.selectMail').on('change', function(){
-            var selectedOpt = $('select.selectMail option:selected').val();
-            console.log(selectedOpt);    
+            var selectedOpt = $('select.selectMail option:selected').val();    
         })
        
     }
