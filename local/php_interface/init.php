@@ -232,12 +232,13 @@ AddEventHandler("main", "OnBeforeUserRegister", "newNonActiveUser");
         
        
     }
-    //Добавление выпалающего списка с вариантами отправки почтового шаблона на страницу в админ. панели.
+//Добавление выпалающего списка с вариантами отправки почтового шаблона на страницу в админ. панели.
 AddEventHandler("main", "OnProlog", array("rtoHandlers", "OnPrologHandler"));
+// Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
 AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUser"));
 class rtoHandlers
     {   
-        function OnPrologHandler()
+        function OnPrologHandler() //Если указана нужная нам страница в админ. панели, подключаем jquery, подлкючаем js-скрипт с отрисовкой верстки, подключаем стили.
         {
             global $APPLICATION;
             if ($APPLICATION->GetCurPage() == "/bitrix/admin/user_edit.php") {
@@ -246,45 +247,45 @@ class rtoHandlers
                 $APPLICATION->SetAdditionalCSS("/local/templates/aspro_optimus/css/admin_styles.css");
             }
         } // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
-        function sendMailToUser($arFields){   
-            if($_REQUEST['ID']){
-                if($_REQUEST['sendMailTemplate'] == 'temp'){
+        function sendMailToUser($arFields){  
+            if($arFields['ID']){
+                if($_REQUEST['sendMailTemplate'] == 'temp'){ //Временная регистрация
                     Bitrix\Main\Mail\Event::send(array(
                         "EVENT_NAME" => "USER_INFO",
-                        "LID" => $_REQUEST['LID'],
+                        "LID" => $arFields['LID'],
                         "C_FIELDS" => array(
-                            "EMAIL" => $_REQUEST['EMAIL'],
-                            "NAME" => $_REQUEST['NAME'],
-                            "LOGIN" => $_REQUEST['LOGIN'],
-                            "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
+                            "EMAIL" => $arFields['EMAIL'],
+                            "NAME" => $arFields['NAME'],
+                            "LOGIN" => $arFields['LOGIN'],
+                            "MESSAGE" => $arFields['PASSWORD'],
                             
                         ),
                         "DUPLICATE" => 'N',
                         "MESSAGE_ID" => 94, 
                     ));
                 }
-                if($_REQUEST['sendMailTemplate'] == 'reg'){
+                if($_REQUEST['sendMailTemplate'] == 'reg'){    //Постоянная регистрация
                     Bitrix\Main\Mail\Event::send(array(
                         "EVENT_NAME" => "USER_INFO",
-                        "LID" => $_REQUEST['LID'],
+                        "LID" => $arFields['LID'],
                         "C_FIELDS" => array(
-                            "EMAIL" => $_REQUEST['EMAIL'],
-                            "NAME" => $_REQUEST['NAME'],
-                            "LOGIN" => $_REQUEST['LOGIN'],
-                            "MESSAGE" => $_REQUEST['NEW_PASSWORD'],
+                            "EMAIL" => $arFields['EMAIL'],
+                            "NAME" => $arFields['NAME'],
+                            "LOGIN" => $arFields['LOGIN'],
+                            "MESSAGE" => $arFields['PASSWORD'],
                                 
                             ),
                         "DUPLICATE" => 'N',
                         "MESSAGE_ID" => 95, 
                     ));
                 }
-                if($_REQUEST['sendMailTemplate'] == 'denied'){
+                if($_REQUEST['sendMailTemplate'] == 'denied'){    //Регистрация невозможна
                     Bitrix\Main\Mail\Event::send(array(
                         "EVENT_NAME" => "USER_INFO",
-                        "LID" => $_REQUEST['LID'],
+                        "LID" => $arFields['LID'],
                         "C_FIELDS" => array(
-                            "EMAIL" => $_REQUEST['EMAIL'],
-                            "NAME" => $_REQUEST['NAME'],                                
+                            "EMAIL" => $arFields['EMAIL'],
+                            "NAME" => $arFields['NAME'],                                
                         ),
                         "DUPLICATE" => 'N',
                         "MESSAGE_ID" => 96, 
