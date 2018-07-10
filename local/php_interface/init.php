@@ -232,6 +232,7 @@ AddEventHandler("main", "OnBeforeUserRegister", "newNonActiveUser");
         
        
     }
+    //Добавление выпалающего списка с вариантами отправки почтового шаблона на страницу в админ. панели.
 AddEventHandler("main", "OnProlog", array("rtoHandlers", "OnPrologHandler"));
 AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUser"));
 class rtoHandlers
@@ -244,7 +245,7 @@ class rtoHandlers
                 $APPLICATION->AddHeadScript("/local/templates/aspro_optimus/js/admin_scripts.js");
                 $APPLICATION->SetAdditionalCSS("/local/templates/aspro_optimus/css/admin_styles.css");
             }
-        }
+        } // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
         function sendMailToUser($arFields){   
             if($_REQUEST['ID']){
                 if($_REQUEST['sendMailTemplate'] == 'temp'){
