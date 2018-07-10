@@ -247,8 +247,7 @@ class rtoHandlers
                 $APPLICATION->SetAdditionalCSS("/local/templates/aspro_optimus/css/admin_styles.css");
             }
         } // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
-        function sendMailToUser($arFields){
-        arshow($arFields);die();   
+        function sendMailToUser($arFields){  
             if($arFields['ID']){
                 if($_REQUEST['sendMailTemplate'] == 'temp'){ //Временная регистрация
                     Bitrix\Main\Mail\Event::send(array(
