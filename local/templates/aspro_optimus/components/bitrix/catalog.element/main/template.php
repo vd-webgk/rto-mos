@@ -263,7 +263,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 							<ul class="slides_block" id="thumbs">
 								<?foreach($arResult["MORE_PHOTO"]as $i => $arImage):?>
 									<li <?=(!$i ? 'class="current"' : '')?> data-big_img="<?=$arImage["BIG"]["src"]?>" data-small_img="<?=$arImage["SMALL"]["src"]?>">
-										<span><img class="xzoom-gallery" width="50" xpreview="<?=$arImage["THUMB"]["src"];?>" src="<?=$arImage["THUMB"]["src"]?>" alt="<?=$arImage["ALT"];?>" title="<?=$arImage["TITLE"];?>" /></span>
+										<span><img class="xzoom-gallery" width="80" height="80" xpreview="<?=$arImage["THUMB"]["src"];?>" src="<?=$arImage["THUMB"]["src"]?>" alt="<?=$arImage["ALT"];?>" title="<?=$arImage["TITLE"];?>" /></span>
 									</li>
 								<?endforeach;?>
 							</ul>
@@ -291,6 +291,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 							});
 						})
 					</script>
+
 				<?endif;?>
 			<?}else{?>
 				<div class="wrapp_thumbs">
