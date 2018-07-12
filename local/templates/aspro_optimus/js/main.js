@@ -692,8 +692,10 @@ if(!funcDefined('onLoadjqm')){
 										var eventdata = {goal: 'goal_fastorder_success'};
 										BX.onCustomEvent('onCounterGoals', [eventdata])
 									}
+                                   // $('#bx-soa-order-form').hide();
 									$('.one_click_buy_result').show();
 									$('.one_click_buy_result_success').show();
+                                    
 									purchaseCounter(data.message, arOptimusOptions["COUNTERS"]["TYPE"]["QUICK_ORDER"]);
 								}
 								else{

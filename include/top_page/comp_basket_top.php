@@ -1,9 +1,11 @@
 <?
-global $TEMPLATE_OPTIONS;
+global $TEMPLATE_OPTIONS;  
 // get actual basket counters from session
 $arCounters = COptimus::getBasketCounters();
 // and show fly counters in static content
 ?>
+
+
 <?if(!COptimus::IsBasketPage() && !COptimus::IsOrderPage()):?>
 	<div class="basket_fly">
 		<div class="opener">
@@ -155,4 +157,6 @@ $arCounters = COptimus::getBasketCounters();
 			</script>
 		<?}?>
 	<?Bitrix\Main\Page\Frame::getInstance()->finishDynamicWithID("header-cart", "");?>
+
+
 <?endif;?>

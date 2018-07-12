@@ -232,5 +232,66 @@ AddEventHandler("main", "OnBeforeUserRegister", "newNonActiveUser");
         
        
     }
-
+//Добавление выпалающего списка с вариантами отправки почтового шаблона на страницу в админ. панели.
+AddEventHandler("main", "OnProlog", array("rtoHandlers", "OnPrologHandler"));
+// Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
+AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUser"));
+class rtoHandlers
+    {   
+        function OnPrologHandler() //Если указана нужная нам страница в админ. панели, подключаем jquery, подлкючаем js-скрипт с отрисовкой верстки, подключаем стили.
+        {
+            global $APPLICATION;
+            if ($APPLICATION->GetCurPage() == "/bitrix/admin/user_edit.php") {
+                $APPLICATION->AddHeadScript("//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js");
+                $APPLICATION->AddHeadScript("/local/templates/aspro_optimus/js/admin_scripts.js");
+                $APPLICATION->SetAdditionalCSS("/local/templates/aspro_optimus/css/admin_styles.css");
+            }
+        } // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
+        function sendMailToUser($arFields){  
+            if($arFields['ID']){
+                if($_REQUEST['sendMailTemplate'] == 'temp'){ //Временная регистрация
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $arFields['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $arFields['EMAIL'],
+                            "NAME" => $arFields['NAME'],
+                            "LOGIN" => $arFields['LOGIN'],
+                            "MESSAGE" => $arFields['PASSWORD'],
+                            
+                        ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 94, 
+                    ));
+                }
+                if($_REQUEST['sendMailTemplate'] == 'reg'){    //Постоянная регистрация
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $arFields['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $arFields['EMAIL'],
+                            "NAME" => $arFields['NAME'],
+                            "LOGIN" => $arFields['LOGIN'],
+                            "MESSAGE" => $arFields['PASSWORD'],
+                                
+                            ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 95, 
+                    ));
+                }
+                if($_REQUEST['sendMailTemplate'] == 'denied'){    //Регистрация невозможна
+                    Bitrix\Main\Mail\Event::send(array(
+                        "EVENT_NAME" => "USER_INFO",
+                        "LID" => $arFields['LID'],
+                        "C_FIELDS" => array(
+                            "EMAIL" => $arFields['EMAIL'],
+                            "NAME" => $arFields['NAME'],                                
+                        ),
+                        "DUPLICATE" => 'N',
+                        "MESSAGE_ID" => 96, 
+                    ));
+                }
+            }           
+        }
+    }           
 ?>
