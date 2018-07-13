@@ -259,11 +259,11 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 			<?if(!$showCustomOffer || empty($arResult['OFFERS_PROP'])){
 				if(count($arResult["MORE_PHOTO"]) > 1):?>
 					<div class="wrapp_thumbs xzoom-thumbs">
-						<div class="thumbs flexslider" data-plugin-options='{"animation": "slide", "selector": ".slides_block > li", "directionNav": true, "itemMargin":10, "itemWidth": 54, "controlsContainer": ".thumbs_navigation", "controlNav" :false, "animationLoop": true, "slideshow": false}' style="max-width:<?=ceil(((count($arResult['MORE_PHOTO']) <= 4 ? count($arResult['MORE_PHOTO']) : 4) * 64) - 10)?>px;">
+						<div class="thumbs flexslider" data-plugin-options='{"animation": "slide", "selector": ".slides_block > li", "directionNav": true, "itemMargin":10, "itemWidth": 58.5, "controlsContainer": ".thumbs_navigation", "controlNav" :false, "animationLoop": true, "slideshow": false}' style="max-width:<?=ceil(((count($arResult['MORE_PHOTO']) <= 4 ? count($arResult['MORE_PHOTO']) : 4) * 64) - 10)?>px;">
 							<ul class="slides_block" id="thumbs">
 								<?foreach($arResult["MORE_PHOTO"]as $i => $arImage):?>
 									<li <?=(!$i ? 'class="current"' : '')?> data-big_img="<?=$arImage["BIG"]["src"]?>" data-small_img="<?=$arImage["SMALL"]["src"]?>">
-										<span><img class="xzoom-gallery" width="80" height="80" xpreview="<?=$arImage["THUMB"]["src"];?>" src="<?=$arImage["THUMB"]["src"]?>" alt="<?=$arImage["ALT"];?>" title="<?=$arImage["TITLE"];?>" /></span>
+										<span><img class="xzoom-gallery"  xpreview="<?=$arImage["THUMB"]["src"];?>" src="<?=$arImage["THUMB"]["src"]?>" alt="<?=$arImage["ALT"];?>" title="<?=$arImage["TITLE"];?>" /></span>
 									</li>
 								<?endforeach;?>
 							</ul>
@@ -273,7 +273,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 					<script>
 						$(document).ready(function(){
 							$('.item_slider .thumbs li').first().addClass('current');
-							$('.item_slider .thumbs').delegate('li:not(.current)', 'click', function(){
+							$('.item_slider .thumbs').delegate('li:not(.current)', 'mouseover', function(){
 								var slider_wrapper = $(this).parents('.item_slider'),
 									index = $(this).index();
 								$(this).addClass('current').siblings().removeClass('current')
