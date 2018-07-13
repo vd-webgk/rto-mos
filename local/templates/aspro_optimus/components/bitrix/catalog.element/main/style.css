@@ -17,7 +17,7 @@ body #content .item_slider .slides ul li{
     overflow: unset;
 }
 body .item_slider .slides li img, .item_slider .thumbs li img{
-    height: 100%;
+
 }
 body .item_slider .slides .offers_img img{
     max-height: 400px;
