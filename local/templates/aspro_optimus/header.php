@@ -92,14 +92,14 @@ $htmlClass = ($_REQUEST && isset($_REQUEST['print']) ? 'print' : false);
 						<div class="top_br"></div>
 						<table class="middle-h-row">
 							<tr>
-								<td class="logo_wrapp">
-									<div class="logo nofill_<?=strtolower(\Bitrix\Main\Config\Option::get('aspro.optimus', 'NO_LOGO_BG', 'N'));?>">
+								<td class="logo_wrapp" colspan="2">
+									<div style="max-width: 425px;" class="logo nofill_<?=strtolower(\Bitrix\Main\Config\Option::get('aspro.optimus', 'NO_LOGO_BG', 'N'));?>">
 										<?COptimus::ShowLogo();?>
 									</div>
 								</td>
-								<td class="text_wrapp">
+								<!--<td class="text_wrapp">
 									<div class="slogan">
-										<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
+										<?/*$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
 											array(
 												"COMPONENT_TEMPLATE" => ".default",
 												"PATH" => SITE_DIR."include/top_page/slogan.php",
@@ -109,9 +109,9 @@ $htmlClass = ($_REQUEST && isset($_REQUEST['print']) ? 'print' : false);
 												"EDIT_TEMPLATE" => "standard.php"
 											),
 											false
-										);?>	
+										);*/?>	
 									</div>
-								</td>
+								</td>-->
 								<td  class="center_block">																	
 									<div class="search">
 										<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
