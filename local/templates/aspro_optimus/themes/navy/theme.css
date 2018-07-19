@@ -616,6 +616,12 @@ h4:hover .opener_icon,
   color: #FFF;
   background: #006ac5;
 }
+.header_wrap #header .middle-h-row .logo_wrapp .logo a{
+  background: none;   
+}
+#header .middle-h-row .logo_wrapp .logo a img{
+    width: 425px;
+}
 .catalog_detail .bx-modal-container .btn.btn-add,
 .personal_wrapper form input[type=submit] {
   color: #FFF;
