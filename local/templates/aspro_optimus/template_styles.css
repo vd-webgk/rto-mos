@@ -323,7 +323,7 @@ body{background:#f6f6f7;}
 .item_slider ul.slides li {background:#fff;}
 .item_slider .slides a.line_link{cursor:default;}
 .item_slider .slides li.current:before{display:none;}
-.img_wrapper .item_slider .slides img{width:auto !important;}
+.img_wrapper .item_slider .slides img{width:auto !important;max-height: 100%;}
 .wrapper.basket_normal #header .basket_fly{display:none;}
 #header .basket_fly{background:#fff;box-shadow:rgba(44, 44, 44, 0.4) 0px 6px 18px;-moz-box-shadow:rgba(44, 44, 44, 0.4) 0px 6px 18px;-webkit-box-shadow:rgba(44, 44, 44, 0.4) 0px 6px 18px;min-height:283px;}
 #header .basket_fly:not(.loaded){background:url('images/waiter.gif') no-repeat center center #fff;}
