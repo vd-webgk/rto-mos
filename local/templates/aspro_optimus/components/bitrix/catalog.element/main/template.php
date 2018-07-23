@@ -304,7 +304,7 @@ setViewedProduct(<?=$arResult['ID']?>, <?=CUtil::PhpToJSObject($arViewedData, fa
 		</div>
 		<?/*mobile*/?>
 		<?if(!$showCustomOffer || empty($arResult['OFFERS_PROP'])){?>
-			<div class="item_slider flex flexslider" data-plugin-options='{"animation": "slide", "directionNav": false, "animationLoop": false, "slideshow": true, "slideshowSpeed": 10000, "animationSpeed": 600}'>
+			<div class="item_slider flex flexslider" style="display:none" data-plugin-options='{"animation": "slide", "directionNav": false, "animationLoop": false, "slideshow": true, "slideshowSpeed": 10000, "animationSpeed": 600}'>
 				<ul class="slides">
 					<?if($arResult["MORE_PHOTO"]){
                         
