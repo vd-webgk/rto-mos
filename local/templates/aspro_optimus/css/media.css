@@ -801,7 +801,7 @@ ul.tabs li.stretch { display: none; }
 	.tizers_block .item { width: 50%; text-align: center; }
 	.tizers_block .item:nth-child(n+5) { /*width: 100%;*/ text-align: center; }
 	.catalog_detail .info_item .middle_info .prices .price.discount { margin-top: 3px; }
-
+    
 	.wrapper_inner .start_promo  .item ,
 	.wrapper_inner .start_promo  .item.wide50,
 	.wrapper_inner .start_promo  .item.wide100 { width: 50%; border: 1px solid #fff;  padding-bottom: 47%; }
