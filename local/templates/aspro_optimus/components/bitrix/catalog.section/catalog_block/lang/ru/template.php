@@ -1,5 +1,6 @@
 <?
-	$MESS["CATALOG_NOT_AVAILABLE"] = "Нет в наличии";
+    $MESS["CATALOG_NOT_AVAILABLE"] = "Нет в наличии";
+	$MESS["ART"] = "Артикул: ";
 	$MESS["CATALOG_QUANTITY"] = "Количество";
 	$MESS["CATALOG_QUANTITY_FROM_TO"] = "От #FROM# до #TO#";
 	$MESS["CATALOG_QUANTITY_FROM"] = "От #FROM#";
