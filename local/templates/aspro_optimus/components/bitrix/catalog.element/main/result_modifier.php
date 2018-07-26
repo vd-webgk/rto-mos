@@ -10,6 +10,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 /** @var array $arParams */
 /** @var array $arResult */
 
+    
 $displayPreviewTextMode = array(
 	'H' => true,
 	'E' => true,
@@ -1158,4 +1159,21 @@ if(is_array($arParams["SECTION_TIZER"]) && $arParams["SECTION_TIZER"]){
 		$obCache->EndDataCache($arTizersData);
 	}
 	$arResult["TIZERS_ITEMS"]=$arTizersData;
-}?>
+}
+
+
+  
+if($arResult['OFFERS']){
+    if(count($arResult['OFFERS'] == 1)){
+        foreach($arResult['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
+            if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
+                $arResult['ID'] = $offerFieldValue;                  
+                $arResult['~ID'] = $offerFieldValue;                  
+            }
+            $arResult[$offerFieldKey] =  $offerFieldValue;
+            $arResult["~".$offerFieldKey] =  $offerFieldValue;
+            unset($arResult['OFFERS'][0]);
+        }    
+    }               
+}
+?>
