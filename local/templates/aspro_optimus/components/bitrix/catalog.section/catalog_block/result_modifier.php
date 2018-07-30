@@ -14,7 +14,7 @@ $arDefaultParams = array(
 	'ADD_TO_BASKET_ACTION' => 'ADD',
 	'DEFAULT_COUNT' => '1',
 );
-?><pre style="display: none;"><?print_r($arResult['ITEMS'][0])?></pre><?
+
 $arParams = array_merge($arDefaultParams, $arParams);
 
 if ('TYPE_1' != $arParams['TYPE_SKU'] )
@@ -717,21 +717,18 @@ if (!empty($arResult['ITEMS'])){
 	}
 }
 // convert offer to product
+$i = 0;
 foreach($arResult['ITEMS'] as $arItemKey => $arItemVal){
-    if($arItKey == 'OFFERS'){
-        $cv = count($arItemVal);
-        if($cv == 1){
-            foreach($arItemVal as $offerFieldKey => $offerFieldValue){
-            if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
-               // $arResult['ITEMS'][$arItemKey]['ID'] = $offerFieldValue;                  
-               // $arResult['ITEMS'][$arItemKey]['~ID'] = $offerFieldValue;                  
-            }
-           // $arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $offerFieldValue;
-          //  $arResult['ITEMS'][$arItemKey]["~".$offerFieldKey] =  $offerFieldValue;
-          //  unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);
-        }               
-        }
-    }
-    
+    $cv = count($arItemVal['OFFERS']);
+    if($cv == 1){          
+       $idEl =  $arResult['ITEMS'][$arItemKey]['ID'];
+       $idEl2 =  $arResult['ITEMS'][$arItemKey]['~ID'];
+       $DETAIL_PAGE_URL = $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL']; 
+       $arResult['ITEMS'][$arItemKey] =  $arItemVal['OFFERS'][0];
+       $arResult['ITEMS'][$arItemKey]['ID'] = $idEl; 
+       $arResult['ITEMS'][$arItemKey]['~ID'] = $idEl2;   
+       $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'] = $DETAIL_PAGE_URL;   
+    }             
 }
+   ?><pre style="display: none;"><?//print_r($arResult['ITEMS'][3])?></pre><?
 ?>
