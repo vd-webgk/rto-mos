@@ -75,3 +75,14 @@ body .bottom_slider .like_icons {
     top: -6px;
     right: 10px;
 }
+.item_slider:not(.flex) .slides li{
+width: 420PX !important;
+    height: 100% !important;    
+}
+.item_slider .slides{
+       max-width: 420px !important;
+       height: 420px !important;
+}
+.catalog_detail .item_slider .thumbs{
+    left: 50px !important;
+}
