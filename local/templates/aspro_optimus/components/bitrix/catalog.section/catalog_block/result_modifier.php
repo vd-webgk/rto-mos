@@ -290,9 +290,27 @@ if (!empty($arResult['ITEMS'])){
 					}
                     $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                         if(is_file($destinationFile))
-                        {
-                            $arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-                            $arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        {   
+                            $src = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $filePath = '/upload/product_images/quality_images_offers/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg');
+                           // arshow($imgSize);
+                            if($imgSize[0] > 180 || $imgSize[1] > 240){
+                                $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
+                                CFile::ResizeImageFile(
+                                    $src,
+                                    $newImg,
+                                    array('width'=>230, 'height'=>250),
+                                    BX_RESIZE_IMAGE_EXACT 
+                                );
+                                //$arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                                $arOffer['PREVIEW_PICTURE']["SRC"] = $filePath;
+                                //$arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                                $arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = $filePath;
+                            } else {
+                               $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'; 
+                            }    
+                            
                         }
                         
 					if ('' != $arParams['OFFER_ADD_PICT_PROP'] && isset($arOffer['DISPLAY_PROPERTIES'][$arParams['OFFER_ADD_PICT_PROP']]))
@@ -721,13 +739,17 @@ $i = 0;
 foreach($arResult['ITEMS'] as $arItemKey => $arItemVal){
     $cv = count($arItemVal['OFFERS']);
     if($cv == 1){          
-       $idEl =  $arResult['ITEMS'][$arItemKey]['ID'];
-       $idEl2 =  $arResult['ITEMS'][$arItemKey]['~ID'];
-       $DETAIL_PAGE_URL = $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL']; 
-       $arResult['ITEMS'][$arItemKey] =  $arItemVal['OFFERS'][0];
-       $arResult['ITEMS'][$arItemKey]['ID'] = $idEl; 
-       $arResult['ITEMS'][$arItemKey]['~ID'] = $idEl2;   
-       $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'] = $DETAIL_PAGE_URL;   
+      foreach($arItemVal['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
+           /* if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
+                $arResult['ID'] = $offerFieldValue;                  
+                $arResult['~ID'] = $offerFieldValue;                  
+            }   */
+            $arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $offerFieldValue;
+            //$arResult["~".$offerFieldKey] =  $offerFieldValue;
+            //unset($arResult['OFFERS'][0]);
+        }
+        unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);  
+           
     }             
 }
    ?><pre style="display: none;"><?//print_r($arResult['ITEMS'][3])?></pre><?
