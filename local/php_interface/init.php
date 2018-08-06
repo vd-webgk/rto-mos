@@ -293,5 +293,17 @@ class rtoHandlers
                 }
             }           
         }
-    }           
+    }    
+AddEventHandler("sale", "OnOrderSave", "checkTrackNumber");                 //Отправка имейла при заполнении трек-номера.
+function checkTrackNumber($orderFields, $orderId, $fields, $isNew){
+   $dbOrderProps = CSaleOrderPropsValue::GetList( array("SORT" => "ASC"), array("ORDER_ID" => $fields['ID'], "CODE"=>"TRACK"));
+    while ($arOrderProps = $dbOrderProps->Fetch()){
+        if(!empty($arOrderProps['VALUE'])){
+            $arEventFields = array(
+            "EMAIL" => $fields['USER_EMAIL']
+            );
+        CEvent::Send("CHECK_TRACK_NUMBER", "s1", $arEventFields);
+        }   
+    }
+}
 ?>

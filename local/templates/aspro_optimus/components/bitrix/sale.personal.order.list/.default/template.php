@@ -129,7 +129,7 @@
                 <?
                 }
             ?>
-            <?if($order["ORDER"]["INVOICE_SRING"]){?>
+           <?if($order["ORDER"]["INVOICE_ATTACH"]){?>
             <div class="col-md-12 col-sm-12 sale-order-list-container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 sale-order-list-title-container">
@@ -156,9 +156,7 @@
                             ?>
                             <?=Loc::getMessage('SPOL_TPL_SUMOF')?>
                             <?=$order['ORDER']['FORMATED_PRICE']?>
-                            <?if ($order["ORDER"]["TRACK"]){?>
-                            <span class="track-number"><?=GetMessage('TRACK_NUMBER')?> - <?=$order["ORDER"]["TRACK"]?></span>
-                            <?}?>
+                           
                         </h2>
                     </div>
                 </div>
@@ -211,8 +209,8 @@
                                                 echo $paymentSubTitle;
                                             ?>
                                        
-                                            <span class="sale-order-list-payment-title-element"><?=$payment['PAY_SYSTEM_NAME']?></span>
-                                            <?
+                                           <!-- <span class="sale-order-list-payment-title-element"><?//=$payment['PAY_SYSTEM_NAME']?></span> -->
+                                            <?/*
                                                 if ($payment['PAID'] === 'Y')
                                                 {
                                                 ?>
@@ -231,7 +229,7 @@
                                                 <span class="sale-order-list-status-alert"><?=Loc::getMessage('SPOL_TPL_NOTPAID')?></span>
                                                 <?
                                                 }
-                                            ?>
+                                            */?>
                                         </div>
                                         <div class="sale-order-list-payment-price">
                                             <span class="sale-order-list-payment-element"><?=Loc::getMessage('SPOL_TPL_SUM_TO_PAID')?>:</span>
@@ -263,7 +261,7 @@
                                                 <?
                                                 }
                                             }
-                                            if ($payment['PAID'] !== 'Y' && $order['ORDER']['LOCK_CHANGE_PAYSYSTEM'] !== 'Y')
+                                         /*   if ($payment['PAID'] !== 'Y' && $order['ORDER']['LOCK_CHANGE_PAYSYSTEM'] !== 'Y')
                                             {
                                             ?>
                                             <a href="#" class="sale-order-list-change-payment" id="<?= htmlspecialcharsbx($payment['ACCOUNT_NUMBER']) ?>">
@@ -279,26 +277,20 @@
                                             </div>
                                             <?
                                             }
-                                        ?>
+                                      */  ?>
 !2
                                     </div>
-
-                                    
+                                    <?//arshow($order);?>
                                     <div class="col-md-3 col-sm-4 col-xs-12 sale-order-list-button-container">
-                                        <?if($order["ORDER"]["INVOICE_ATTACH"]  && $order["ORDER"]["STATUS_ID"] == 'I'){?>
+                                        <?if($order["ORDER"]["INVOICE_ATTACH"]){?>
                                             <a class="sale-order-list-button inactive-button" href="<?=$order["ORDER"]["INVOICE_ATTACH"]?>" download>
-                                            
                                             <?=GetMessage('INVOICE');?>
                                             </a>
-                                            <?}if($order["ORDER"]["UPD_ATTACH"] && $order["ORDER"]["STATUS_ID"] == 'OT'){?>
-                                            <a class="sale-order-list-button inactive-button" href="<?=$order["ORDER"]["INVOICE_ATTACH"]?>" download>
-                                                <?=GetMessage('INVOICE');?>
-                                                
-                                        </a>
-                                        <a class="sale-order-list-button inactive-button" href="<?=$order["ORDER"]["UPD_ATTACH"]?>" download>
-                                        <?=GetMessage('UPD');?>
-                                        </a>
-                                        <?}?>
+                                            <?}if($order["ORDER"]["UPD_ATTACH"] && $order['ORDER']['STATUS_ID'] == 'P'){?>
+                                                <a class="sale-order-list-button inactive-button" href="<?=$order["ORDER"]["UPD_ATTACH"]?>" download>
+                                                    <?=GetMessage('UPD');?>
+                                                </a>
+                                            <?}?>
                                     </div>
                                  
 
@@ -344,55 +336,12 @@
                                     }
                                 ?>
                                 <div class="col-md-9 col-sm-8 col-xs-12 sale-order-list-shipment">
-                                    <div class="sale-order-list-shipment-title">
-                                        <span class="sale-order-list-shipment-element">
-                                            <?=Loc::getMessage('SPOL_TPL_LOAD')?>
-                                            <?
-                                                $shipmentSubTitle = Loc::getMessage('SPOL_TPL_NUMBER_SIGN').htmlspecialcharsbx($shipment['ACCOUNT_NUMBER']);
-                                                if ($shipment['DATE_DEDUCTED'])
-                                                {
-                                                    $shipmentSubTitle .= " ".Loc::getMessage('SPOL_TPL_FROM_DATE')." ".$shipment['DATE_DEDUCTED']->format($arParams['ACTIVE_DATE_FORMAT']);
-                                                }
+                                    
+ <?if ($order["ORDER"]["TRACK"]){?>
+                            <span class="track-number"><?=GetMessage('TRACK_NUMBER')?> - <?=$order["ORDER"]["TRACK"]?></span>
+                            <?}?>
 
-                                                if ($shipment['FORMATED_DELIVERY_PRICE'])
-                                                {
-                                                    $shipmentSubTitle .= ", ".Loc::getMessage('SPOL_TPL_DELIVERY_COST')." ".$shipment['FORMATED_DELIVERY_PRICE'];
-                                                }
-                                                echo $shipmentSubTitle;
-                                            ?>
-                                        </span>
                                         <?
-                                            if ($shipment['DEDUCTED'] == 'Y')
-                                            {
-                                            ?>
-                                            <span class="sale-order-list-status-success"><?=Loc::getMessage('SPOL_TPL_LOADED');?></span>
-                                            <?
-                                            }
-                                            else
-                                            {
-                                            ?>
-                                            <span class="sale-order-list-status-alert"><?=Loc::getMessage('SPOL_TPL_NOTLOADED');?></span>
-                                            <?
-                                            }
-                                        ?>
-                                    </div>
-
-                                    <div class="sale-order-list-shipment-status">
-                                        <span class="sale-order-list-shipment-status-item"><?=Loc::getMessage('SPOL_ORDER_SHIPMENT_STATUS');?>:</span>
-                                        <span class="sale-order-list-shipment-status-block"><?=htmlspecialcharsbx($shipment['DELIVERY_STATUS_NAME'])?></span>
-                                    </div>
-
-                                    <?
-                                        if (!empty($shipment['DELIVERY_ID']))
-                                        {
-                                        ?>
-                                        <div class="sale-order-list-shipment-item">
-                                            <?=Loc::getMessage('SPOL_TPL_DELIVERY_SERVICE')?>:
-                                            <?=$arResult['INFO']['DELIVERY'][$shipment['DELIVERY_ID']]['NAME']?>
-                                        </div>
-                                        <?
-                                        }
-
                                         if (!empty($shipment['TRACKING_NUMBER']))
                                         {
                                         ?>
@@ -465,6 +414,7 @@
                 <?
                 }
             ?>
+             <?if($order["ORDER"]["INVOICE_ATTACH"]){?>
             <div class="col-md-12 col-sm-12 sale-order-list-container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 sale-order-list-accomplished-title-container">
@@ -538,6 +488,7 @@
                 </div>
             </div>
             <?
+            }
             }
         }
     ?>
