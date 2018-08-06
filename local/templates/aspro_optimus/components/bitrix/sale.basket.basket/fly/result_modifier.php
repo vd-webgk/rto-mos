@@ -125,30 +125,44 @@
 			{
 				$arNa[$arItem["ID"]] = $arItem;
 			}
-            
-            if($arItem['PROPERTIES'][0]['CODE'] == "CML2_BAR_CODE" && $arItem['PROPERTIES'][0]['VALUE'] > 0) {
+          // arshow($arResult)  ;
+            $db_props = CIBlockElement::GetList(array(), array("ID" => $arItem['PRODUCT_ID']), false, false, Array('PROPERTY_CML2_BAR_CODE'));
+                                        if($ar_props = $db_props->fetch()){
+                                            $propsss = $ar_props;
+                                          // $arItem['PROPERTIES'][0]['VALUE'] = $propsss['PROPERTY_CML2_BAR_CODE_VALUE']; 
+                                          // arshow($propsss);                                 
+                                        
+          //  if($arItem['PROPERTIES'][0]['CODE'] == "CML2_BAR_CODE" && $arItem['PROPERTIES'][0]['VALUE'] > 0) {
                     //debug($arItem['PROPERTIES']['CML2_BAR_CODE']);die();
-                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
+                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
                     if(is_file($destinationFile))
                     {
-                        $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';;
+                       $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';;
                     }
-                    elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg'))
+                    elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg'))
                     {
-                        $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
-                        $arSize = array('width'=>240, 'height'=>229);
+                        $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                        $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg');
+                   // arshow($imgSize);
+                    if($imgSize[0] > 180 || $imgSize[1] > 240){
+                        $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
                         CFile::ResizeImageFile(
-                            $sourceFile,
-                            $destinationFile,
-                            $arSize,
-                            $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
+                            $src,
+                            $newImg,
+                            array('width'=>230, 'height'=>250),
+                            BX_RESIZE_IMAGE_EXACT 
                         );
-                        $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
-                        $arItem['DETAIL_PICTURE']['SRC'] = '/upload/product_images/small/'.$arItem['PROPERTIES'][0]['VALUE'].'.jpg';
+                        $arItem['PREVIEW_PICTURE']['SRC'] = $filePath;
+                    } else {
+                       $arItem['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                        $arItem['DETAIL_PICTURE']['SRC'] = '/upload/product_images/small/'.$propsss['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg'; 
+                    }    
+                        
                     }
                     $arResult["GRID"]["ROWS"][$k] = $arItem;
 
-            }
+            //}
+                                        }
 		}
 		
         

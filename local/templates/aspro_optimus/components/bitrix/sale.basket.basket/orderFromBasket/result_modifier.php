@@ -28,3 +28,43 @@ if ('' != $arParams['TEMPLATE_THEME'])
 }
 if ('' == $arParams['TEMPLATE_THEME'])
 	$arParams['TEMPLATE_THEME'] = 'blue';
+    foreach ($arResult['ITEMS']['AnDelCanBuy'] as $arItem){
+                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                if(is_file($destinationFile))
+                {                     
+                    $src = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                    $filePath = '/upload/product_images/basket_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                    $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg');
+                    if($imgSize[0] > 180 || $imgSize[1] > 240){
+                        $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
+                        CFile::ResizeImageFile(
+                            $src,
+                            $newImg,
+                            array('width'=>230, 'height'=>250),
+                            BX_RESIZE_IMAGE_EXACT 
+                        );
+                        $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = $filePath;
+                    } else {
+                        if(empty($arItem['PROPS']) && !empty($arItem['PROPERTY_CML2_BAR_CODE_VALUE'])){
+                      $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                        } else {
+                        $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPS'][0]['VALUE'].'.jpg';    
+                        } 
+                    } 
+                 //  arshow($arItem);   
+                }
+                elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg'))
+                {
+                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                    $arSize = array('width'=>239, 'height'=>290);
+                    CFile::ResizeImageFile(
+                        $sourceFile,
+                        $destinationFile,
+                        $arSize,
+                        $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL_ALT 
+                    );
+                    $arItem['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                }
+    }
+                     
+                       

@@ -740,13 +740,18 @@ foreach($arResult['ITEMS'] as $arItemKey => $arItemVal){
     $cv = count($arItemVal['OFFERS']);
     if($cv == 1){          
       foreach($arItemVal['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
+           //$detailURL = $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'];
            /* if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
                 $arResult['ID'] = $offerFieldValue;                  
                 $arResult['~ID'] = $offerFieldValue;                  
             }   */
             $arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $offerFieldValue;
+            if($offerFieldKey == 'DETAIL_PAGE_URL'){
+                //$arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $detailURL;
+            }
             //$arResult["~".$offerFieldKey] =  $offerFieldValue;
             //unset($arResult['OFFERS'][0]);
+            
         }
         unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);  
            

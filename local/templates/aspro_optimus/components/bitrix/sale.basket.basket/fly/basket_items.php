@@ -52,7 +52,7 @@
 						<?foreach ($arResult["GRID"]["HEADERS"] as $id => $arHeader):
 							if (in_array($arHeader["id"], array("PROPS", "DELAY", "DELETE", "TYPE", "DISCOUNT"))) continue; // some values are not shown in columns in this template
 							if ($arHeader["id"] == "NAME"):
-							?>
+							?>  
 								<td class="thumb-cell">
 									<?if( strlen($arItem["PREVIEW_PICTURE"]["SRC"])>0 ){?>
 										<?if (strlen($arItem["DETAIL_PAGE_URL"]) > 0):?><a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="thumb"><?endif;?>
