@@ -736,26 +736,47 @@ if (!empty($arResult['ITEMS'])){
 }
 // convert offer to product
 $i = 0;
+      $offKeys = array(
+        'ID',
+        //'PREVIEW_PICTURE',
+        //'DETAIL_PICTURE',
+        'PROPERTIES',
+        'DISPLAY_PROPERTIES',
+        'PRICES',
+        'PRICE_MATRIX',
+        'BUY_URL',
+        'ADD_URL',
+        'SUBSCRIBE_URL',
+        'COMPARE_URL',
+        'COMPARE_DELETE_URL',
+      );
+          arshow($arResult['ITEMS'][0]);
 foreach($arResult['ITEMS'] as $arItemKey => $arItemVal){
+  
+    
     $cv = count($arItemVal['OFFERS']);
     if($cv == 1){          
-      foreach($arItemVal['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
+      foreach($offKeys as $keyk){
            //$detailURL = $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'];
+           ?><pre><?//print_r($detailURL)?></pre><?
            /* if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
                 $arResult['ID'] = $offerFieldValue;                  
                 $arResult['~ID'] = $offerFieldValue;                  
             }   */
-            $arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $offerFieldValue;
-            if($offerFieldKey == 'DETAIL_PAGE_URL'){
-                //$arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $detailURL;
-            }
+           // if(in_array($offerFieldKey, $offKeys)){
+           if($arItemVal['OFFERS'][0][$keyk]){
+            //$arResult['ITEMS'][$arItemKey][$keyk] =  $arItemVal['OFFERS'][0][$keyk];
+         //   $arResult['ITEMS'][$arItemKey][$keyk] =  $arItemVal['OFFERS'][0]['~'.$keyk];
+           }
+            //$arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'] = $detailURL; 
             //$arResult["~".$offerFieldKey] =  $offerFieldValue;
             //unset($arResult['OFFERS'][0]);
+            //}
             
         }
-        unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);  
+       // unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);  
            
     }             
 }
-   ?><pre style="display: none;"><?//print_r($arResult['ITEMS'][3])?></pre><?
+   //arshow($arResult['ITEMS'][0]);DIE();
 ?>
