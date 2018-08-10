@@ -14,6 +14,7 @@ $arDefaultParams = array(
 	'ADD_TO_BASKET_ACTION' => 'ADD',
 	'DEFAULT_COUNT' => '1',
 );
+
 $arParams = array_merge($arDefaultParams, $arParams);
 
 if ('TYPE_1' != $arParams['TYPE_SKU'] )
@@ -289,9 +290,27 @@ if (!empty($arResult['ITEMS'])){
 					}
                     $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                         if(is_file($destinationFile))
-                        {
-                            $arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
-                            $arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                        {   
+                            $src = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $filePath = '/upload/product_images/quality_images_offers/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                            $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg');
+                           // arshow($imgSize);
+                            if($imgSize[0] > 180 || $imgSize[1] > 240){
+                                $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
+                                CFile::ResizeImageFile(
+                                    $src,
+                                    $newImg,
+                                    array('width'=>230, 'height'=>250),
+                                    BX_RESIZE_IMAGE_EXACT 
+                                );
+                                //$arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                                $arOffer['PREVIEW_PICTURE']["SRC"] = $filePath;
+                                //$arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
+                                $arOffer['PREVIEW_PICTURE_SECOND']["SRC"] = $filePath;
+                            } else {
+                               $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg'; 
+                            }    
+                            
                         }
                         
 					if ('' != $arParams['OFFER_ADD_PICT_PROP'] && isset($arOffer['DISPLAY_PROPERTIES'][$arParams['OFFER_ADD_PICT_PROP']]))
@@ -537,7 +556,7 @@ if (!empty($arResult['ITEMS'])){
 				$minItemPrice = 0;
 				$minItemPriceFormat = "";
 				foreach ($arItem['OFFERS'] as $keyOffer => $arOffer){
-
+                    
 					if($arOffer["MIN_PRICE"]["CAN_ACCESS"]){
 						if($arOffer["MIN_PRICE"]["DISCOUNT_VALUE"] < $arOffer["MIN_PRICE"]["VALUE"]){
 							$minOfferPrice = $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"];
@@ -715,4 +734,28 @@ if (!empty($arResult['ITEMS'])){
 		}
 	}
 }
+// convert offer to product
+/*$i = 0;
+foreach($arResult['ITEMS'] as $arItemKey => $arItemVal){
+    
+    $cv = count($arItemVal['OFFERS']);
+    if($cv == 1){          
+      foreach($arItemVal['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
+           $detailURL = $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'];
+           ?><pre><?//print_r($detailURL)?></pre><?
+           /* if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
+                $arResult['ID'] = $offerFieldValue;                  
+                $arResult['~ID'] = $offerFieldValue;                  
+            }   
+            $arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $offerFieldValue;
+            $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'] = $detailURL; 
+            //$arResult["~".$offerFieldKey] =  $offerFieldValue;
+            //unset($arResult['OFFERS'][0]);
+            
+        }
+        unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);  
+           
+    }             
+}  */
+   
 ?>
