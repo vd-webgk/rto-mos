@@ -29,12 +29,13 @@ if ('' != $arParams['TEMPLATE_THEME'])
 if ('' == $arParams['TEMPLATE_THEME'])
 	$arParams['TEMPLATE_THEME'] = 'blue';
     foreach ($arResult['ITEMS']['AnDelCanBuy'] as $arItem){
-                    $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+        //arshow($arItem);   
+                $destinationFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
                 if(is_file($destinationFile))
-                {                     
-                    $src = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
-                    $filePath = '/upload/product_images/basket_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
-                    $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg');
+                {                                          
+                    $src = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                    $filePath = '/upload/product_images/basket_images/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                    $imgSize = getimagesize($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg');
                     if($imgSize[0] > 180 || $imgSize[1] > 240){
                         $newImg = $_SERVER['DOCUMENT_ROOT'] . $filePath;
                         CFile::ResizeImageFile(
@@ -46,16 +47,18 @@ if ('' == $arParams['TEMPLATE_THEME'])
                         $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = $filePath;
                     } else {
                         if(empty($arItem['PROPS']) && !empty($arItem['PROPERTY_CML2_BAR_CODE_VALUE'])){
+                        print_r();    
                       $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
                         } else {
-                        $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPS'][0]['VALUE'].'.jpg';    
+                        $arResult['GRID']['ROWS'][$arItem['ID']]['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';    
                         } 
                     } 
                  //  arshow($arItem);   
                 }
-                elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg'))
+                elseif (is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg'))
                 {
-                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                    
+                    $sourceFile = $_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
                     $arSize = array('width'=>239, 'height'=>290);
                     CFile::ResizeImageFile(
                         $sourceFile,
@@ -63,7 +66,7 @@ if ('' == $arParams['TEMPLATE_THEME'])
                         $arSize,
                         $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL_ALT 
                     );
-                    $arItem['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPS'][0]['VALUE'].'.jpg';
+                    $arItem['PREVIEW_PICTURE_SRC'] = '/upload/product_images/small/'.$arItem['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
                 }
     }
                      
