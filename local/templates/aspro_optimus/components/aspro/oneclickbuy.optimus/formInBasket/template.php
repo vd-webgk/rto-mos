@@ -105,7 +105,10 @@ $('#one_click_buy_form').on("submit", function(){
                                     $('.one_click_buy_result').show();
                                     $('.one_click_buy_result_success').show();
                                     setTimeout(function(){
-                                        document.location.replace('http://dev-vorobyev-rtomos.webgk.ru/personal/');
+                                        var url = window.location.href
+                                        var url_arr = url.split("/");
+                                        var result_url = url_arr[0] + "//" + url_arr[2]  + "/personal/";
+                                        document.location.href = result_url;
                                     } , 5000);
                                     
                                     purchaseCounter(data.message, arOptimusOptions["COUNTERS"]["TYPE"]["QUICK_ORDER"]);
