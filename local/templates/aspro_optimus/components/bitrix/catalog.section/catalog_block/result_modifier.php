@@ -15,6 +15,52 @@ $arDefaultParams = array(
 	'DEFAULT_COUNT' => '1',
 );
 
+
+/////// convert offer to product ///////
+$fieldsArray = array(
+    "PRICES",
+    "PRICE_MATRIX",
+    "MIN_PRICE",
+    "ITEM_PRICES",
+    "CAN_BUY",
+    "NAME",
+    "BUY_URL",
+    "ADD_URL",
+    "PROPERTIES",
+    "DISPLAY_PROPERTIES",  
+    "CATALOG_AVAILABLE",
+    "PRODUCT",   
+    "CATALOG_QUANTITY",
+    "IBLOCK_ID",
+    "ID",
+);
+
+$maxLen = 75;
+
+//если у товара только одно торговое предложение, переносим его данные в товар и удаляем предложение
+foreach($arResult['ITEMS'] as $key => $arItem){    
+    
+    if(count($arItem['OFFERS']) == 1){ 
+      
+        foreach ($fieldsArray as $field) {
+            if ($arItem["OFFERS"][0][$field]) {
+                $arResult['ITEMS'][$key][$field] = $arItem["OFFERS"][0][$field];    
+            }
+        }
+        
+        if (strlen($arResult['ITEMS'][$key]["NAME"]) > $maxLen) {
+            $arResult['ITEMS'][$key]["NAME"] = substr($arResult['ITEMS'][$key]["NAME"], 0, $maxLen) . "...";
+        }
+        
+        unset($arResult['ITEMS'][$key]['OFFERS'][0]);  
+           
+    }             
+}  
+/////// convert offer to product ///////
+
+
+
+
 $arParams = array_merge($arDefaultParams, $arParams);
 
 if ('TYPE_1' != $arParams['TYPE_SKU'] )
@@ -734,28 +780,4 @@ if (!empty($arResult['ITEMS'])){
 		}
 	}
 }
-// convert offer to product
-/*$i = 0;
-foreach($arResult['ITEMS'] as $arItemKey => $arItemVal){
-    
-    $cv = count($arItemVal['OFFERS']);
-    if($cv == 1){          
-      foreach($arItemVal['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
-           $detailURL = $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'];
-           ?><pre><?//print_r($detailURL)?></pre><?
-           /* if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
-                $arResult['ID'] = $offerFieldValue;                  
-                $arResult['~ID'] = $offerFieldValue;                  
-            }   
-            $arResult['ITEMS'][$arItemKey][$offerFieldKey] =  $offerFieldValue;
-            $arResult['ITEMS'][$arItemKey]['DETAIL_PAGE_URL'] = $detailURL; 
-            //$arResult["~".$offerFieldKey] =  $offerFieldValue;
-            //unset($arResult['OFFERS'][0]);
-            
-        }
-        unset($arResult['ITEMS'][$arItemKey]['OFFERS'][0]);  
-           
-    }             
-}  */
-   
-?>
+

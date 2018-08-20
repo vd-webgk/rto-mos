@@ -1164,7 +1164,7 @@ if(is_array($arParams["SECTION_TIZER"]) && $arParams["SECTION_TIZER"]){
 
   
 if($arResult['OFFERS']){
-    if(count($arResult['OFFERS'] == 1)){
+    if(count($arResult['OFFERS']) == 1){
         foreach($arResult['OFFERS'][0] as $offerFieldKey => $offerFieldValue){
            /* if($offerFieldKey == "PROPERTY_220_VALUE" || $offerFieldKey == "~PROPERTY_220_VALUE"){
                 $arResult['ID'] = $offerFieldValue;                  
