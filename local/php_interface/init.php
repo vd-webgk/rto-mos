@@ -306,4 +306,24 @@ function checkTrackNumber($orderFields, $orderId, $fields, $isNew){
         }   
     }
 }
+
+//AddEventHandler("sale", "OnOrderAdd", "fillComapnyName");
+\Bitrix\Main\EventManager::getInstance()->addEventHandler(
+    'sale',
+    'OnSaleComponentOrderCreated',
+    'fillComapnyName'
+);
+function fillComapnyName($order, &$arUserResult, $request, &$arParams, &$arResult){
+    $us_id = $order->getUserId();
+    $rsUser = CUser::GetByID($us_id);
+    $arUser = $rsUser->Fetch();
+    $propertyCollection = $order->getPropertyCollection();       
+    if($arUser['UF_NAME']){
+        $propertyCollection = $order->getPropertyCollection(); 
+        $getCompany = $arUser['UF_NAME'];
+        $companyVal = $propertyCollection->getItemByOrderPropertyId(26);
+        $companyVal->setValue($getCompany);
+        $order->save();
+    }   
+}  
 ?>
