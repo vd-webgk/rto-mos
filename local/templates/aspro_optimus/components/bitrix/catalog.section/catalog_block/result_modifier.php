@@ -42,6 +42,7 @@ foreach($arResult['ITEMS'] as $key => $arItem){
     
     if(count($arItem['OFFERS']) == 1){ 
       
+        //переписываем у товара нужные переменные
         foreach ($fieldsArray as $field) {
             if ($arItem["OFFERS"][0][$field]) {
                 $arResult['ITEMS'][$key][$field] = $arItem["OFFERS"][0][$field];    
@@ -52,6 +53,8 @@ foreach($arResult['ITEMS'] as $key => $arItem){
             $arResult['ITEMS'][$key]["NAME"] = substr($arResult['ITEMS'][$key]["NAME"], 0, $maxLen) . "...";
         }
         
+        //сохраняем предложение товара в другую переменную, оно потребуется в template.php для расчета доступности
+        $arResult['ITEMS'][$key]["OFFERS_TMP"][0] = $arResult['ITEMS'][$key]['OFFERS'][0];
         unset($arResult['ITEMS'][$key]['OFFERS'][0]);  
            
     }             
