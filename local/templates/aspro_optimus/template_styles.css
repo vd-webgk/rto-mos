@@ -2042,6 +2042,7 @@ div[id^=smartFilterDropDown] .popup-window-top-row, div[id^=smartFilterDropDown]
 .bx_filter .bx_filter_input_checkbox .bx_filter_param_text, .filter label > span{display:block;line-height:14px;margin-left:18px;text-align:left;}
 .bx_filter .filter label > span{margin:0px;}
 .bx_filter .sku .bx_filter_input_checkbox .bx_filter_param_text, .sku_props .bx_item_detail_size ul li span{display:block;line-height:18px;margin:0px;text-align:center;padding:4px 0px 7px;font-size:13px;}
+.bx_filter .sku .bx_filter_input_checkbox .bx_filter_param_text, .sku_props .bx_item_detail_size ul li span img{max-width: 110px}
 .bx_item_list_you_looked_horizontal .bx_item_detail_size ul li.active:hover span{color:#fff;}
 .bx_filter .bx_filter_input_checkbox input + .bx_filter_param_text{line-height:21px;}
 
