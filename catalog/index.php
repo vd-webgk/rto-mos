@@ -308,7 +308,7 @@ $APPLICATION->IncludeComponent(
             2 => "VOLUME",
             3 => "SIZES",
             4 => "COLOR_REF",
-            5 => "",
+            5 => "CML2_BAR_CODE",
         ),
         "LIST_OFFERS_LIMIT" => "10",
         "SORT_BUTTONS" => array(
