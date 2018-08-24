@@ -285,7 +285,7 @@ if (!empty($arResult['ITEMS'])){
                                 $sourceFile,
                                 $destinationFile,
                                 $arSize,
-                                $resizeType = BX_RESIZE_IMAGE_EXACT
+                                $resizeType = BX_RESIZE_IMAGE_PROPORTIONAL
                             );
                             $arOffer['PREVIEW_PICTURE']['SRC'] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                         }
@@ -350,7 +350,7 @@ if (!empty($arResult['ITEMS'])){
                                     $src,
                                     $newImg,
                                     array('width'=>230, 'height'=>250),
-                                    BX_RESIZE_IMAGE_EXACT 
+                                    BX_RESIZE_IMAGE_PROPORTIONAL
                                 );
                                 //$arOffer['PREVIEW_PICTURE']["SRC"] = '/upload/product_images/small/'.$arOffer['PROPERTIES']['CML2_BAR_CODE']['VALUE'].'.jpg';
                                 $arOffer['PREVIEW_PICTURE']["SRC"] = $filePath;
@@ -662,8 +662,8 @@ if (!empty($arResult['ITEMS'])){
                         CFile::ResizeImageFile(
                             $src,
                             $newImg,
-                            array('width'=>230, 'height'=>250),
-                            BX_RESIZE_IMAGE_EXACT 
+                            array('width'=>240, 'height'=>270),
+                            BX_RESIZE_IMAGE_PROPORTIONALS 
                         );
                         $arItem['PREVIEW_PICTURE']['SRC'] = $filePath;
                     } else {
