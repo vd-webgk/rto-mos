@@ -1,4 +1,6 @@
 <?if('Y' == $arParams['USE_FILTER']):?>
+    <?$dir = $APPLICATION->GetCurDir();?>
+    <?if(stristr($dir, "nabory_rto_dlya_vyshivaniya")){?>
 	<?$APPLICATION->IncludeComponent(
 		"bitrix:catalog.smart.filter",
 		($arParams["AJAX_FILTER_CATALOG"]=="Y" ? "main_ajax" : "main"),
@@ -29,4 +31,5 @@
 		),
 		$component);
 	?>
+      <?}?>
 <?endif;?>

@@ -92,10 +92,9 @@ $OptimusSectionID = $arSection["ID"];?>
 		<?//add filter with ajax?>
 		<?if($arParams['AJAX_MODE'] == 'Y' && strpos($_SERVER['REQUEST_URI'], 'bxajaxid') !== false):?>
 			<div class="filter_tmp">
-				<?$dir = $APPLICATION->GetCurDir();?>
-                <?if($dir == "/catalog/vyshivanie/nabory_dlya_vyshivaniya/nabory_rto_dlya_vyshivaniya/"){?>
+
                     <?include_once("filter.php")?>
-                <?}?>
+              
 			</div>
 			<script type="text/javascript">
 
@@ -143,10 +142,10 @@ $OptimusSectionID = $arSection["ID"];?>
 			</script>
 		<?endif;?>
 		<?ob_start()?>
-			<?$dir = $APPLICATION->GetCurDir();?>
-            <?if($dir == "/catalog/vyshivanie/nabory_dlya_vyshivaniya/nabory_rto_dlya_vyshivaniya/"){?>
+			<?//$dir = $APPLICATION->GetCurDir();?>
+            <?//if($dir == "/catalog/vyshivanie/nabory_dlya_vyshivaniya/nabory_rto_dlya_vyshivaniya/"){?>
                 <?include_once("filter.php")?>
-            <?}?>
+            <?/*}*/?>
 		<?$html=ob_get_clean();?>
 		<?$APPLICATION->AddViewContent('left_menu', $html);?>
 	<?}?>
@@ -154,10 +153,10 @@ $OptimusSectionID = $arSection["ID"];?>
 
 		<?if($TEMPLATE_OPTIONS["TYPE_VIEW_FILTER"]["CURRENT_VALUE"]=="HORIZONTAL"){?>
 			<div class="filter_horizontal">
-            <?$dir = $APPLICATION->GetCurDir();?>
-            <?if($dir == "/catalog/vyshivanie/nabory_dlya_vyshivaniya/nabory_rto_dlya_vyshivaniya/"){?>
+            <?//$dir = $APPLICATION->GetCurDir();?>
+            <?//if($dir == "/catalog/vyshivanie/nabory_dlya_vyshivaniya/nabory_rto_dlya_vyshivaniya/"){?>
 				<?include_once("filter.php")?>
-            <?}?>   
+            <?/*}*/?>   
 			</div>
 		<?}else{?>
 			<div class="js_filter filter_horizontal">
