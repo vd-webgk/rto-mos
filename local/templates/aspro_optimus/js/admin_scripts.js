@@ -3,7 +3,7 @@ $(document).on('ready', function(){
     var url = document.location.href;
     if (url.indexOf("bitrix/admin/user_edit.php")) {
         $('input[name="user_info_event"]').hide();
-        $('.adm-designed-checkbox-label').hide();
+        $('#tr_user_info_event .adm-designed-checkbox-label').hide();
         var addMailSelect = '<tr><td><select name="sendMailTemplate" class="selectMail"><option value="empty"></option><option value="temp">Временный доступ</option><option value="reg">Постоянный доступ</option><option value="denied">Регистрация невозможна</option></select></tr></td>';
         $("#tr_user_info_event").after(addMailSelect);
         $('select.selectMail').on('change', function(){
