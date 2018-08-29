@@ -28,8 +28,8 @@
 	position: relative;
 	background: #f9f9f9;
 	color: #444;
-    width: 750px !important;
-    height: 750px !important;
+    /*width: 750px !important;
+    height: 750px !important;*/
     margin: auto;
 	text-shadow: none;
 	-webkit-border-radius: 4px;
@@ -40,8 +40,8 @@
 .fancybox-opened {
 	z-index: 8030;
    background: url("http://thumbnails.illustrationsource.com/huge.103.519781.JPG") top left no-repeat !important;
-    width: 750px !important;
-    height: 750px !important; 
+    /*width: 750px !important;
+    height: 750px !important;*/ 
 }
 
 .fancybox-opened .fancybox-skin {
@@ -56,9 +56,9 @@
 
 .fancybox-inner {
 	overflow: hidden;
-    max-height: 750px !important;
+    /*max-height: 750px !important;
     height: 750px !important;
-    width: 750px !important;
+    width: 750px !important;  */
     margin: auto;
 }
 
@@ -82,17 +82,15 @@
     height: auto;
 }
 
-.fancybox-image {
-	/*max-width: 100%;
-	max-height: 100%;  */
-    max-width: 750px;
+.fancybox-image {  	
+    max-width: 750px; 
     margin: auto;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     position: absolute;
-    max-height: 750px;
+    max-height: 750px;  
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
