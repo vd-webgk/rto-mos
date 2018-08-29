@@ -25,7 +25,7 @@
 										</ul>
 									<?}?>
 									<div class="clearfix"></div>
-								</li>
+								</li><div class="line"></div>
 							<?}?>
 						</ul>
 					<?}?>
@@ -34,3 +34,13 @@
 		</ul>
 	</div>
 <?}?>
+<script>
+$(document).on('change', function(){
+    $('li.has-childs').on('focus','li.has-childs', function(e){
+        e.preventDefault();
+      var height = $('li.has-childs').css('height');
+    console.log(height);  
+    })
+    
+})
+</script>

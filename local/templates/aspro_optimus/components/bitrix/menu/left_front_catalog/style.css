@@ -1,0 +1,17 @@
+.menu_top_block.catalog_block .dropdown> li.full>.dropdown>li, header .menu.top.catalogfirst li.full>.dropdown>li{
+    width: 25% !important;
+    padding: 0 !important;
+}
+
+.menu_top_block.catalog_block .dropdown>li.full>.dropdown>li>a, header .menu_top_block.catalogfirst li.full>.dropdown>li:not(.current)>a{
+     padding: 10px 0px 0px 20px !important;
+}
+.menu_top_block.catalog_block .dropdown>li.full>.dropdown>li>.dropdown, header .menu_top_block.catalogfirst li.full>.dropdown>li>.dropdown{
+    padding: 0px 0px 0px 20px !important;
+}
+.line {
+    border-right: 2px solid #d1d1d1;
+    height: 0px;
+    width: 0px;
+    float: left;
+}

@@ -421,10 +421,21 @@
         $('.catalog_block .catalog_item_wrapp .item_info').sliceHeight({classNull: '.footer_button'});
         $('.catalog_block .catalog_item_wrapp').sliceHeight({classNull: '.footer_button'});
         $('[data-fancybox-group="gallery"]').fancybox({
+            width: 750,
+            height: 750,
             // Options will go here
-            autoDimensions: false,
-            height: 300,
-            width: 400
+            //fitToView: true,
+            //autoDimensions: true,
+            beforeShow: function () {
+        // set size to (fancybox) img
+        /*$('[data-fancybox-group="gallery"]').css({
+            "width": 800,
+            "height": 600
+        });*/
+        // set size for parent container
+        this.width = 750;
+        this.height = 750;
+    }
         });
     });
 
