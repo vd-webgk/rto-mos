@@ -35,7 +35,7 @@
                                     <li style="width: 200px !important;" class="custom">
                                  <?                               
                                  $filter = array('IBLOCK_ID' => 20,'SECTION_PAGE_URL' => $elementSections, '!PROPERTY_SHOW_IN_MENU' => false);
-                                    $select = array('ID', 'NAME', 'PROPERTY_SHOW_IN_MENU');
+                                    $select = array('ID', 'NAME', 'PROPERTY_SHOW_IN_MENU', 'DETAIL_PAGE_URL', 'IBLOCK_SECTION_ID');
                                     $getElly = CIBlockElement::GetList(
                                         array(),
                                         $filter,
@@ -44,131 +44,55 @@
                                         $select
                                     );
                                     while($elementToShow = $getElly -> fetch()){
-                                      $sectionSelect[] = array('ID' => $elementToShow['ID'], 'SECT' => $elementToShow['PROPERTY_SHOW_IN_MENU_VALUE']);
+                                      $sectionSelect[] = array('ID' => $elementToShow['ID'],
+                                                               'SECT' => $elementToShow['PROPERTY_SHOW_IN_MENU_VALUE'],
+                                                               "NAME" => $elementToShow['NAME'],
+                                                               'DETAIL_PAGE_URL' => $elementToShow['DETAIL_PAGE_URL'],
+                                                               'IBLOCK_SECTION_ID' => $elementToShow['IBLOCK_SECTION_ID']
+                                      );
                                          
                                       }
-                                     // ARSHOW($sectionSelect); 
-                                     foreach($sectionSelect as $k => $v){                                          
-                                     if($v['ID'] && $v['SECT'] == $arItem["NAME"]){
-                                    $filter = array('ID' => $v['ID']);
-                                    $select = array('PROPERTY_CML2_BAR_CODE');
-                                    $getPicture = CIBlockElement::GetList(
-                                        array(),
-                                        $filter,
-                                        false,
-                                        false,
-                                        $select
-                                    );
-                                    if($barcode = $getPicture -> fetch()){
-                                        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
-                                            $arResult['PREVIEW_PICTURE'] = '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';   
-                                        } 
-                                    }
-                                    ?>
-                                    <div class="mainElement">
-                                        <div class="imgElement">
-                                        <?if($arResult['PREVIEW_PICTURE'] || $arResult['DETAIL_PICTURE']){
-                                            echo '<img style="max-width:150px;max-height:150px" src="';echo $arResult['PREVIEW_PICTURE'];echo '"></img>';             
-                                        }?>
-                                        </div>
-                                        <div class="nameElement">
-                                            <a href="<?=$arResult['DETAIL_PAGE_URL']?>">
-                                                <?=$elementToShow['NAME']?>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <?}     
-                                          } 
-                                     // arshow($elementToShow);
-
-                                  /*  if($id && $sectionSelect == $arItem["CODE"]){
-                                    $filter = array('ID' => $id);
-                                    $select = array('PROPERTY_CML2_BAR_CODE');
-                                    $getPicture = CIBlockElement::GetList(
-                                        array(),
-                                        $filter,
-                                        false,
-                                        false,
-                                        $select
-                                    );
-                                    if($barcode = $getPicture -> fetch()){
-                                        if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
-                                            $arResult['PREVIEW_PICTURE'] = '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';   
-                                        } 
-                                    }
-                                    ?>
-                                    <div class="mainElement">
-                                        <div class="imgElement">
-                                        <?if($arResult['PREVIEW_PICTURE'] || $arResult['DETAIL_PICTURE']){
-                                            echo '<img style="max-width:150px;max-height:150px" src="';echo $arResult['PREVIEW_PICTURE'];echo '"></img>';             
-                                        }?>
-                                        </div>
-                                        <div class="nameElement">
-                                            <a href="<?=$arResult['DETAIL_PAGE_URL']?>">
-                                                <?=$elementToShow['NAME']?>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <?}  */
-                                 /*$APPLICATION->IncludeComponent(
-    "bitrix:news.detail",
-    "menuDetail",
-    Array(
-        "ACTIVE_DATE_FORMAT" => "d.m.Y",
-        "ADD_ELEMENT_CHAIN" => "N",
-        "ADD_SECTIONS_CHAIN" => "Y",
-        "AJAX_MODE" => "N",
-        "AJAX_OPTION_ADDITIONAL" => "",
-        "AJAX_OPTION_HISTORY" => "N",
-        "AJAX_OPTION_JUMP" => "N",
-        "AJAX_OPTION_STYLE" => "Y",
-        "BROWSER_TITLE" => "-",
-        "CACHE_GROUPS" => "Y",
-        "CACHE_TIME" => "36000000",
-        "CACHE_TYPE" => "A",
-        "CHECK_DATES" => "Y",
-        "COMPOSITE_FRAME_MODE" => "A",
-        "COMPOSITE_FRAME_TYPE" => "AUTO",
-        "DETAIL_URL" => "",
-        "DISPLAY_BOTTOM_PAGER" => "N",
-        "DISPLAY_DATE" => "N",
-        "DISPLAY_NAME" => "Y",
-        "DISPLAY_PICTURE" => "Y",
-        "DISPLAY_PREVIEW_TEXT" => "N",
-        "DISPLAY_TOP_PAGER" => "N",
-        "ELEMENT_CODE" => "",
-        "ELEMENT_ID" => $arParams['ELEMENT_ID'],
-        "FIELD_CODE" => array("", ""),
-        "IBLOCK_ID" => "20",
-        "IBLOCK_TYPE" => "1c_catalog",
-        "IBLOCK_URL" => "",
-        "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-        "MESSAGE_404" => "",
-        "META_DESCRIPTION" => "-",
-        "META_KEYWORDS" => "-",
-        "PAGER_BASE_LINK_ENABLE" => "N",
-        "PAGER_SHOW_ALL" => "N",
-        "PAGER_TEMPLATE" => ".default",
-        "PAGER_TITLE" => "Страница",
-        "PROPERTY_CODE" => array("", ""),
-        "SET_BROWSER_TITLE" => "N",
-        "SET_CANONICAL_URL" => "N",
-        "SET_LAST_MODIFIED" => "N",
-        "SET_META_DESCRIPTION" => "N",
-        "SET_META_KEYWORDS" => "N",
-        "SET_STATUS_404" => "N",
-        "SET_TITLE" => "N",
-        "SHOW_404" => "N",
-        "STRICT_SECTION_CHECK" => "N",
-        "USE_PERMISSIONS" => "N",
-        "USE_SHARE" => "N"
-    )
-);*/?>
+                                      //ARSHOW($sectionSelect);
+                                     $i = 0; 
+                                     foreach($sectionSelect as  $v){                                        
+                                         if($v['SECT'] == $arItem["NAME"]){
+                                            $filter = array('ID' => $v['ID']);
+                                            $select = array('PROPERTY_CML2_BAR_CODE');
+                                            $getPicture = CIBlockElement::GetList(
+                                                array(),
+                                                $filter,
+                                                false,
+                                                false,
+                                                $select
+                                            );
+                                            if($barcode = $getPicture -> fetch()){
+                                                if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
+                                                    $picture =  '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';   
+                                                } 
+                                            }
+                                            ?>
+                                            <div class="mainElement">
+                                                <div class="imgElement">
+                                                <?if($picture){
+                                                    echo '<img style="max-width:150px;max-height:150px" src="';echo $picture;echo '"></img>';             
+                                                }?>
+                                                </div>
+                                                <div class="nameElement">
+                                                    <a href="<?=$v['DETAIL_PAGE_URL']?>">
+                                                        <?=$v['NAME']?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <?
+                                         
+                                         } 
+                                     } 
+               ?>
                                 </li>
                                 <?}?>
                                 <?$count++;?>
 							<?}?>
-                      
+                             
 						</ul>
 					<?}?>
 				</li>
@@ -176,13 +100,3 @@
 		</ul>
 	</div>
 <?}?>
-<script>
-$(document).on('change', function(){
-    $('li.full').on('focus','ul.dropdown li.has-childs', function(e){
-        e.preventDefault();
-      var height = $('li.has-childs').css('height');
-    console.log(height);  
-    })
-    
-})
-</script>
