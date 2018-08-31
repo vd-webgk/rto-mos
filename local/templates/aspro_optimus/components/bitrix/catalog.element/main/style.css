@@ -76,13 +76,22 @@ body .bottom_slider .like_icons {
     right: 10px;
 }
 .item_slider:not(.flex) .slides li{
-width: 420PX !important;
+width: 700px !important;
     height: 100% !important;    
 }
 .item_slider .slides{
-       max-width: 420px !important;
-       height: 420px !important;
+       max-width: 700px !important;
+       height: 700px !important;
 }
 .catalog_detail .item_slider .thumbs{
     left: 50px !important;
+}
+.catalog_detail .item_main_info .item_slider {
+    width: 70% !important;
+}
+.catalog_detail .item_slider .like_icons {
+    right: 15px !important;
+}
+.catalog_detail .item_main_info .right_info {
+ padding: 0px 0px 0px 70% !important;   
 }
