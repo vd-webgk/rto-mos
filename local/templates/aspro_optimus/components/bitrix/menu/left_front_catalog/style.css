@@ -1,5 +1,5 @@
 .menu_top_block.catalog_block .dropdown> li.full>.dropdown>li, header .menu.top.catalogfirst li.full>.dropdown>li{
-    width: 30% !important;
+    width: 25% !important;
     padding: 0 !important;
     float:none !important;
 }
@@ -11,7 +11,7 @@
     padding: 0px 0px 0px 20px !important;
 }
 .menu_top_block.catalogfirst li.full>.dropdown, .menu_top_block.catalog_block .dropdown> li.full>.dropdown{
-    width: 90% !important;
+    /*width: 90% !important;*/
 }
 .line {
     border-right: 2px solid #d1d1d1;
