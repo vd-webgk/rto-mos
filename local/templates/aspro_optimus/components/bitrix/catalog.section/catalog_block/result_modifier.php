@@ -45,7 +45,9 @@ foreach($arResult['ITEMS'] as $key => $arItem){
         //переписываем у товара нужные переменные
         foreach ($fieldsArray as $field) {
             if ($arItem["OFFERS"][0][$field]) {
-                $arResult['ITEMS'][$key][$field] = $arItem["OFFERS"][0][$field];    
+                $elemenArt =  $arResult['ITEMS'][$key]['PROPERTIES']['CML2_ARTICLE']['VALUE'];             // сохраняем артикул элемента
+                $arResult['ITEMS'][$key][$field] = $arItem["OFFERS"][0][$field]; 
+                $arResult['ITEMS'][$key]['PROPERTIES']['CML2_ARTICLE']['VALUE'] = $elemenArt;   // восстанавливаем артикул элемента              
             }
         }
         
@@ -55,10 +57,9 @@ foreach($arResult['ITEMS'] as $key => $arItem){
         
         //сохраняем предложение товара в другую переменную, оно потребуется в template.php для расчета доступности
         $arResult['ITEMS'][$key]["OFFERS_TMP"][0] = $arResult['ITEMS'][$key]['OFFERS'][0];
-        unset($arResult['ITEMS'][$key]['OFFERS'][0]);  
-           
+        unset($arResult['ITEMS'][$key]['OFFERS'][0]);           
     }             
-}  
+}
 /////// convert offer to product ///////
 
 
