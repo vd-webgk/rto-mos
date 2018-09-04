@@ -23,7 +23,7 @@ $fieldsArray = array(
     "MIN_PRICE",
     "ITEM_PRICES",
     "CAN_BUY",
-    "NAME",
+    /*"NAME",*/
     "BUY_URL",
     "ADD_URL",
     "PROPERTIES",
