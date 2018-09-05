@@ -78,7 +78,6 @@ $APPLICATION->IncludeComponent(
 			42 => "",
 		),
 		"FILTER_PRICE_CODE" => array(
-			0 => "Цены для прайса с 18%",
 		),
 		"FILTER_OFFERS_FIELD_CODE" => array(
 			0 => "NAME",
