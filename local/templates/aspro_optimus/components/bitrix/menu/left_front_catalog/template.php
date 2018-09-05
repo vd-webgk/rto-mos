@@ -31,93 +31,47 @@
                                  
                                 <?if(($i+1) % 2 == 0){?>
                                     <?if ($i+1 == 2) {?>
-
-                                        <?                               
-                                            $filter = array('IBLOCK_ID' => 20, 'PROPERTY_SHOW_IN_MENU_VALUE' => $arItem["NAME"], '!PROPERTY_SHOW_IN_MENU' => false);
-                                            $select = array('ID', 'NAME', 'PROPERTY_SHOW_IN_MENU', 'DETAIL_PAGE_URL', 'IBLOCK_SECTION_ID');
-                                            $getElly = CIBlockElement::GetList(
-                                                array(),
-                                                $filter,
-                                                false,
-                                                false,
-                                                $select
-                                            );
-                                            
-                                            $sectionSelect = array();
-                                            while($elementToShow = $getElly -> Getnext()){
-                                                $sectionSelect[] = array('ID' => $elementToShow['ID'],
-                                                    'SECT' => $elementToShow['PROPERTY_SHOW_IN_MENU_VALUE'],
-                                                    "NAME" => $elementToShow['NAME'],
-                                                    'DETAIL_PAGE_URL' => $elementToShow['DETAIL_PAGE_URL'],
-                                                    'IBLOCK_SECTION_ID' => $elementToShow['IBLOCK_SECTION_ID']
-                                                );
-
-                                            }
-
-                                            $i = 0; 
-                                            $alreadyShow = array();
-                                            foreach($sectionSelect as  $v){ 
-
-                                                if (in_array($v["ID"], $alreadyShow)) {
-                                                    continue;
-                                                }     
-
-                                                $filter = array('ID' => $v['ID']);
-                                                $select = array('PROPERTY_CML2_BAR_CODE');
-                                                $getPicture = CIBlockElement::GetList(
-                                                    array(),
-                                                    $filter,
-                                                    false,
-                                                    false,
-                                                    $select
-                                                );
-                                                if($barcode = $getPicture -> fetch()){
-                                                    if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
-                                                        $picture =  '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';   
-                                                    } 
-                                                }
-                                            ?>
-                                            <li>
-                                                <div class="mainElement">
-                                                    <div class="imgElement">
-                                                        <?if($picture){
-                                                            echo '<img style="max-width:150px;max-height:150px" src="' . $picture . '"></img>';             
-                                                        }?>
+                                        <?$i = 0; 
+                                        $alreadyShow = array();
+                                        foreach($arResult['SECTIONS_TO_SHOW'] as  $v){ 
+                                            if (in_array($v["ID"], $alreadyShow)) {
+                                                continue;
+                                            }?>
+                                             <?if($v['SECT'] == $arItem['NAME']){?>
+                                                <li>                       
+                                                    <div class="mainElement">
+                                                        <div class="imgElement">
+                                                            <?if($arResult['PICTURES_IN_MENU'][$v['ID']]){
+                                                                echo '<img style="max-width:150px;max-height:150px" src="' . $arResult['PICTURES_IN_MENU'][$v['ID']] . '"></img>';             
+                                                            }?>
+                                                        </div>
+                                                        <div class="nameElement">
+                                                            <a href="<?=$v['DETAIL_PAGE_URL']?>">
+                                                                <?=$v['NAME']?>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="nameElement">
-                                                        <a href="<?=$v['DETAIL_PAGE_URL']?>">
-                                                            <?=$v['NAME']?>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <?
-                                                $alreadyShow[] = $v["ID"];
+                                                </li>
+                                                <?$alreadyShow[] = $v["ID"];
                                                 if (count($alreadyShow) == 2) {
                                                     break;
-                                                }
-                                            ?>
-                                            <?}?> 
-
+                                                }?>
+                                             <?}?>
+                                        <?}?> 
                                         <?if (count($alreadyShow) == 1 ) {?>
                                             <li></li>
-                                            <?}?>
-                                            
-                                            <?if (count($alreadyShow) == 0 ) {?>
+                                        <?}?>   
+                                        <?if (count($alreadyShow) == 0 ) {?>
                                             <li></li>
                                             <li></li>
-                                            <?}?>
-
-                                        <?} else {?>
-                                        <li></li>
-                                        <li></li>
                                         <?}?>
-                                        
+                                        <?} else {?>
+                                            <li></li>
+                                            <li></li>
+                                        <?}?>               
                                     <?}?>
-
                                 <?$count++;?>
                                 <?}?>
-
                         </ul>
                         <?}?>
                 </li>

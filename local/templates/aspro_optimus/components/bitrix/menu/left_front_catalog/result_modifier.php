@@ -23,4 +23,45 @@ if($arSections){
 			$arResult[] = &$arSections[$arSection['ID']];
 		}
 	}
-}?>
+}
+foreach( $arResult as $key => $arItem ){
+    $filter = array('IBLOCK_ID' => $arParams['IBLOCK_ID'], 'PROPERTY_SHOW_IN_MENU_VALUE' => $arItem["NAME"], '!PROPERTY_SHOW_IN_MENU' => false);
+    $select = array('ID', 'NAME', 'PROPERTY_SHOW_IN_MENU', 'DETAIL_PAGE_URL', 'IBLOCK_SECTION_ID');
+    $getElly = CIBlockElement::GetList(
+        array(),
+        $filter,
+        false,
+        false,
+        $select
+    );
+
+    $sectionSelect = array();
+    while($elementToShow = $getElly -> Getnext()){
+        $sectionSelect[] = array('ID' => $elementToShow['ID'],
+            'SECT' => $elementToShow['PROPERTY_SHOW_IN_MENU_VALUE'],
+            "NAME" => $elementToShow['NAME'],
+            'DETAIL_PAGE_URL' => $elementToShow['DETAIL_PAGE_URL'],
+            'IBLOCK_SECTION_ID' => $elementToShow['IBLOCK_SECTION_ID']
+        );
+
+    }
+    $arResult['SECTIONS_TO_SHOW'] = $sectionSelect;
+    foreach($sectionSelect as  $v){  
+        $filter = array('ID' => $v['ID']);
+        $select = array('PROPERTY_CML2_BAR_CODE');
+        $getPicture = CIBlockElement::GetList(
+            array(),
+            $filter,
+            false,
+            false,
+            $select
+        );
+        if($barcode = $getPicture -> fetch()){
+            if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
+                $picture =  '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
+                $arResult['PICTURES_IN_MENU'][$v['ID']] = $picture;   
+            } 
+        }
+    }
+}
+?>
