@@ -28,15 +28,13 @@ $getPicture = CIBlockElement::GetList(
 );
 if($barcode = $getPicture -> fetch()){
     if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
-        $arResult['PREVIEW_PICTURE'] = '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';
-        //arshow($arResult);      
+        $arResult['PREVIEW_PICTURE'] = '/upload/product_images/'.$barcode['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';   
     }
   
 }
 ?>
 <div class="mainElement">
     <div class="imgElement">
-    <?//arshow($arResult);?>
     <?if($arResult['PREVIEW_PICTURE'] || $arResult['DETAIL_PICTURE']){
         echo '<img style="max-width:150px;max-height:150px" src="';echo $arResult['PREVIEW_PICTURE'];echo '"></img>';             
     }?>

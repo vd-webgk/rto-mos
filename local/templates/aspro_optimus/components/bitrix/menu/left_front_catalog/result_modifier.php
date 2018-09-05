@@ -24,7 +24,7 @@ if($arSections){
 		}
 	}
 }
-foreach( $arResult as $key => $arItem ){
+foreach( $arResult as $key => $arItem ){     //Выбираем разделы у элементов которых задано свойство "Показать в меню раздела"
     $filter = array('IBLOCK_ID' => $arParams['IBLOCK_ID'], 'PROPERTY_SHOW_IN_MENU_VALUE' => $arItem["NAME"], '!PROPERTY_SHOW_IN_MENU' => false);
     $select = array('ID', 'NAME', 'PROPERTY_SHOW_IN_MENU', 'DETAIL_PAGE_URL', 'IBLOCK_SECTION_ID');
     $getElly = CIBlockElement::GetList(
@@ -36,7 +36,7 @@ foreach( $arResult as $key => $arItem ){
     );
 
     $sectionSelect = array();
-    while($elementToShow = $getElly -> Getnext()){
+    while($elementToShow = $getElly -> Getnext()){                //Собираем нужные поля элементов
         $sectionSelect[] = array('ID' => $elementToShow['ID'],
             'SECT' => $elementToShow['PROPERTY_SHOW_IN_MENU_VALUE'],
             "NAME" => $elementToShow['NAME'],
@@ -45,8 +45,8 @@ foreach( $arResult as $key => $arItem ){
         );
 
     }
-    $arResult['SECTIONS_TO_SHOW'] = $sectionSelect;
-    foreach($sectionSelect as  $v){  
+    $arResult['SECTIONS_TO_SHOW'] = $sectionSelect; 
+    foreach($sectionSelect as  $v){      //Проверяем существование картинки на основе штрихкода товара
         $filter = array('ID' => $v['ID']);
         $select = array('PROPERTY_CML2_BAR_CODE');
         $getPicture = CIBlockElement::GetList(

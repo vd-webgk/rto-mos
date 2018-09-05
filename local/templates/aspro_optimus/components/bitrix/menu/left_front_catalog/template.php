@@ -29,15 +29,15 @@
 
                                 </li>
                                  
-                                <?if(($i+1) % 2 == 0){?>
+                                <?if(($i+1) % 2 == 0){ //Вывод элементов в 3 и 4 столбцах меню?>     
                                     <?if ($i+1 == 2) {?>
                                         <?$i = 0; 
                                         $alreadyShow = array();
-                                        foreach($arResult['SECTIONS_TO_SHOW'] as  $v){ 
+                                        foreach($arResult['SECTIONS_TO_SHOW'] as  $v){    //Выводим элемент в меню
                                             if (in_array($v["ID"], $alreadyShow)) {
                                                 continue;
                                             }?>
-                                             <?if($v['SECT'] == $arItem['NAME']){?>
+                                             <?if($v['SECT'] == $arItem['NAME']){// Если совпадает раздел, выводим элемент в соответствующем разделе?>
                                                 <li>                       
                                                     <div class="mainElement">
                                                         <div class="imgElement">
@@ -53,19 +53,19 @@
                                                     </div>
                                                 </li>
                                                 <?$alreadyShow[] = $v["ID"];
-                                                if (count($alreadyShow) == 2) {
+                                                if (count($alreadyShow) == 2) {// Если 2 элемента выведено, конец
                                                     break;
                                                 }?>
                                              <?}?>
                                         <?}?> 
-                                        <?if (count($alreadyShow) == 1 ) {?>
+                                        <?if (count($alreadyShow) == 1 ) { // Если только 1 элемент, добавляем пустой тег для сохранения верстки?>
                                             <li></li>
                                         <?}?>   
-                                        <?if (count($alreadyShow) == 0 ) {?>
+                                        <?if (count($alreadyShow) == 0 ) { // Если 0 элементов, добавляем  2пустых тега для сохранения верстки?>
                                             <li></li>
                                             <li></li>
                                         <?}?>
-                                        <?} else {?>
+                                        <?} else { // Добавляем пустые теги для сохранения верски?>
                                             <li></li>
                                             <li></li>
                                         <?}?>               

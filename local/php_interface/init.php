@@ -296,7 +296,7 @@ class rtoHandlers
             }           
         }
         function newOrder($ID, $eventName, &$arFields){
-            arshow($arFields);die();
+          //  arshow($arFields);die();
             
         }
     }    
