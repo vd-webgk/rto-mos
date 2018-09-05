@@ -1,6 +1,7 @@
 .menu_top_block.catalog_block .dropdown> li.full>.dropdown>li, header .menu.top.catalogfirst li.full>.dropdown>li{
     width: 25% !important;
     padding: 0 !important;
+    float:none !important;
 }
 
 .menu_top_block.catalog_block .dropdown>li.full>.dropdown>li>a, header .menu_top_block.catalogfirst li.full>.dropdown>li:not(.current)>a{
@@ -9,9 +10,96 @@
 .menu_top_block.catalog_block .dropdown>li.full>.dropdown>li>.dropdown, header .menu_top_block.catalogfirst li.full>.dropdown>li>.dropdown{
     padding: 0px 0px 0px 20px !important;
 }
+.menu_top_block.catalogfirst li.full>.dropdown, .menu_top_block.catalog_block .dropdown> li.full>.dropdown{
+    /*width: 90% !important;*/
+}
 .line {
     border-right: 2px solid #d1d1d1;
     height: 0px;
     width: 0px;
     float: left;
+}
+.line:nth-child(2){
+
+    width: 200px;    
+}
+.line:nth-child(4){
+
+    width: 200px;    
+}
+.dropdown_2{
+    
+}
+.dropdown .has-childs .dropdown .menu_item, .menu_top_block .dropdown .dropdown .menu_item{
+    width: 100% !important;
+}
+.menu_top_block li.full>.dropdown>li:nth-child(3n+1){
+    clear:none !important;
+}
+
+.custom {
+   float: none !important; 
+}
+/*.custom:nth-child(1), custom:nth-child(1) ,custom:nth-child(1) ,custom:nth-child(1),custom:nth-child(1),custom:nth-child(1),custom:nth-child(1),custom:nth-child(1),custom:nth-child(1) {
+    float: none !important;
+     width: 200px; 
+    height: 200px !important;
+    
+}  */
+/*.custom:nth-child(4) {
+    float: none !important;
+     width: 400px !important; 
+    height: 200px !important;
+    
+}
+.custom:nth-child(8) {
+    float: none !important;
+     width: 400px !important;
+    height: 200px !important;
+    
+}
+.custom:nth-child(12) {
+    float: none !important;
+     width: 400px !important; 
+    height: 200px !important;
+    
+}
+.has-childs:nth-child(1) {
+    clear:both !important; 
+ }
+
+ .has-childs:nth-child(5) {
+    clear:both !important; 
+ }
+ .has-childs:nth-child(9) {
+    clear:both !important; 
+ }*/
+ .mainElement {
+/*border: 1px solid #005fb1;*/
+    max-width: 195px;
+    max-height: 220px;    
+}
+.mainElement:hover {
+    border: 1px solid #005fb1;
+}
+.imgElement {
+      margin: auto;
+    padding: 10px;
+    display: block;  
+}
+.imgElement img {
+    max-width: 150px;
+    max-height: 150px;
+    /* margin: auto; */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    display: block;
+}
+.nameElement {
+ font-size: 12px;
+    max-width: 190px;
+    text-align: center;
+    margin: 0 10px;   
+
 }

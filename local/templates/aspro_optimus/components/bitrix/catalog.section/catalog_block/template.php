@@ -173,8 +173,12 @@
                                     <div class="item-title">
                                         <a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><span><?=$elementName;?></span></a>
                                     </div>
-                                    <?if ($arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE']) {?>
-                                        <div class="item-article"><?=GetMessage('ART')?><?=$arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>
+                                    <?if ($arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE'] || $arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']) {?>
+                                        <?if(!empty($arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE'])){?>
+                                            <div class="item-article"><?=GetMessage('ART')?><?=$arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>
+                                        <?} elseif(!empty($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'])){?>
+                                            <div class="item-article"><?=GetMessage('ART')?><?=$arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>    
+                                        <?}?>
                                         <?}?>
                                     <?if($arParams["SHOW_RATING"] == "Y"):?>
                                         <div class="rating">
