@@ -236,6 +236,8 @@ AddEventHandler("main", "OnBeforeUserRegister", "newNonActiveUser");
 AddEventHandler("main", "OnProlog", array("rtoHandlers", "OnPrologHandler"));
 // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
 AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUser"));
+//Отправка почтового события "Новый заказ"
+AddEventHandler("main", "OnOrderNewSendEmail", array("rtoHandlers", "newOrder"));
 class rtoHandlers
     {   
         function OnPrologHandler() //Если указана нужная нам страница в админ. панели, подключаем jquery, подлкючаем js-скрипт с отрисовкой верстки, подключаем стили.
@@ -292,6 +294,10 @@ class rtoHandlers
                     ));
                 }
             }           
+        }
+        function newOrder($ID, $eventName, &$arFields){
+          //  arshow($arFields);die();
+            
         }
     }    
 AddEventHandler("sale", "OnOrderSave", "checkTrackNumber");                 //Отправка имейла при заполнении трек-номера.
