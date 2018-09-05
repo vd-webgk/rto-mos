@@ -1,9 +1,9 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?
-if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
-$SNIPPETS = array(
-	'custom/snippet0001.snp' => array('title' => 'Quote with font-size:medium', 'description' => 'Add quote block'),
-	'custom/snippet0002.snp' => array('title' => 'Quote', 'description' => 'Add quote block'),
-	'custom/snippet0003.snp' => array('title' => 'Horizontal line'),
-	'table/snippet0001.snp' => array('title' => 'Table', 'description' => 'Add table with properties'),
-);
+$SNIPPETS = Array();
+$SNIPPETS['custom/snippet0001.snp'] = Array('title' => 'Quote with font-size:medium', 'description' => 'Add quote block');
+$SNIPPETS['custom/snippet0002.snp'] = Array('title' => 'Quote', 'description' => 'Add quote block');
+$SNIPPETS['custom/snippet0003.snp'] = Array('title' => 'Horizontal line');
+$SNIPPETS['table/snippet0001.snp'] = Array('title' => 'Table', 'description' => 'Add table with properties');
+$SNIPPETS['snippet0001.snp'] = Array('title' => 'Новый заказ 2018');
 ?>
