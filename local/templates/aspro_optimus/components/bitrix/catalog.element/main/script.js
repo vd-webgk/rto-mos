@@ -2980,7 +2980,7 @@ window.JCCatalogElement.prototype.setBuyBlock = function(th, obj)
 {
 	var buyBlock=th.find('.offer_buy_block'),
 		input_value = obj.CONFIG.MIN_QUANTITY_BUY;
-
+                                                      
 	if(buyBlock.find('.counter_wrapp .counter_block').length){
 		buyBlock.find('.counter_wrapp .counter_block').attr('data-item', obj.ID);
 	}

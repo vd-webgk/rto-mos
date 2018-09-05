@@ -78,7 +78,6 @@ $APPLICATION->IncludeComponent(
 			42 => "",
 		),
 		"FILTER_PRICE_CODE" => array(
-			0 => "Цены для прайса с 18%",
 		),
 		"FILTER_OFFERS_FIELD_CODE" => array(
 			0 => "NAME",
@@ -256,7 +255,7 @@ $APPLICATION->IncludeComponent(
 		"SECTION_TOP_DEPTH" => "2",
 		"SECTIONS_LIST_PREVIEW_PROPERTY" => "DESCRIPTION",
 		"SHOW_SECTION_LIST_PICTURES" => "Y",
-		"PAGE_ELEMENT_COUNT" => "20",
+		"PAGE_ELEMENT_COUNT" => "80",
 		"LINE_ELEMENT_COUNT" => "4",
 		"ELEMENT_SORT_FIELD" => "shows",
 		"ELEMENT_SORT_ORDER" => "asc",
