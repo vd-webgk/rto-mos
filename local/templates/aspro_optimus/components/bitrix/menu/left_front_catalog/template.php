@@ -5,6 +5,7 @@
     <div class="menu_top_block catalog_block">
         <ul class="menu dropdown">
             <?foreach( $arResult as $key => $arItem ){?>
+            <?if(!empty($arItem['NAME'])){?>
                 <li class="full <?=($arItem["CHILD"] ? "has-child" : "");?> <?=($arItem["SELECTED"] ? "current" : "");?> m_<?=strtolower($TEMPLATE_OPTIONS["MENU_POSITION"]["CURRENT_VALUE"]);?>">
                     <a class="icons_fa <?=($arItem["CHILD"] ? "parent" : "");?>" href="<?=$arItem["SECTION_PAGE_URL"]?>" ><?=$arItem["NAME"]?></a>
                     <?if($arItem["CHILD"]){?>
@@ -75,6 +76,7 @@
                         </ul>
                         <?}?>
                 </li>
+                <?}?>
                 <?}?>
         </ul>
     </div>
