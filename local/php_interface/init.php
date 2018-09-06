@@ -210,6 +210,7 @@ class COptimusNew{
     '</div></div>';
                 }
                 $arSkuTemplate[$arProp['CODE']] = $templateRow;
+               // arshow($arSkuTemplate);die();
             }
         }
         unset($templateRow, $arProp);

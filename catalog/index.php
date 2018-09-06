@@ -437,7 +437,7 @@ $APPLICATION->IncludeComponent(
 		"MAX_AMOUNT" => "20",
 		"USE_ONLY_MAX_AMOUNT" => "Y",
 		"OFFERS_SORT_FIELD" => "shows",
-		"OFFERS_SORT_ORDER" => "asc",
+		"OFFERS_SORT_ORDER" => "desc",
 		"OFFERS_SORT_FIELD2" => "shows",
 		"OFFERS_SORT_ORDER2" => "asc",
 		"PAGER_TEMPLATE" => "main",
