@@ -7,8 +7,8 @@ $(document).on('click', ".item-stock .store_view", function(){
 $(document).ready(function (){
     $(".imageFancy").fancybox({
          beforeShow: function () {
-        this.width = 750;
-        this.height = 750;
+        this.width = 350;
+        this.height = 350;
     }
 
     });    
