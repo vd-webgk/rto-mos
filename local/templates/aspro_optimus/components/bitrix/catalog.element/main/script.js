@@ -3785,19 +3785,32 @@ window.JCCatalogElement.prototype.allowViewedCount = function(update)
 };
 })(window);
 $(document).on('ready', function(){
-    $('.bx_size ul').find('li.active').removeClass('active') ;    
-})
-$("body").on("li", "li .cnt", function(){
-    $(this).addClass("active");
-    $(this).on()
-    if($(this).hasClass('active')){
-        $(this).on('click', function(){
-            $(this).find('.button_block').addClass('wide');
-           /* $(this).find('.button_block').addClass('wide');
-            $(this).find('.button_block span.to-cart').css('display','none');
-            
-            $(this).find('.button_block span.in-cart').css('display','block'); */
-        })     
-        
-    }
-})
+    $("body").on("click", ".bx_size", function(){
+        $(this).find('li.active');
+        //console.log($(this).find('li.active'));
+        console.log(1);
+        if($(this).find('li.active')){
+            console.log(2);                  
+              if($(this).find('li.active').find('.counter_wrapp .button_block')){
+                  
+                    console.log(3);
+                    if($(this).find('li.active').find('.counter_wrapp .button_block')){
+                        console.log(4);
+                        if($(this).find('li.active').find('.counter_wrapp .button_block span.to-cart')){
+                            console.log(5);
+                            $('li.active .button_block').on('click', function(e){
+                                console.log(6);       
+                                e.preventDefault(e);
+                                $('li.active .button_block').find('span.to-cart').css('display', 'none');
+                                $('li.active .button_block').find('span.in-cart').css('display', 'block');
+                                $('.counter_wrapp .button_block').addClass('wide');
+                                    
+                            })
+                        } 
+                    }
+              }
+              //console.log($(this).find('li.active').find('.counter_wrapp'));   
+                 
+        }
+})  
+})    
