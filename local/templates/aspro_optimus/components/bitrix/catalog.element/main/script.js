@@ -6,15 +6,17 @@ $(document).on('click', ".item-stock .store_view", function(){
 
 $(document).ready(function (){
     $(".imageFancy").fancybox({
-        'maxWidth':300, 
-        'autoDimensions': false,
-        'autoSize':false
+         beforeShow: function () {
+        this.width = 350;
+        this.height = 350;
+    }
 
     });    
     $(".imageFancyGig").fancybox({
-        'maxWidth':700, 
-        'autoDimensions': false,
-        'autoSize':false
+         beforeShow: function () {
+        this.width = 750;
+        this.height = 750;
+    }
 
     });
     
