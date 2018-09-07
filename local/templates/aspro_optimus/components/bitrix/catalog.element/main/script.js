@@ -3784,3 +3784,20 @@ window.JCCatalogElement.prototype.allowViewedCount = function(update)
 	}
 };
 })(window);
+$(document).on('ready', function(){
+    $('.bx_size ul').find('li.active').removeClass('active') ;    
+})
+$("body").on("li", "li .cnt", function(){
+    $(this).addClass("active");
+    $(this).on()
+    if($(this).hasClass('active')){
+        $(this).on('click', function(){
+            $(this).find('.button_block').addClass('wide');
+           /* $(this).find('.button_block').addClass('wide');
+            $(this).find('.button_block span.to-cart').css('display','none');
+            
+            $(this).find('.button_block span.in-cart').css('display','block'); */
+        })     
+        
+    }
+})

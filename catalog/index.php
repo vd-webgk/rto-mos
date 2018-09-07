@@ -359,11 +359,12 @@ $APPLICATION->IncludeComponent(
 		"DETAIL_META_DESCRIPTION" => "-",
 		"DETAIL_BROWSER_TITLE" => "-",
 		"DETAIL_OFFERS_FIELD_CODE" => array(
-			0 => "NAME",
-			1 => "PREVIEW_PICTURE",
-			2 => "DETAIL_PICTURE",
-			3 => "DETAIL_PAGE_URL",
-			4 => "",
+			0 => "ID",
+			1 => "NAME",
+			2 => "PREVIEW_PICTURE",
+			3 => "DETAIL_PICTURE",
+			4 => "DETAIL_PAGE_URL",
+			5 => "",
 		),
 		"DETAIL_OFFERS_PROPERTY_CODE" => array(
 			0 => "DLINNA",
