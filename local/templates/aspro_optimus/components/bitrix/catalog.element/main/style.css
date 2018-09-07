@@ -86,15 +86,12 @@ width: 420PX !important;
        max-width: 420px !important;
        height: 420px !important;
 }
-/*.catalog_detail .item_slider .thumbs{
-    left: 50px !important;
+
+.sku_props ul li.missing, .ik_select_dropdown ul li.missing {
+    
 }
-.catalog_detail .item_main_info .item_slider {
-    width: 70% !important;
+
+body .sku_props .bx_item_detail_size ul li {
+    min-width: 133px !important;
+    min-height: 216px !important;
 }
-.catalog_detail .item_slider .like_icons {
-    right: 15px !important;
-}
-.catalog_detail .item_main_info .right_info {
- padding: 0px 0px 0px 70% !important;   
-}   */

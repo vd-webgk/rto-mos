@@ -86,22 +86,7 @@
 
     $arSkuTemplate = array();
 
-    if (!empty($arResult['SKU_PROPS'])){
-        
-        //сортировка предложений
-        function sortProps($a, $b) {
-            if ($a["QUANTITY"] == $b["QUANTITY"]) {
-                return 0;
-            }
-            
-            return ($a["QUANTITY"] > $b["QUANTITY"]) ? -1 : 1;
-        }
-        
-        foreach ($arResult['SKU_PROPS'] as $pName => $prop) {
-            usort($arResult['SKU_PROPS'][$pName]["VALUES"], "sortProps");    
-        }               
-        
-        
+    if (!empty($arResult['SKU_PROPS'])){  
         $arSkuTemplate=COptimusNew::GetSKUPropsArray($arResult['SKU_PROPS'], $arResult["SKU_IBLOCK_ID"], "list", $arParams["OFFER_HIDE_NAME_PROPS"], $arResult);
     }
 

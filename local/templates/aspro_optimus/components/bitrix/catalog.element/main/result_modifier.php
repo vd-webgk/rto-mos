@@ -1200,6 +1200,23 @@
         $arResult["TIZERS_ITEMS"]=$arTizersData;
     }
 
+    
+    if (!empty($arResult['SKU_PROPS'])){
+        
+        //сортировка предложений
+        function sortProps($a, $b) {
+            if ($a["QUANTITY"] == $b["QUANTITY"]) {
+                return 0;
+            }
+            
+            return ($a["QUANTITY"] > $b["QUANTITY"]) ? -1 : 1;
+        }
+        
+        foreach ($arResult['SKU_PROPS'] as $pName => $prop) {
+            usort($arResult['SKU_PROPS'][$pName]["VALUES"], "sortProps");    
+        }   
+        
+    }
 
 
 
