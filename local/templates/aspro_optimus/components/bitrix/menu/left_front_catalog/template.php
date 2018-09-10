@@ -11,6 +11,7 @@
                     <?if($arItem["CHILD"]){?>
                         <ul class="dropdown">
                             <?$count = 0;?>
+                            <?$alreadyShow = array();?>
                             <?foreach($arItem["CHILD"] as $i => $arChildItem){?>
                                 <li class="<?=($arChildItem["CHILD"] ? "has-childs" : "");?> <?if($arChildItem["SELECTED"]){?> current <?}?>">
                                     <?if($arChildItem["IMAGES"]){?>
@@ -30,11 +31,9 @@
 
                                 </li>
                                  
-                                <?if(($i+1) % 2 == 0){ //Вывод элементов в 3 и 4 столбцах меню?>     
-                                    <?if ($i+1 == 2) {?>
-                                        <?$i = 0; 
-                                        $alreadyShow = array();
-                                        foreach($arResult['SECTIONS_TO_SHOW'] as  $v){    //Выводим элемент в меню
+                                <?if(($i+1) % 3 == 0){ //Вывод элементов в 3 и 4 столбцах меню?>     
+                                    <?if ($i+1 == 3 || $i+1 == 6) {   
+                                         foreach($arResult['SECTIONS_TO_SHOW'] as  $v){    //Выводим элемент в меню
                                             if (in_array($v["ID"], $alreadyShow)) {
                                                 continue;
                                             }?>
@@ -43,7 +42,9 @@
                                                     <div class="mainElement">
                                                         <div class="imgElement">
                                                             <?if($arResult['PICTURES_IN_MENU'][$v['ID']]){
-                                                                echo '<img style="max-width:150px;max-height:150px" src="' . $arResult['PICTURES_IN_MENU'][$v['ID']] . '"></img>';             
+                                                                echo "<a href='".$v['DETAIL_PAGE_URL']."'>";
+                                                                echo '<img style="max-width:150px;max-height:150px" src="' . $arResult['PICTURES_IN_MENU'][$v['ID']] . '"></img>';
+                                                                echo "</a>";             
                                                             }?>
                                                         </div>
                                                         <div class="nameElement">
@@ -54,22 +55,13 @@
                                                     </div>
                                                 </li>
                                                 <?$alreadyShow[] = $v["ID"];
-                                                if (count($alreadyShow) == 2) {// Если 2 элемента выведено, конец
-                                                    break;
-                                                }?>
+                                                break;
+                                                ?>
                                              <?}?>
-                                        <?}?> 
-                                        <?if (count($alreadyShow) == 1 ) { // Если только 1 элемент, добавляем пустой тег для сохранения верстки?>
-                                            <li></li>
-                                        <?}?>   
-                                        <?if (count($alreadyShow) == 0 ) { // Если 0 элементов, добавляем  2пустых тега для сохранения верстки?>
-                                            <li></li>
-                                            <li></li>
+                                        <?}?>                                          
+                                        
                                         <?}?>
-                                        <?} else { // Добавляем пустые теги для сохранения верски?>
-                                            <li></li>
-                                            <li></li>
-                                        <?}?>               
+                                         
                                     <?}?>
                                 <?$count++;?>
                                 <?}?>
