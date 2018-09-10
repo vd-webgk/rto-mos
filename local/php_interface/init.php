@@ -1,4 +1,5 @@
 <?
+use Bitrix\Main; 
       function logger($data, $file) {
         file_put_contents(
             $file,
@@ -238,7 +239,79 @@ AddEventHandler("main", "OnProlog", array("rtoHandlers", "OnPrologHandler"));
 // Отправка почтового уведомления пользователю в соответствии с выбранным шаблоном.
 AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUser"));
 //Отправка почтового события "Новый заказ"
-AddEventHandler("main", "OnOrderNewSendEmail", array("rtoHandlers", "newOrder"));
+\Bitrix\Main\EventManager::getInstance()->addEventHandler(
+    'sale',
+    'OnSaleComponentOrderCreated',
+    'newOrder'
+);
+function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
+            /*logger($arUserResult, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
+            logger($arParams, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
+            logger($arResult, $_SERVER['DOCUMENT_ROOT'].'/log.txt'); */
+           // logger($order, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
+            $getAvailableFields = $order->getAvailableFields();
+            $basket = $order->getBasket();
+            $basketItems = $basket->getBasketItems();
+            foreach($basketItems as $item ){
+                $getPropertyCollection = $item->getPropertyCollection() ;
+                logger($getPropertyCollection, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
+            }
+            $currency = $order->getField('CURRENCY');
+            $PRICE = $order->getField('PRICE');
+            $DATE_INSERT = $order->getField('DATE_INSERT');
+            $orderId = $order->getId();
+            if($arResult['ORDER_PROP']['USER_PROFILES']){
+                foreach($arResult['ORDER_PROP']['USER_PROFILES'] as $k => $v){
+                    if($v['CHECKED'] == 'Y'){
+                        $userID = $v['USER_ID']; 
+                    }
+                }
+                if($userID){
+                    $user = CUser::GetByID($userID);
+                    $arUser = $user->Fetch();
+                    logger($arUser, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
+                    if(!empty($arUser['NAME'])){
+                        if(!empty($arUser['LAST_NAME'])){
+                         $name = $arUser['NAME']." ".$arUser['LAST_NAME'];       
+                        }
+                        else {
+                            $name = $arUser['NAME'];
+                        }                  
+                    }
+                    else {
+                        $name = $arUser['LOGIN'];    
+                    }
+                    $PERSONAL_PHONE = $arUser['PERSONAL_PHONE'];
+                    $company = $arUser['UF_NAME'];   
+                    $deliveryAddress = $arUser['UF_INFORMATION'];   
+                    $legalAddress = $arUser['UF_INFORMATION'];
+                    $country = $arUser['WORK_COUNTRY'];   
+                }
+                
+                Bitrix\Main\Mail\Event::send(array(
+                    "EVENT_NAME" => "SALE_NEW_ORDER",
+                    "LID" => 's1',
+                    "C_FIELDS" => array(
+                        "EMAIL" => $arUserResult['ORDER_PROP'][13],
+                        "NAME" => $name,
+                        "LOGIN" => $arUser['LOGIN'],
+                        "COUNTRY" => $country,
+                        "COMPANY" => $company,
+                        "MESSAGE" => 1,
+                        "TELEPHONE" => $PERSONAL_PHONE,
+                        "LEGAL_ADDRESS" => $deliveryAddress,
+                        "DELIVERY_ADDRESS" => $deliveryAddress,
+                        "ORDER_ID" => $orderId,
+                        "DATE" => $DATE_INSERT,
+                        "CURRENCY" => $currency,
+                        "TOTAL" => $PRICE,
+                        
+                    ),
+                    "DUPLICATE" => 'N',
+                    "MESSAGE_ID" => 101, 
+                ));  
+            }            
+        }
 class rtoHandlers
     {   
         function OnPrologHandler() //Если указана нужная нам страница в админ. панели, подключаем jquery, подлкючаем js-скрипт с отрисовкой верстки, подключаем стили.
@@ -295,11 +368,7 @@ class rtoHandlers
                     ));
                 }
             }           
-        }
-        function newOrder($ID, $eventName, &$arFields){
-          //  arshow($arFields);die();
-            
-        }
+        }        
     }    
 AddEventHandler("sale", "OnOrderSave", "checkTrackNumber");                 //Отправка имейла при заполнении трек-номера.
 function checkTrackNumber($orderFields, $orderId, $fields, $isNew){
