@@ -6,6 +6,12 @@
 
 .menu_top_block.catalog_block .dropdown>li.full>.dropdown>li>a, header .menu_top_block.catalogfirst li.full>.dropdown>li:not(.current)>a{
      padding: 10px 0px 0px 20px !important;
+     color: black !important;
+     text-transform: uppercase !important;
+}
+li.full.has-child .parent {
+  color: black !important;
+     text-transform: uppercase !important;  
 }
 .menu_top_block.catalog_block .dropdown>li.full>.dropdown>li>.dropdown, header .menu_top_block.catalogfirst li.full>.dropdown>li>.dropdown{
     padding: 0px 0px 0px 20px !important;
@@ -32,6 +38,7 @@
 }
 .dropdown .has-childs .dropdown .menu_item, .menu_top_block .dropdown .dropdown .menu_item{
     width: 100% !important;
+    padding: 5px 10px 5px 0px !important;
 }
 .menu_top_block li.full>.dropdown>li:nth-child(3n+1){
     clear:none !important;
