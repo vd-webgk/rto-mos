@@ -76,13 +76,22 @@ body .bottom_slider .like_icons {
     right: 10px;
 }
 .item_slider:not(.flex) .slides li{
+/*width: 700px !important*/;
 width: 420PX !important;
     height: 100% !important;    
 }
 .item_slider .slides{
+       /*max-width: 700px !important;
+       height: 700px !important; */
        max-width: 420px !important;
        height: 420px !important;
 }
-.catalog_detail .item_slider .thumbs{
-    left: 50px !important;
+
+.sku_props ul li.missing, .ik_select_dropdown ul li.missing {
+    
+}
+
+body .sku_props .bx_item_detail_size ul li {
+    min-width: 133px !important;
+    min-height: 216px !important;
 }

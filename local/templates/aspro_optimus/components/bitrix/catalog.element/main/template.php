@@ -86,7 +86,7 @@
 
     $arSkuTemplate = array();
 
-    if (!empty($arResult['SKU_PROPS'])){
+    if (!empty($arResult['SKU_PROPS'])){  
         $arSkuTemplate=COptimusNew::GetSKUPropsArray($arResult['SKU_PROPS'], $arResult["SKU_IBLOCK_ID"], "list", $arParams["OFFER_HIDE_NAME_PROPS"], $arResult);
     }
 

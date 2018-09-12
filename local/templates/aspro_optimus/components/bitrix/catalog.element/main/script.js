@@ -6,15 +6,17 @@ $(document).on('click', ".item-stock .store_view", function(){
 
 $(document).ready(function (){
     $(".imageFancy").fancybox({
-        'maxWidth':300, 
-        'autoDimensions': false,
-        'autoSize':false
+         beforeShow: function () {
+        this.width = 350;
+        this.height = 350;
+    }
 
     });    
     $(".imageFancyGig").fancybox({
-        'maxWidth':700, 
-        'autoDimensions': false,
-        'autoSize':false
+         beforeShow: function () {
+        this.width = 750;
+        this.height = 750;
+    }
 
     });
     
@@ -2980,7 +2982,7 @@ window.JCCatalogElement.prototype.setBuyBlock = function(th, obj)
 {
 	var buyBlock=th.find('.offer_buy_block'),
 		input_value = obj.CONFIG.MIN_QUANTITY_BUY;
-
+                                                      
 	if(buyBlock.find('.counter_wrapp .counter_block').length){
 		buyBlock.find('.counter_wrapp .counter_block').attr('data-item', obj.ID);
 	}
