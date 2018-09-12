@@ -3786,3 +3786,24 @@ window.JCCatalogElement.prototype.allowViewedCount = function(update)
 	}
 };
 })(window);
+$(document).on('ready', function(){
+    $("body").on("click", ".bx_size", function(){
+        $(this).find('li.active');
+        if($(this).find('li.active')){                 
+              if($(this).find('li.active').find('.counter_wrapp .button_block')){
+                    if($(this).find('li.active').find('.counter_wrapp .button_block')){
+                        if($(this).find('li.active').find('.counter_wrapp .button_block span.to-cart')){
+                            $('li.active .button_block').on('click', function(e){       
+                                e.preventDefault(e);
+                                $('li.active .button_block').find('span.to-cart').css('display', 'none');
+                                $('li.active .button_block').find('span.in-cart').css('display', 'block');
+                                $('.counter_wrapp .button_block').addClass('wide');
+                                    
+                            })
+                        } 
+                    }
+              } 
+                 
+        }
+})  
+})    

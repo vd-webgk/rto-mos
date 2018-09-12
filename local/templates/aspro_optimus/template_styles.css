@@ -616,7 +616,7 @@ header .menu_top_block>li>.dropdown li .dropdown {transition: opacity 0s ease .2
 .menu_top_block .dropdown>li.full>.dropdown, .menu_top_block.catalogfirst li.full>.dropdown {padding: 20px 0 20px;box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.1);opacity: 0;display: none;transition: opacity 0s ease .33s, visibility 0s ease .33s;visibility: hidden;min-width:500px;}
 .menu_top_block:not(.catalog_block):hover li.full>.dropdown, header .menu_top_block li:not(.full):hover>.dropdown, .menu_top_block.catalog_block .dropdown> li:hover>.dropdown {/*display: block;*/}
 .menu_top_block li.full:hover>.dropdown{display:block;}
-.menu_top_block.catalogfirst li.full>.dropdown, .menu_top_block.catalog_block .dropdown> li.full>.dropdown {box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);max-width:940px;width:940px;}
+.menu_top_block.catalogfirst li.full>.dropdown, .menu_top_block.catalog_block .dropdown> li.full>.dropdown {box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);max-width:1012px; width:940px;}
 .hide_catalog .menu_top_block.catalog_block{display:none;}
 
 header .menu_top_block li .dropdown li:hover>.dropdown {z-index: 1;opacity: 1;visibility: visible;}
