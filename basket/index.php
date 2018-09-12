@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Корзина");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket", 
-	"orderFromBasket", 
+	".default", 
 	array(
 		"COLUMNS_LIST" => array(
 			0 => "NAME",
@@ -21,7 +21,6 @@ $APPLICATION->SetTitle("Корзина");
 		"OFFERS_PROPS" => array(
 			0 => "COLOR_REF",
 			1 => "SIZES",
-			2 => "CML2_BAR_CODE",
 		),
 		"PATH_TO_ORDER" => SITE_DIR."order/",
 		"HIDE_COUPON" => "Y",
@@ -35,7 +34,7 @@ $APPLICATION->SetTitle("Корзина");
 		"PICTURE_HEIGHT" => "100",
 		"SHOW_FULL_ORDER_BUTTON" => "Y",
 		"SHOW_FAST_ORDER_BUTTON" => "Y",
-		"COMPONENT_TEMPLATE" => "orderFromBasket",
+		"COMPONENT_TEMPLATE" => ".default",
 		"QUANTITY_FLOAT" => "N",
 		"ACTION_VARIABLE" => "action",
 		"TEMPLATE_THEME" => "blue",
@@ -59,7 +58,8 @@ $APPLICATION->SetTitle("Корзина");
 		"GIFTS_CONVERT_CURRENCY" => "N",
 		"GIFTS_HIDE_NOT_AVAILABLE" => "N",
 		"CORRECT_RATIO" => "N",
-		"USE_ENHANCED_ECOMMERCE" => "N"
+		"USE_ENHANCED_ECOMMERCE" => "N",
+		"PATH_TO_BASKET" => "basket/"
 	),
 	false
 );?>

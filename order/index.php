@@ -2,7 +2,7 @@
 $APPLICATION->SetTitle("Оформление заказа");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.order.ajax", 
-	"template1", 
+	".default", 
 	array(
 		"ACTION_VARIABLE" => "soa-action",
 		"ADDITIONAL_PICT_PROP_13" => "-",
@@ -20,7 +20,7 @@ $APPLICATION->SetTitle("Оформление заказа");
 		"BASKET_IMAGES_SCALING" => "adaptive",
 		"BASKET_POSITION" => "before",
 		"COMPATIBLE_MODE" => "Y",
-		"COMPONENT_TEMPLATE" => "template1",
+		"COMPONENT_TEMPLATE" => ".default",
 		"COMPOSITE_FRAME_MODE" => "A",
 		"COMPOSITE_FRAME_TYPE" => "AUTO",
 		"COUNT_DELIVERY_TAX" => "N",
