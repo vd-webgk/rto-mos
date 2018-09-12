@@ -211,7 +211,6 @@ class COptimusNew{
     '</div></div>';
                 }
                 $arSkuTemplate[$arProp['CODE']] = $templateRow;
-               // arshow($arSkuTemplate);die();
             }
         }
         unset($templateRow, $arProp);
@@ -245,16 +244,11 @@ AddEventHandler("main", "OnBeforeUserUpdate", array("rtoHandlers", "sendMailToUs
     'newOrder'
 );
 function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
-            /*logger($arUserResult, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
-            logger($arParams, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
-            logger($arResult, $_SERVER['DOCUMENT_ROOT'].'/log.txt'); */
-           // logger($order, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
             $getAvailableFields = $order->getAvailableFields();
             $basket = $order->getBasket();
             $basketItems = $basket->getBasketItems();
             foreach($basketItems as $item ){
                 $getPropertyCollection = $item->getPropertyCollection() ;
-                logger($getPropertyCollection, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
             }
             $currency = $order->getField('CURRENCY');
             $PRICE = $order->getField('PRICE');
@@ -269,7 +263,6 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
                 if($userID){
                     $user = CUser::GetByID($userID);
                     $arUser = $user->Fetch();
-                    logger($arUser, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
                     if(!empty($arUser['NAME'])){
                         if(!empty($arUser['LAST_NAME'])){
                          $name = $arUser['NAME']." ".$arUser['LAST_NAME'];       
