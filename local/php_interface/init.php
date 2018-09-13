@@ -263,28 +263,28 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
             $ORDER_DESCRIPTION = '<table style="border: 1px solid;display: block;width: 100%;">
             <tbody>
             <tr>
-                <td style="border: 1px solid;">
+                <td align="center" style="border: 1px solid;">
                      Photo
                 </td>
-                <td style="width: 155px;height: 40px;border: 1px solid;">
+                <td align="center" style="width: 155px;height: 40px;border: 1px solid;">
                      SKU
                 </td>
-                <td style="width: 80px;height: 40px;border: 1px solid;">
+                <td align="center" style="width: 80px;height: 40px;border: 1px solid;">
                      Name
                 </td>
-                <td style="width: 100px;border: 1px solid;height: 40px;">
+                <td align="center" style="width: 100px;border: 1px solid;height: 40px;">
                      Std Price, '.$currency.'
                 </td>
-                <td style="width: 80px;border: 1px solid;height: 40px;">
+                <td align="center" style="width: 80px;border: 1px solid;height: 40px;">
                      Discount
                 </td>
-                <td style="width: 100px;border: 1px solid;height: 40px;">
+                <td align="center" style="width: 100px;border: 1px solid;height: 40px;">
                      Your Price, '.$currency.'
                 </td>
-                <td style="width: 80px;border: 1px solid;height: 40px;">
+                <td align="center" style="width: 80px;border: 1px solid;height: 40px;">
                      Quantity
                 </td>
-                <td style="width: 80px;border: 1px solid;height: 40px;">
+                <td align="center" style="width: 80px;border: 1px solid;height: 40px;">
                      Sum, '.$currency.'
                 </td>
             </tr>';
@@ -295,6 +295,10 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
                 $basket_BASE_PRICE = round($item->getField('BASE_PRICE'), 0);
                 $basket_PRICE = round($item->getField('PRICE'), 0);
                 $basket_DISCOUNT = (int)round(100 - ($basket_PRICE * 100 / $basket_BASE_PRICE), 0).' %';
+                $basket_SUB_TOTAL += $basket_BASE_PRICE * $basket_QUANTITY;
+                $basket_ORDER_TOTAL += $PRICE;
+                $basket_ORDER_TOTAL_DISCOUNT = $basket_SUB_TOTAL - $basket_ORDER_TOTAL;
+                
                 
                 $filter = array('ID' => $basket_PRODUCT_ID);
                 $select = array('PROPERTY_CML2_BAR_CODE');
@@ -312,28 +316,28 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
                 }
                 $ORDER_DESCRIPTION .= '    
                 <tr>
-                    <td style="border: 1px solid;">
+                    <td align="center" style="border: 1px solid;">
                         <img src="'.$picture.'" style="width: 100px;height: 80px;">
                     </td>
-                    <td style="width: 140px;height: 80px;border: 1px solid;">
+                    <td align="center" style="width: 140px;height: 80px;border: 1px solid;">
                     '.$basket_PRODUCT_ID.'
                     </td>
-                    <td style="width: 80px;height: 80px;border: 1px solid;">
+                    <td align="center" style="width: 80px;height: 80px;border: 1px solid;">
                     '.$basket_NAME.'
                     </td>
-                    <td style="width: 100px;border: 1px solid;height: 80px;">
+                    <td align="center" style="width: 100px;border: 1px solid;height: 80px;">
                     '.$basket_BASE_PRICE.'
                     </td>
-                    <td style="width: 80px;border: 1px solid;height: 80px;">
+                    <td align="center" style="width: 80px;border: 1px solid;height: 80px;">
                     '.$basket_DISCOUNT.'
                     </td>
-                    <td style="width: 100px;border: 1px solid;height: 80px;">
+                    <td align="center" style="width: 100px;border: 1px solid;height: 80px;">
                     '.$basket_PRICE.'
                     </td>
-                    <td style="width: 80px;border: 1px solid;height: 80px;">
+                    <td align="center" style="width: 80px;border: 1px solid;height: 80px;">
                     '.$basket_QUANTITY.'
                     </td>
-                    <td style="width: 80px;border: 1px solid;height: 80px;">
+                    <td align="center" style="width: 80px;border: 1px solid;height: 80px;">
                     '.$PRICE.'
                     </td>
                 </tr>';
@@ -385,7 +389,10 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
                         "ORDER_DATE" => $DATE_INSERT,
                         "CURRENCY" => $currency,
                         "PRICE" => $PRICE,
-                        "ORDER_DESCRIPTION" => $ORDER_DESCRIPTION
+                        "ORDER_DESCRIPTION" => $ORDER_DESCRIPTION,
+                        "SUB_TOTAL" => $basket_SUB_TOTAL,
+                        "DISCOUNT" => $basket_ORDER_TOTAL_DISCOUNT,
+                        "ORDER_TOTAL" => $PRICE,
                         
                     ),
                     "DUPLICATE" => 'N',
