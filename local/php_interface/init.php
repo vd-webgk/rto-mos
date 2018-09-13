@@ -248,12 +248,99 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
             $basket = $order->getBasket();
             $basketItems = $basket->getBasketItems();
             foreach($basketItems as $item ){
-                $getPropertyCollection = $item->getPropertyCollection() ;
+                
+                $basketPropertyCollection = $item->getPropertyCollection(); 
+                $RRR = $basketPropertyCollection->getPropertyValues();
+              // logger($getPropertyCollection, $_SERVER['DOCUMENT_ROOT'].'/log.txt');
+                logger($RRR, $_SERVER['DOCUMENT_ROOT'].'/log.txt');    
             }
             $currency = $order->getField('CURRENCY');
             $PRICE = $order->getField('PRICE');
             $DATE_INSERT = $order->getField('DATE_INSERT');
             $orderId = $order->getId();
+            
+            
+            $ORDER_DESCRIPTION = '<table style="border: 1px solid;display: block;width: 100%;">
+            <tbody>
+            <tr>
+                <td style="border: 1px solid;">
+                     Photo
+                </td>
+                <td style="width: 155px;height: 40px;border: 1px solid;">
+                     SKU
+                </td>
+                <td style="width: 80px;height: 40px;border: 1px solid;">
+                     Name
+                </td>
+                <td style="width: 100px;border: 1px solid;height: 40px;">
+                     Std Price, '.$currency.'
+                </td>
+                <td style="width: 80px;border: 1px solid;height: 40px;">
+                     Discount
+                </td>
+                <td style="width: 100px;border: 1px solid;height: 40px;">
+                     Your Price, '.$currency.'
+                </td>
+                <td style="width: 80px;border: 1px solid;height: 40px;">
+                     Quantity
+                </td>
+                <td style="width: 80px;border: 1px solid;height: 40px;">
+                     Sum, '.$currency.'
+                </td>
+            </tr>';
+            foreach($basketItems as $item){
+                $basket_NAME = $item->getField('NAME');
+                $basket_QUANTITY = round($item->getField('QUANTITY'), 0);
+                $basket_PRODUCT_ID = $item->getField('PRODUCT_ID');
+                $basket_BASE_PRICE = round($item->getField('BASE_PRICE'), 0);
+                $basket_PRICE = round($item->getField('PRICE'), 0);
+                $basket_DISCOUNT = (int)round(100 - ($basket_PRICE * 100 / $basket_BASE_PRICE), 0).' %';
+                
+                $filter = array('ID' => $basket_PRODUCT_ID);
+                $select = array('PROPERTY_CML2_BAR_CODE');
+                $getPicture = CIBlockElement::GetList(
+                    array(),
+                    $filter,
+                    false,
+                    false,
+                    $select
+                );
+                if($basket_PICTURE = $getPicture -> fetch()){
+                    if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$basket_PICTURE['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
+                        $picture =  '/upload/product_images/small/'.$basket_PICTURE['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';  
+                    } 
+                }
+                $ORDER_DESCRIPTION .= '    
+                <tr>
+                    <td style="border: 1px solid;">
+                        <img src="'.$picture.'" style="width: 100px;height: 80px;">
+                    </td>
+                    <td style="width: 140px;height: 80px;border: 1px solid;">
+                    '.$basket_PRODUCT_ID.'
+                    </td>
+                    <td style="width: 80px;height: 80px;border: 1px solid;">
+                    '.$basket_NAME.'
+                    </td>
+                    <td style="width: 100px;border: 1px solid;height: 80px;">
+                    '.$basket_BASE_PRICE.'
+                    </td>
+                    <td style="width: 80px;border: 1px solid;height: 80px;">
+                    '.$basket_DISCOUNT.'
+                    </td>
+                    <td style="width: 100px;border: 1px solid;height: 80px;">
+                    '.$basket_PRICE.'
+                    </td>
+                    <td style="width: 80px;border: 1px solid;height: 80px;">
+                    '.$basket_QUANTITY.'
+                    </td>
+                    <td style="width: 80px;border: 1px solid;height: 80px;">
+                    '.$PRICE.'
+                    </td>
+                </tr>';
+            }
+            $ORDER_DESCRIPTION .= '</tbody></table>';
+            
+            
             if($arResult['ORDER_PROP']['USER_PROFILES']){
                 foreach($arResult['ORDER_PROP']['USER_PROFILES'] as $k => $v){
                     if($v['CHECKED'] == 'Y'){
@@ -295,9 +382,10 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
                         "LEGAL_ADDRESS" => $deliveryAddress,
                         "DELIVERY_ADDRESS" => $deliveryAddress,
                         "ORDER_ID" => $orderId,
-                        "DATE" => $DATE_INSERT,
+                        "ORDER_DATE" => $DATE_INSERT,
                         "CURRENCY" => $currency,
-                        "TOTAL" => $PRICE,
+                        "PRICE" => $PRICE,
+                        "ORDER_DESCRIPTION" => $ORDER_DESCRIPTION
                         
                     ),
                     "DUPLICATE" => 'N',
