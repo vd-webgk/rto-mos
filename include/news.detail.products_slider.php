@@ -2,8 +2,8 @@
 	"bitrix:catalog.top", 
 	"products_slider", 
 	array(
-		"IBLOCK_TYPE" => "aspro_optimus_catalog",
-		"IBLOCK_ID" => "17",
+		"IBLOCK_TYPE" => "1c_catalog",
+		"IBLOCK_ID" => "20",
 		"ELEMENT_SORT_FIELD" => "sort",
 		"ELEMENT_SORT_ORDER" => "asc",
 		"ELEMENT_COUNT" => "20",
@@ -66,6 +66,12 @@
 		"SHOW_DISCOUNT_PERCENT" => "Y",
 		"SHOW_OLD_PRICE" => "Y",
 		"SHOW_RATING" => "Y",
+		"CUSTOM_FILTER" => "",
+		"HIDE_NOT_AVAILABLE_OFFERS" => "N",
+		"SHOW_MEASURE_WITH_RATIO" => "N",
+		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_TYPE" => "AUTO",
+		"COMPATIBLE_MODE" => "Y"
 	),
 	false
 );?>
