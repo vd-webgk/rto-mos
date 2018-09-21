@@ -264,28 +264,28 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
             <tbody>
             <tr>
                 <td align="center" style="border: 1px solid;">
-                     Photo
+                     Изображение
                 </td>
                 <td align="center" style="width: 155px;height: 40px;border: 1px solid;">
                      SKU
                 </td>
                 <td align="center" style="width: 80px;height: 40px;border: 1px solid;">
-                     Name
+                     Название
                 </td>
                 <td align="center" style="width: 100px;border: 1px solid;height: 40px;">
-                     Std Price, '.$currency.'
+                     Цена, '.$currency.'
                 </td>
                 <td align="center" style="width: 80px;border: 1px solid;height: 40px;">
-                     Discount
+                     Скидка
                 </td>
                 <td align="center" style="width: 100px;border: 1px solid;height: 40px;">
-                     Your Price, '.$currency.'
+                     Цена со скидкой, '.$currency.'
                 </td>
                 <td align="center" style="width: 80px;border: 1px solid;height: 40px;">
-                     Quantity
+                     Количество
                 </td>
                 <td align="center" style="width: 80px;border: 1px solid;height: 40px;">
-                     Sum, '.$currency.'
+                     Сумма, '.$currency.'
                 </td>
             </tr>';
             foreach($basketItems as $item){
@@ -311,13 +311,13 @@ function newOrder($order, &$arUserResult, $request, &$arParams, &$arResult){
                 );
                 if($basket_PICTURE = $getPicture -> fetch()){
                     if(is_file($_SERVER['DOCUMENT_ROOT'].'/upload/product_images/small/'.$basket_PICTURE['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg')){
-                        $picture =  '/upload/product_images/small/'.$basket_PICTURE['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';  
+                        $picture =  "http://" . SITE_SERVER_NAME . '/upload/product_images/small/'.$basket_PICTURE['PROPERTY_CML2_BAR_CODE_VALUE'].'.jpg';  
                     } 
                 }
                 $ORDER_DESCRIPTION .= '    
                 <tr>
                     <td align="center" style="border: 1px solid;">
-                        <img src="'.$picture.'" style="width: 100px;height: 80px;">
+                        <img src="http://dev-zdravservice.webgk.ru/upload/iblock/e1f/e1f08f3d3326d9b11d72105a1ae72c97.png" style="width: 100px;height: 80px;">
                     </td>
                     <td align="center" style="width: 140px;height: 80px;border: 1px solid;">
                     '.$basket_PRODUCT_ID.'
