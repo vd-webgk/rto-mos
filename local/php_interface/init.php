@@ -1,4 +1,9 @@
 <?
+
+if (file_exists($_SERVER["DOCUMENT_ROOT"] ."/local/php_interface/include/catalog_handlers.php")) {
+    require_once($_SERVER["DOCUMENT_ROOT"] ."/local/php_interface/include/catalog_handlers.php");
+}
+
 use Bitrix\Main; 
       function logger($data, $file) {
         file_put_contents(
