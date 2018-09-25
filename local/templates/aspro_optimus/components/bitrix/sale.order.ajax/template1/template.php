@@ -668,7 +668,7 @@ else
 }
 ?>
 <script>       
-  /*  var oneClickBuyBasket = function () {
+    var oneClickBuyBasket = function () {
         name = 'one_click_buy_basket'      
         $('.appendThis').append('<div class="'+name+'_frame popup"></div>');
         $('.appendThis').append('<div class="'+name+'_trigger"></div>');
@@ -676,12 +676,12 @@ else
         $('.'+name+'_trigger').click();
         $('.jqmOverlay').css('height','0%');
         $('.jqmOverlay').css('width','0%');
-    }    */
+    }    
 </script>
 <script>
 $(function(){
     $('body').on('click','.form_basket_button' function(){
-        oneClickBuyBasket();    
+       //oneClickBuyBasket();    
     })
 })
 
