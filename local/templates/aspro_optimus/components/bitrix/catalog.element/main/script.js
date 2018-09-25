@@ -16,6 +16,7 @@ $(document).ready(function (){
          beforeShow: function () {
         this.width = 750;
         this.height = 750;
+        this.title =  $(this.element).data("caption");
     }
 
     });

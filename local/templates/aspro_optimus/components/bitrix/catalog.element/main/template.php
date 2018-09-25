@@ -228,7 +228,7 @@
                     <?}else{
                         if($arResult["MORE_PHOTO"]){
                             $bMagnifier = ($viewImgType=="MAGNIFIER");?>
-                        <ul>
+                        <ul>  
                             <?foreach($arResult["MORE_PHOTO"] as $i => $arImage){
                                     if($i && $bMagnifier):?>
                                     <?continue;?>
@@ -240,7 +240,7 @@
                                 ?>
                                 <li id="photo-<?=$i?>" <?=(!$i ? 'class="current"' : 'style="display: none;"')?>>
                                     <?//if(!$isEmpty){?>
-                                    <a href="<?=($viewImgType=="POPUP" ? $arImage["BIG"]["src"] : "javascript:void(0)");?>" <?=($bIsOneImage ? '' : 'data-fancybox-group="item_slider"')?> class="<?=($viewImgType=="POPUP" ? "imageFancyGig fancy" : "line_link");?>" title="<?=$title;?>">
+                                    <a href="<?=($viewImgType=="POPUP" ? $arImage["BIG"]["src"] : "javascript:void(0)");?>" data-caption="<?=$arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']?>" <?=($bIsOneImage ? '' : 'data-fancybox-group="item_slider"')?> class="<?=($viewImgType=="POPUP" ? "imageFancyGig fancy" : "line_link");?>" title="<?=$title;?>">
                                         <img  src="<?=$arImage["SMALL"]["src"]?>" <?=($viewImgType=="MAGNIFIER" ? "class='zoom_picture'" : "");?> <?=($viewImgType=="MAGNIFIER" ? 'xoriginal="'.$arImage["SRC"].'" xpreview="'.$arImage["THUMB"]["src"].'"' : "");?> alt="<?=$alt;?>" title="<?=$title;?>"<?=(!$i ? ' itemprop="image"' : '')?>/>
                                     </a>
                                     <?/*}else{?>
