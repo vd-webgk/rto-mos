@@ -166,7 +166,7 @@
                                     </a>
                                     <?$big_pict = $arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE']?>
                                     <?if($arItem["PREVIEW_PICTURE"]['SRC'] != '/local/templates/aspro_optimus/images/no_photo_medium.png'){?>
-                                        <?echo '<a data-fancybox-group="gallery" data-type="image" class="fancy_a" href="/upload/product_images/'. $big_pict . '.jpg"></a>';?>
+                                        <?echo '<a data-fancybox-group="gallery" data-caption="'.$arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'].'" data-type="image" class="fancy_a" href="/upload/product_images/'. $big_pict . '.jpg"></a>';?>
                                         <?}?>                                                        
                                 </div>
                                 <div class="item_info main_item_wrapper <?=$arParams["TYPE_SKU"]?>">
@@ -439,7 +439,18 @@
         // set size for parent container
         this.width = 750;
         this.height = 750;
+        this.title =  $(this.element).data("caption");
+    },
+  /*  caption : function( instance, item ) {
+    var caption = $(this).data('caption') || '';
+
+    if ( item.type === 'image' ) {
+      caption = (caption.length ? caption + '<br />' : '') + '<a href="' + item.src + '">Download image</a>' ;
     }
+
+    return caption;
+  }  */
+  
         });
     });
 
