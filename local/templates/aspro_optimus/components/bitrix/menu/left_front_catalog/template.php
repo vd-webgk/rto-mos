@@ -10,9 +10,15 @@
                     <a class="icons_fa <?=($arItem["CHILD"] ? "parent" : "");?>" href="<?=$arItem["SECTION_PAGE_URL"]?>" ><?=$arItem["NAME"]?></a>
                     <?if($arItem["CHILD"]){?>
                         <ul class="dropdown">
-                            <?$count = 0;?>
                             <?$alreadyShow = array();?>
+                            <?if(count($arItem["CHILD"]) < 6){
+                                $cnt = count($arItem["CHILD"]);
+                                for($k = 0; $k <= 6 - $cnt; $k++){
+                                    $arItem["CHILD"][6 - $k] = array("IMAGES" => $k+1, "CHILD" => $k+1 );       
+                                }   
+                            }?>
                             <?foreach($arItem["CHILD"] as $i => $arChildItem){?>
+                                <?//arshow($arChildItem)?>
                                 <li class="<?=($arChildItem["CHILD"] ? "has-childs" : "");?> <?if($arChildItem["SELECTED"]){?> current <?}?>">
                                     <?if($arChildItem["IMAGES"]){?>
                                         <span class="image"><a href="<?=$arChildItem["SECTION_PAGE_URL"];?>"><img src="<?=$arChildItem["IMAGES"]["src"];?>" alt="<?=$arChildItem["NAME"];?>" /></a></span>
@@ -30,7 +36,6 @@
                                     <div class="clearfix"></div>
 
                                 </li>
-                                 
                                 <?if(($i+1) % 3 == 0){ //Вывод элементов в 3 и 4 столбцах меню?>     
                                     <?if ($i+1 == 3 || $i+1 == 6) {   
                                          foreach($arResult['SECTIONS_TO_SHOW'] as  $v){    //Выводим элемент в меню
@@ -63,10 +68,6 @@
                                         <?}?>
                                          
                                     <?}?>
-                                <?$count = $i +1;?>
-                                <?if( $count< 6 ){
-                                ?><?    
-                                }?>
                                 <?}?>
                         </ul>
                         <?}?>
