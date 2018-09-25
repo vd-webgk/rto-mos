@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Корзина");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket", 
-	".default", 
+	"orderFromBasket", 
 	array(
 		"COLUMNS_LIST" => array(
 			0 => "NAME",
@@ -34,7 +34,7 @@ $APPLICATION->SetTitle("Корзина");
 		"PICTURE_HEIGHT" => "100",
 		"SHOW_FULL_ORDER_BUTTON" => "Y",
 		"SHOW_FAST_ORDER_BUTTON" => "Y",
-		"COMPONENT_TEMPLATE" => ".default",
+		"COMPONENT_TEMPLATE" => "orderFromBasket",
 		"QUANTITY_FLOAT" => "N",
 		"ACTION_VARIABLE" => "action",
 		"TEMPLATE_THEME" => "blue",
