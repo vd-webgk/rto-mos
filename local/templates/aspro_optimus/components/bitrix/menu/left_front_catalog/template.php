@@ -11,7 +11,7 @@
                     <?if($arItem["CHILD"]){?>
                         <ul class="dropdown">
                             <?$alreadyShow = array();?>
-                            <?if(count($arItem["CHILD"]) < 6){
+                            <?if(count($arItem["CHILD"]) < 6){ // Если в меню меньше 6 пунктов добавляем пустые li в меню, чтобы корректно выводились выбранные товары для еркламы
                                 $cnt = count($arItem["CHILD"]);
                                 for($k = 0; $k <= 6 - $cnt; $k++){
                                     $arItem["CHILD"][] = array("IMAGES" => $k+1, "CHILD" => $k+1 );       
