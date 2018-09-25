@@ -14,11 +14,10 @@
                             <?if(count($arItem["CHILD"]) < 6){
                                 $cnt = count($arItem["CHILD"]);
                                 for($k = 0; $k <= 6 - $cnt; $k++){
-                                    $arItem["CHILD"][6 - $k] = array("IMAGES" => $k+1, "CHILD" => $k+1 );       
+                                    $arItem["CHILD"][] = array("IMAGES" => $k+1, "CHILD" => $k+1 );       
                                 }   
                             }?>
                             <?foreach($arItem["CHILD"] as $i => $arChildItem){?>
-                                <?//arshow($arChildItem)?>
                                 <li class="<?=($arChildItem["CHILD"] ? "has-childs" : "");?> <?if($arChildItem["SELECTED"]){?> current <?}?>">
                                     <?if($arChildItem["IMAGES"]){?>
                                         <span class="image"><a href="<?=$arChildItem["SECTION_PAGE_URL"];?>"><img src="<?=$arChildItem["IMAGES"]["src"];?>" alt="<?=$arChildItem["NAME"];?>" /></a></span>
@@ -37,7 +36,7 @@
 
                                 </li>
                                 <?if(($i+1) % 3 == 0){ //Вывод элементов в 3 и 4 столбцах меню?>     
-                                    <?if ($i+1 == 3 || $i+1 == 6) {   
+                                    <?if ($i+1 == 3 || $i+1 == 6) { 
                                          foreach($arResult['SECTIONS_TO_SHOW'] as  $v){    //Выводим элемент в меню
                                             if (in_array($v["ID"], $alreadyShow)) {
                                                 continue;
