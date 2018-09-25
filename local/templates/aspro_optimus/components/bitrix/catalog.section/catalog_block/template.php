@@ -53,7 +53,7 @@
                                             <tr>
                                                 <td><? echo $arItem['PROPERTIES'][$propID]['NAME']; ?></td>
                                                 <td>
-                                                    <?if('L' == $arItem['PROPERTIES'][$propID]['PROPERTY_TYPE']	&& 'C' == $arItem['PROPERTIES'][$propID]['LIST_TYPE']){
+                                                    <?if('L' == $arItem['PROPERTIES'][$propID]['PROPERTY_TYPE']    && 'C' == $arItem['PROPERTIES'][$propID]['LIST_TYPE']){
                                                             foreach($propInfo['VALUES'] as $valueID => $value){?>
                                                             <label>
                                                                 <input type="radio" name="<? echo $arParams['PRODUCT_PROPS_VARIABLE']; ?>[<? echo $propID; ?>]" value="<? echo $valueID; ?>" <? echo ($valueID == $propInfo['SELECTED'] ? '"checked"' : ''); ?>><? echo $value; ?>
@@ -166,15 +166,19 @@
                                     </a>
                                     <?$big_pict = $arItem['PROPERTIES']['CML2_BAR_CODE']['VALUE']?>
                                     <?if($arItem["PREVIEW_PICTURE"]['SRC'] != '/local/templates/aspro_optimus/images/no_photo_medium.png'){?>
-                                        <?echo '<a data-fancybox-group="gallery" data-type="image" class="fancy_a" href="/upload/product_images/'. $big_pict . '.jpg"></a>';?>
+                                        <?echo '<a data-fancybox-group="gallery" data-caption="'.$arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'].'" data-type="image" class="fancy_a" href="/upload/product_images/'. $big_pict . '.jpg"></a>';?>
                                         <?}?>                                                        
                                 </div>
                                 <div class="item_info main_item_wrapper <?=$arParams["TYPE_SKU"]?>">
                                     <div class="item-title">
                                         <a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><span><?=$elementName;?></span></a>
                                     </div>
-                                    <?if ($arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE']) {?>
-                                        <div class="item-article"><?=GetMessage('ART')?><?=$arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>
+                                    <?if ($arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE'] || $arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']) {?>
+                                        <?if(!empty($arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE'])){?>
+                                            <div class="item-article"><?=GetMessage('ART')?><?=$arItem['DISPLAY_PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>
+                                        <?} elseif(!empty($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'])){?>
+                                            <div class="item-article"><?=GetMessage('ART')?><?=$arItem['PROPERTIES']['CML2_ARTICLE']['VALUE']?></div>    
+                                        <?}?>
                                         <?}?>
                                     <?if($arParams["SHOW_RATING"] == "Y"):?>
                                         <div class="rating">
@@ -224,7 +228,7 @@
                                                 <?=COptimus::showPriceMatrix($arItem, $arParams, $strMeasure, $arAddToBasketData);?>
                                                 <?$arMatrixKey = array_keys($arItem['PRICE_MATRIX']['MATRIX']);
                                                     $min_price_id=current($arMatrixKey);?>
-                                                <?	
+                                                <?    
                                                 }
                                                 else
                                                 {
@@ -435,7 +439,8 @@
         // set size for parent container
         this.width = 750;
         this.height = 750;
-    }
+        this.title =  $(this.element).data("caption");
+    },  
         });
     });
 
