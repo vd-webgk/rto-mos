@@ -616,7 +616,7 @@ header .menu_top_block>li>.dropdown li .dropdown {transition: opacity 0s ease .2
 .menu_top_block .dropdown>li.full>.dropdown, .menu_top_block.catalogfirst li.full>.dropdown {padding: 20px 0 20px;box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.1);opacity: 0;display: none;transition: opacity 0s ease .33s, visibility 0s ease .33s;visibility: hidden;min-width:500px;}
 .menu_top_block:not(.catalog_block):hover li.full>.dropdown, header .menu_top_block li:not(.full):hover>.dropdown, .menu_top_block.catalog_block .dropdown> li:hover>.dropdown {/*display: block;*/}
 .menu_top_block li.full:hover>.dropdown{display:block;}
-.menu_top_block.catalogfirst li.full>.dropdown, .menu_top_block.catalog_block .dropdown> li.full>.dropdown {box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);max-width:940px;width:940px;}
+.menu_top_block.catalogfirst li.full>.dropdown, .menu_top_block.catalog_block .dropdown> li.full>.dropdown {box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);max-width:1012px; width:940px;}
 .hide_catalog .menu_top_block.catalog_block{display:none;}
 
 header .menu_top_block li .dropdown li:hover>.dropdown {z-index: 1;opacity: 1;visibility: visible;}
@@ -1109,7 +1109,7 @@ body .flexslider li, body .flex-direction-nav li{padding:0px;}
 .tizers_block .item{display:inline-block;vertical-align:middle;font-size:0px;width:25%;color:#000000;box-sizing:border-box;padding:0px 10px 0px; -moz-transition:all 0.1s ease;-o-transition:all 0.1s ease;-ms-transition:all 0.1s ease;transition:all 0.1s ease;margin:0px 0px 26px;white-space:nowrap;}
 .tizers_block .item .img, .tizers_block .item .title{font-size:13px;display:inline-block;vertical-align:middle;color:#555555;}
 .tizers_block .item .img{max-width:60px;margin:0px 20px 0px 0px;}
-.tizers_block .item .title{width:60%;text-align:left;margin:-6px 0px 0px;  white-space:normal;}
+.tizers_block .item .title{width:65%;text-align:left;margin:-6px 0px 0px;  white-space:normal;}
 .tizers_block .item a{font-size:12px;text-decoration:none;color:#000000;line-height:16px;display:block;}
 
 /* Start page float banners block */

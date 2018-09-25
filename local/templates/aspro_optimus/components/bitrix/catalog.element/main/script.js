@@ -6,15 +6,17 @@ $(document).on('click', ".item-stock .store_view", function(){
 
 $(document).ready(function (){
     $(".imageFancy").fancybox({
-        'maxWidth':300, 
-        'autoDimensions': false,
-        'autoSize':false
+         beforeShow: function () {
+        this.width = 350;
+        this.height = 350;
+    }
 
     });    
     $(".imageFancyGig").fancybox({
-        'maxWidth':700, 
-        'autoDimensions': false,
-        'autoSize':false
+         beforeShow: function () {
+        this.width = 750;
+        this.height = 750;
+    }
 
     });
     
@@ -2515,7 +2517,7 @@ window.JCCatalogElement.prototype.ChangeInfo = function()
 		i = 0,
 		j = 0,
 		RowItems=null,
-		boolOneSearch = true;
+		boolOneSearch = true;  
 
 	for (i = 0; i < this.offers.length; i++)
 	{
@@ -2534,6 +2536,7 @@ window.JCCatalogElement.prototype.ChangeInfo = function()
 			break;
 		}
 	}
+    
 	if (-1 < index)
 	{	
 
@@ -2597,7 +2600,7 @@ window.JCCatalogElement.prototype.ChangeInfo = function()
 		/*set mobile slider images end*/
 
 		if (this.config.showSkuProps && !!this.obSkuProps)
-		{
+		{                             
 			var html ='',
 				display_type = this.offers[index].TYPE_PROP;
 			if (!this.offers[index].DISPLAY_PROPERTIES || this.offers[index].DISPLAY_PROPERTIES.length === 0)
@@ -2631,7 +2634,7 @@ window.JCCatalogElement.prototype.ChangeInfo = function()
 		}
 
 		if (this.config.showSkuProps && !!this.obSkuArticleProps)
-		{
+		{   
 			if ('DISPLAY_PROPERTIES_CODE' in this.offers[index])
 			{
 				if ('ARTICLE' in this.offers[index].DISPLAY_PROPERTIES_CODE)
@@ -2693,44 +2696,48 @@ window.JCCatalogElement.prototype.ChangeInfo = function()
 			'WITH_OFFERS': 'N'
 		});
 
+        
+       for (i = 0; i < this.offers.length; i++) { 
+		    var obj=this.offers[i],
+			    th=$(this.obProduct),
+			    _th = this;
+            
+		    if(typeof arBasketAspro !=="undefined")
+		    {
+			    this.setActualDataBlock(th, obj);
+		    }
+		    else
+		    {
+			    if(typeof window.frameCacheVars !== "undefined")
+			    {
+				    BX.addCustomEvent("onFrameDataReceived", function(){
+					    _th.setActualDataBlock(th, obj);
+				    });
+			    }
+		    }                 
+        }  
+        
+         /*quantity discount start*/
 
-		var obj=this.offers[index],
-			th=$(this.obProduct),
-			_th = this;
+            if($(this.obProduct).find('.quantity_block .values').length)
+                $(this.obProduct).find('.quantity_block .values .item span.value').text(this.offers[index].MAX_QUANTITY).css({'opacity':'1'});
+            
+            if(this.offers[index].SHOW_DISCOUNT_TIME_EACH_SKU == 'Y')
+                initCountdownTime($(this.obProduct), this.offers[index].DISCOUNT_ACTIVE);
 
-		if(typeof arBasketAspro !=="undefined")
-		{
-			this.setActualDataBlock(th, obj);
-		}
-		else
-		{
-			if(typeof window.frameCacheVars !== "undefined")
-			{
-				BX.addCustomEvent("onFrameDataReceived", function(){
-					_th.setActualDataBlock(th, obj);
-				});
-			}
-		}
+            /*quantity discount end*/
 
-		/*quantity discount start*/
+            if(arOptimusOptions['THEME']['CHANGE_TITLE_ITEM'] == 'Y')
+            {
+                document.title = this.offers[index].NAME;
+                $('h1').text(this.offers[index].NAME);
+                ItemObj.TITLE = this.offers[index].NAME;
+                ItemObj.WINDOW_TITLE = this.offers[index].NAME+''+this.offers[index].POSTFIX;
+            }
 
-		if($(this.obProduct).find('.quantity_block .values').length)
-			$(this.obProduct).find('.quantity_block .values .item span.value').text(this.offers[index].MAX_QUANTITY).css({'opacity':'1'});
-		
-		if(this.offers[index].SHOW_DISCOUNT_TIME_EACH_SKU == 'Y')
-			initCountdownTime($(this.obProduct), this.offers[index].DISCOUNT_ACTIVE);
-
-		/*quantity discount end*/
-
-		if(arOptimusOptions['THEME']['CHANGE_TITLE_ITEM'] == 'Y')
-		{
-			document.title = this.offers[index].NAME;
-			$('h1').text(this.offers[index].NAME);
-			ItemObj.TITLE = this.offers[index].NAME;
-			ItemObj.WINDOW_TITLE = this.offers[index].NAME+''+this.offers[index].POSTFIX;
-		}
-
-		$('.catalog_detail .tabs_section .tabs_content .form.inline input[data-sid="PRODUCT_NAME"]').attr('value', $('h1').text());
+            $('.catalog_detail .tabs_section .tabs_content .form.inline input[data-sid="PRODUCT_NAME"]').attr('value', $('h1').text());
+        
+        
 	}
 };
 
@@ -2977,10 +2984,17 @@ window.JCCatalogElement.prototype.setLikeBlock = function(th, className, obj, ty
 
 /*set buy*/
 window.JCCatalogElement.prototype.setBuyBlock = function(th, obj)
-{
-	var buyBlock=th.find('.offer_buy_block'),
+{   
+    //находим значение нужного атрибута данного ТП
+    for (var i in obj.TREE) {
+        var dataOnevalue = obj.TREE[i];
+    } 
+    
+    //выбираем нужное ТП
+    var li = th.find("li[data-onevalue=" + dataOnevalue + "]");
+    
+	var buyBlock= li.find('.offer_buy_block'),
 		input_value = obj.CONFIG.MIN_QUANTITY_BUY;
-
 	if(buyBlock.find('.counter_wrapp .counter_block').length){
 		buyBlock.find('.counter_wrapp .counter_block').attr('data-item', obj.ID);
 	}
@@ -3784,3 +3798,32 @@ window.JCCatalogElement.prototype.allowViewedCount = function(update)
 	}
 };
 })(window);
+
+$(function(){
+    $("body").on("click", ".bx_size", function(){/*
+            $(this).find('li.active');
+            if($(this).find('li.active')){                 
+                  if($(this).find('li.active').find('.counter_wrapp .button_block')){
+                        if($(this).find('li.active').find('.counter_wrapp .button_block')){
+                            if($(this).find('li.active').find('.counter_wrapp .button_block span.to-cart')){
+                                $('li.active .button_block').on('click', function(e){       
+                                    e.preventDefault(e);
+                                    $('li.active .button_block').find('span.to-cart').css('display', 'none');
+                                    $('li.active .button_block').find('span.in-cart').css('display', 'block');
+                                    $('.counter_wrapp .button_block').addClass('wide');
+                                        
+                                })
+                            } 
+                        }
+                  } 
+                     
+            }
+        */})  
+        
+        $("body").on("mouseover", ".sku_props ul li", function(){
+            $(".sku_props ul li").removeClass("active");
+            $(this).addClass("active");    
+        })
+
+
+})    

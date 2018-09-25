@@ -1,0 +1,121 @@
+<div class="main-content" style="background: #ffe6e6;
+    /* height: auto; */
+    display: block;
+    float: left;
+    width: 800px;
+    padding: 20px;">
+<div class="header">
+<h1>Order # 410 | Company</h1>
+</div>
+<div class="order-description" style="width: 45%; float: left; display: block; margin: 20px;">
+<table style="border: none;">
+<tbody>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; width: 100px;">Order #</td>
+<td style="border: none; border-bottom: 1px solid black; width: 100px;">410</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black;">Date</td>
+<td style="border: none; border-bottom: 1px solid black;">05.32.3333</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black;">Currency</td>
+<td style="border: none; border-bottom: 1px solid black; background-color: red; color: white;">$</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black;">Total</td>
+<td style="border: none; border-bottom: 1px solid black;">666</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="user-desription" style="width: 45%; float: right; display: block;">
+<table style="border: 2px solid grey; background: white; margin: 20px;">
+<tbody>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">Name</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">410</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">Country</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">05.32.3333</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">Message</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">$</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">E-mail</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">$</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">Telephone</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">666</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">Legal Address</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">666</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">Delivery address</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">666</td>
+</tr>
+<tr>
+<td style="border: none; border-bottom: 1px solid black; padding: 10px;">Telephone</td>
+<td style="border: none; border-bottom: 1px solid black; ;padding: 10px;">666</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-description" style="width: 100%;float:left;display:block;">
+<table style="border: none; display: block; width: 90%; margin-left: 20px;">
+<tbody>
+<tr>
+<td><img style="width: 80px; height: 80px;" /></td>
+<td style="width: 80px; height: 80px;">SKU</td>
+<td style="width: 80px; height: 80px;">SKU;</td>
+<td style="width: 80px; height: 80px;">&amp;SKU;</td>
+<td style="width: 80px; height: 80px;">&amp;SKU;</td>
+<td style="width: 80px; height: 80px;">&amp;SKU;</td>
+<td style="width: 80px; height: 80px;">&amp;SKU;</td>
+<td style="width: 80px; height: 80px;">&amp;SKU;</td>
+</tr>
+<tr>
+<td><img style="width: 80px; height: 80px;" /></td>
+<td>SKU</td>
+<td>SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+</tr>
+<tr>
+<td><img style="width: 80px; height: 80px;" /></td>
+<td>SKU</td>
+<td>SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+<td>&amp;SKU;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="total" style="background: #ffe6e6;float:  right;width: 100%;">
+<table style="border: none;float: right;display: block;/* width: 100%; */margin: 20px;">
+<tbody style="width: 100%;">
+<tr style="width: 100%;text-align: right;">
+<td style="border: none;border-bottom: 1px solid grey;width: 800px;"><strong>Sub Total:</strong></td>
+</tr>
+<tr style="width: 100%;text-align: right;">
+<td style="border: none; border-bottom: 1px solid grey;"><strong>Sub Total:</strong></td>
+</tr>
+<tr style="width: 100%;text-align: right;">
+<td style="border: none; border-bottom: 1px solid grey;"><strong>Sub Total:</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
