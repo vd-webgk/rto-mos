@@ -110,3 +110,6 @@ li.full.has-child .parent {
     margin: 0 10px;   
 
 }
+body .menu_top_block.catalog_block .dropdown> li > a {
+    color: #040404 !important;    
+}
